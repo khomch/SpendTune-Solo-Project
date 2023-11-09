@@ -45,4 +45,19 @@ masterController.createUser = async (req, res) => {
   }
 }
 
+masterController.login = async (req, res) => {
+  try{
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    const validatePass = await bcrypt.compare(password, user.password);
+    if (!validatePass) throw new Error();
+    res.status(200).send(user);
+  } catch (error) {
+    res
+      .status(401)
+      .send({ error: '401', message: 'Username or password is incorrect' });
+  }
+
+}
+
 module.exports = masterController;

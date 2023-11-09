@@ -7,6 +7,7 @@ router.get('/api/create_link_token', controller.createLinkToken);
 
 // ROUTES FOR APP INTERACTION
 router.post('/register', controller.createUser)
+router.post('/login', controller.login)
 
 router.get('*', (req, res) => {
   res
