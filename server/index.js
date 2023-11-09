@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require("body-parser");
-const session = require("express-session");
+// const session = require("express-session"); EXTRA CREDTIS :D
 const cors = require('cors');
 const router = require('./router');
 const app = express();
@@ -18,20 +18,20 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(
-  session({
-    name: 'sid',
-    saveUninitialized: false,
-    resave: false,
-    secret: SECRET, // Look into this
-    cookie: {
-      maxAge: 1000 * 60 * 60, // 1hr
-      sameSite: true,
-      httpOnly: false,
-      secure: false,
-    },
-  })
-);
+// app.use(                     EXTRA CREDTIS :D
+//   session({
+//     name: 'sid',
+//     saveUninitialized: false,
+//     resave: false,
+//     secret: SECRET,
+//     cookie: {
+//       maxAge: 1000 * 60 * 60, // 1hr
+//       sameSite: true,
+//       httpOnly: false,
+//       secure: false,
+//     },
+//   })                         EXTRA CREDTIS :D
+// );
 app.use(router);
 
 
