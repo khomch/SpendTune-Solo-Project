@@ -1,6 +1,14 @@
-import Register from "./components/register";
-
 const baseUrl = 'http://localhost:3001';
+
+async function getLoggedUser() {
+  try {
+    const loggedUser = await fetch(baseUrl + '/loggedUser')
+    const response = await loggedUser.json();
+    return response;
+  } catch(error) {
+    console.log('We have a problem:' + error);
+  }
+}
 
 async function logUser({ email, password }) {
   try {
@@ -34,4 +42,4 @@ async function register(user) {
   }
 }
 
-export { logUser, register }
+export { logUser, register, getLoggedUser }

@@ -1,8 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getLoggedUser } from '../apiService';
 
 function Home(props) {
 
   const [linkedAccounts, setLinkedAccounts] = useState({})
+
+  useEffect( () => {
+    async function checkLoggedUser() {
+      const loggedUser = await getLoggedUser();
+      console.log(loggedUser)
+      props.setLogged(loggedUser);
+    }
+    checkLoggedUser();
+  }, [])
 
   const user = {}
 

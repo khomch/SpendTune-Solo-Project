@@ -23,6 +23,8 @@ function Login(props) {
     }
   }
 
+  // HANDLERS COULD BE REFACTORED INTO SINGLE UNIVERSAL HANDLER
+
   function handleEmail(event) {
     setEmail(event.target.value);
   }

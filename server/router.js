@@ -6,6 +6,7 @@ const controller = require('./controllers/master');
 router.get('/api/create_link_token', controller.createLinkToken);
 
 // ROUTES FOR APP INTERACTION
+router.get('/loggedUser', controller.loggedUser)
 router.post('/register', controller.createUser)
 router.post('/login', controller.login)
 

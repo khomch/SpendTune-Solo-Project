@@ -24,6 +24,8 @@ masterController.createLinkToken = async (req, res) => {
 
 // METHODS TO INTERACT WITH CLIENT APP
 
+let loggedUser = null;
+
 masterController.createUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email});
@@ -39,7 +41,9 @@ masterController.createUser = async (req, res) => {
       password: hash
     });
     const user = await newUser.save();
-    res.status(201).send(user);
+    loggedUser = user;
+    console.log(loggedUser)
+    res.status(201).send(loggedUser);
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user' });
   }
@@ -51,13 +55,18 @@ masterController.login = async (req, res) => {
     const user = await User.findOne({ email: email });
     const validatePass = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
-    res.status(200).send(user);
+    loggedUser = user;
+    console.log(loggedUser)
+    res.status(200).send(loggedUser);
   } catch (error) {
     res
       .status(401)
       .send({ error: '401', message: 'Username or password is incorrect' });
   }
+}
 
+masterController.loggedUser = async (req, res) => {
+  res.status(200).send(loggedUser);
 }
 
 module.exports = masterController;

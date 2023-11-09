@@ -19,7 +19,7 @@ function Dashboard(props) {
       />
       <Route
         path="/home"
-        element={<Home logged={props.logged}/>}
+        element={<Home logged={props.logged} setLogged={props.setLogged}/>}
       />
     </Routes>
     </div>

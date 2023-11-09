@@ -27,6 +27,8 @@ function Register(props) {
     }
   }
 
+  // HANDLERS COULD BE REFACTORED INTO SINGLE UNIVERSAL HANDLER
+
   function handleEmail(event) {
     setEmail(event.target.value);
   }
@@ -39,7 +41,6 @@ function Register(props) {
   function handleLastName(event) {
     setLastName(event.target.value);
   }
-
 
   return (
     <div className="register">
