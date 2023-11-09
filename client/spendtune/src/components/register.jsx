@@ -1,7 +1,10 @@
+import React from 'react';
 
 function Register(props) {
   return (
-    <p>register works</p>
+    <div className="register">
+      <p>register works</p>
+    </div>
   )
 }
 

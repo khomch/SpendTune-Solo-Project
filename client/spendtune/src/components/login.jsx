@@ -1,4 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { logUser } from '../apiService'
 
 function Login(props) {
@@ -6,12 +8,15 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   async function handleSubmit(event) {
     event.preventDefault();
     const login = { email, password };
     const user = await logUser(login);
     if (!user.error) {
       props.setLogged(user);
+      navigate('/home');
     }
     setEmail('');
     setPassword('');
@@ -50,6 +55,8 @@ function Login(props) {
           </li>
         </ul>
       </form>
+      <p>Don't have an account yet?</p>
+      <button onClick={() => navigate('/register')}>register</button>
     </div>
   )
 }

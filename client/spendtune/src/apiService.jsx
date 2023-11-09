@@ -1,3 +1,4 @@
+
 const baseUrl = 'http://localhost:3001';
 
 async function logUser({ email, password }) {
