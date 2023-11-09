@@ -34,7 +34,6 @@ app.use(express.json());
 // );
 app.use(router);
 
-
 app.listen(SERVER_PORT, (err) => {
   if (err) {
     console.log(`😞 Sorry, something went wrong! ${err}`);
