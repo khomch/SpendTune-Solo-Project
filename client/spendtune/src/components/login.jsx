@@ -5,21 +5,22 @@ import { logUser } from '../apiService'
 
 function Login(props) {
 
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
     const login = { email, password };
     const user = await logUser(login);
+    setEmail('');
+    setPassword('');
     if (!user.error) {
       props.setLogged(user);
       navigate('/home');
     }
-    setEmail('');
-    setPassword('');
   }
 
   function handleEmail(event) {
