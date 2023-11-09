@@ -6,7 +6,7 @@ async function getLoggedUser() {
     const response = await loggedUser.json();
     return response;
   } catch(error) {
-    console.log('We have a problem:' + error);
+    console.log('Issue occured while retrieving logged user' + error);
   }
 }
 
@@ -22,7 +22,7 @@ async function logUser({ email, password }) {
     const user = await userData.json();
     return user;
   } catch (error) {
-    console.log('We have a problem:' + error)
+    console.log('Issue occured on login:' + error)
   }
 }
 
@@ -38,8 +38,21 @@ async function register(user) {
     const registeredUser = await userData.json();
     return registeredUser;
   } catch (error) {
-    console.log('We have a problem:' + error)
+    console.log('Issue occured on register' + error)
   }
 }
 
-export { logUser, register, getLoggedUser }
+async function logout() {
+  try {
+    await fetch(baseUrl + '/logout', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  } catch(error) {
+    console.log('Issue occured on logout:' + error)
+  }
+}
+
+export { logUser, register, getLoggedUser, logout }

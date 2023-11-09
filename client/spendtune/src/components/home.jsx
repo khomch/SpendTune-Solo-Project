@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getLoggedUser } from '../apiService';
 
+// TODO - redirect to login page when not logged in
+
 function Home(props) {
 
   const [linkedAccounts, setLinkedAccounts] = useState({})
@@ -19,6 +21,8 @@ function Home(props) {
     user.firstName = props.logged.firstName
     user.lastName = props.logged.lastName
   }
+
+  // TODO - handle bank account sync
 
   async function handleClick(event) {
     console.log('lets sync some shit')
