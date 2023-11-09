@@ -8,7 +8,6 @@ function Home(props) {
   useEffect( () => {
     async function checkLoggedUser() {
       const loggedUser = await getLoggedUser();
-      console.log(loggedUser)
       props.setLogged(loggedUser);
     }
     checkLoggedUser();

@@ -1,6 +1,6 @@
-const apiClient = require ('../API/plaidClient');
-const User = require('../models/user');
-const bcrypt = require('bcrypt')
+const apiClient = require ("../API/plaidClient");
+const User = require("../models/user");
+const bcrypt = require("bcrypt")
 
 const masterController = {};
 
@@ -18,7 +18,7 @@ masterController.createLinkToken = async (req, res) => {
     });
     res.json(tokenResponse.data);
   } catch (error) {
-      res.status(400).send({error, message: 'Could not fetch Link Token'})
+      res.status(400).send({error, message: "Could not fetch Link Token"})
   }
 }
 
@@ -32,9 +32,9 @@ masterController.createUser = async (req, res) => {
   if (user)
     return res
       .status(409)
-      .send({ error: '409', message: 'User already exists' });
+      .send({ error: "409", message: "User already exists" });
   try {
-    if ( password === '') throw new Error();
+    if ( password === "") throw new Error();
     const hash = await bcrypt.hash(password, 10);
     const newUser = new User({
       ...req.body,
@@ -45,7 +45,7 @@ masterController.createUser = async (req, res) => {
     console.log(loggedUser)
     res.status(201).send(loggedUser);
   } catch (error) {
-    res.status(400).send({ error, message: 'Could not create user' });
+    res.status(400).send({ error, message: "Could not create user" });
   }
 }
 
@@ -61,12 +61,29 @@ masterController.login = async (req, res) => {
   } catch (error) {
     res
       .status(401)
-      .send({ error: '401', message: 'Username or password is incorrect' });
+      .send({ error: "401", message: "Username or password is incorrect" });
   }
 }
 
 masterController.loggedUser = async (req, res) => {
-  res.status(200).send(loggedUser);
+  try {
+    res.status(200).send(loggedUser);
+  } catch(error) {
+    res
+      .status(400)
+      .send({ error: "400", message: "Something went wrong" });
+  }
+}
+
+masterController.logout = async (req, res) => {
+  try {
+    loggedUser = null;
+    res.status(200).send({ message: "User logged out" });
+  } catch(error) {
+    res
+      .status(400)
+      .send({ error: "400", message: "Something went wrong" });
+  }
 }
 
 module.exports = masterController;

@@ -9,6 +9,7 @@ router.get('/api/create_link_token', controller.createLinkToken);
 router.get('/loggedUser', controller.loggedUser)
 router.post('/register', controller.createUser)
 router.post('/login', controller.login)
+router.post('/logout', controller.logout)
 
 router.get('*', (req, res) => {
   res
