@@ -63,7 +63,7 @@ function Register(props) {
             <input type="text" name='lastName' value={lastName} onChange={handleLastName} />
           </li>
           <li>
-            <button type="submit">submit</button>
+            <button type="submit">Register</button>
           </li>
         </ul>
       </form>

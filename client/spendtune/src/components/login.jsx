@@ -54,12 +54,12 @@ function Login(props) {
             />
           </li>
           <li>
-            <button type="submit">login</button>
+            <button type="submit">Login</button>
           </li>
         </ul>
       </form>
       <p>Don't have an account yet?</p>
-      <button onClick={() => navigate('/register')}>register</button>
+      <button onClick={() => navigate('/register')}>Register</button>
     </div>
   )
 }
