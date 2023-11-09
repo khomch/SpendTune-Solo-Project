@@ -10,7 +10,11 @@ function Login(props) {
     event.preventDefault();
     const login = { email, password };
     const user = await logUser(login);
-    props.setLogged(user);
+    if (!user.error) {
+      props.setLogged(user);
+    }
+    setEmail('');
+    setPassword('');
   }
 
   function handleEmail(event) {
