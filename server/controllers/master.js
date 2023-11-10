@@ -9,7 +9,7 @@ const masterController = {};
 masterController.createLinkToken = async (req, res) => {
   try {
     const tokenResponse = await apiClient.linkTokenCreate({
-      user: { client_user_id: "654c963858e565bec0b38552" },
+      user: { client_user_id: loggedUser._id },
       client_name: "SpendTune",
       language: "en",
       products: ["transactions"],

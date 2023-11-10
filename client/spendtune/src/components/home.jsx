@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { getLoggedUser } from '../apiService';
 import { useNavigate } from 'react-router-dom';
+
+import { getLoggedUser } from '../apiService';
+import { getLinkToken } from '../plaidService';
 
 function Home(props) {
 
@@ -12,6 +14,9 @@ function Home(props) {
     async function checkLoggedUser() {
       const loggedUser = await getLoggedUser();
       props.setLogged(loggedUser);
+      if (!loggedUser) {
+        navigate('/');
+      }
     }
     checkLoggedUser();
   }, [])
@@ -23,37 +28,22 @@ function Home(props) {
     user.lastName = props.logged.lastName
   }
 
-  // TODO - handle bank account sync
-
-  async function handleSync(event) {
-    console.log('lets sync some shit')
-  }
-
-  async function handleGoToLogin(event) {
-    navigate('/');
+  async function handleSync() {
+    const linkToken = await getLinkToken();
+    console.log(linkToken)
   }
 
   return (
     <div className="home">
       <h1>Home</h1>
-      <p>Hello {
-        user.firstName ?
-        user.firstName + ' ' + user.lastName :
-        'stranger' }
+      <p>Hello
+      { user.firstName + ' ' + user.lastName }
       </p>
       { Object.keys(linkedAccounts).length === 0 &&
-      props.logged &&
       <p>No bank accounts synced</p>
       }
-      { props.logged &&
       <button onClick={handleSync}>Sync your bank account</button>
-      }
-      { !props.logged &&
-      <div>
-      <p>Please go back to login page</p>
-      <button onClick={handleGoToLogin}>go to login</button>
-      </div>
-      }
+
     </div>
   )
 }

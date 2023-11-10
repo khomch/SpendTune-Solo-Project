@@ -17,6 +17,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^8.0.0",
     "plaid": "^17.0.0",
+    "react-plaid-link": "^3.5.1",
     "react-router-dom": "^6.18.0"
   }
 }
