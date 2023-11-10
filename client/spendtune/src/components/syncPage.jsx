@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 
-import { sendPublicToken } from '../plaidService';
+import { exchangePublicToken } from '../plaidService';
 
 function SyncPage(props) {
 
@@ -9,8 +9,8 @@ function SyncPage(props) {
 
   const { open } = usePlaidLink({
     token: linkToken,
-    onSuccess: async (public_token, metadata) => {
-      await sendPublicToken(public_token)
+    onSuccess: async (public_token) => {
+      await exchangePublicToken(public_token)
       console.log('Link successful. Public Token:', public_token);
     },
   });
@@ -18,8 +18,6 @@ function SyncPage(props) {
   useEffect( () => {
     open()
   }, [open])
-
-  // // Use the `open` and `ready` functions as needed in your component
 
   return (
     <div>

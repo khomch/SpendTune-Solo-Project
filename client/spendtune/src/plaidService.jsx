@@ -10,10 +10,10 @@ async function getLinkToken() {
   }
 }
 
-async function sendPublicToken(token) {
+async function exchangePublicToken(token) {
   console.log(typeof token + ' ' + token)
   try {
-    await fetch(baseUrl + '/api/process_public_token', {
+    await fetch(baseUrl + '/api/exchange_public_token', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -26,4 +26,4 @@ async function sendPublicToken(token) {
   }
 }
 
-export { getLinkToken, sendPublicToken };
+export { getLinkToken, exchangePublicToken };

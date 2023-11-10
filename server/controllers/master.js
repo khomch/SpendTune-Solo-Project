@@ -1,6 +1,7 @@
-const apiClient = require ("../API/plaidClient");
+const { ItemUpdateTypeEnum } = require("plaid");
+const apiClient = require("../API/plaidClient");
 const User = require("../models/user");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
 const masterController = {};
 
@@ -16,21 +17,35 @@ masterController.createLinkToken = async (req, res) => {
       country_codes: ["GB"],
       redirect_uri: process.env.PLAID_SANDBOX_REDIRECT_URI,
     });
-    res.json(tokenResponse.data);
-  } catch(error) {
-      res.status(400).send({error, message: "Could not fetch Link Token"})
+    res.status(200).json(tokenResponse.data);
+  } catch (error) {
+    res.status(400).send({ error, message: "Could not fetch Link Token" });
   }
-}
+};
 
-masterController.processPublicToken = async (req, res) => {
+masterController.exchangePublicToken = async (req, res) => {
   try {
-    const { token } = req.body
+    const { token } = req.body;
+    const response = await apiClient.itemPublicTokenExchange({
+      public_token: token,
+    });
+    const accesstoken = response.data.access_token;
+    const itemID = response.data.item_id;
 
-    res.status(200).send(token);
-  } catch(error) {
-    res.status(400).send({error, message: "Could not process Public Token"})
+    console.log(accesstoken,itemID);
+    // const filter = { _id: loggedUser._id };
+    // const update = { accesstoken: accesstoken, itemID: itemID };
+    // const item = await User.findOneAndUpdate(filter, update);
+    // console.log(item);
+    res
+      .status(200)
+      .json({
+        public_token_exchange: "completed, token and itemID stored in users DB",
+      });
+  } catch (error) {
+    res.status(400).send({ error, message: "Could not exchange Public Token" });
   }
-}
+};
 
 // METHODS TO INTERACT WITH CLIENT APP
 
@@ -38,60 +53,56 @@ let loggedUser = null;
 
 masterController.createUser = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email: email});
+  const user = await User.findOne({ email: email });
   if (user)
     return res
       .status(409)
       .send({ error: "409", message: "User already exists" });
   try {
-    if ( password === "") throw new Error();
+    if (password === "") throw new Error();
     const hash = await bcrypt.hash(password, 10);
     const newUser = new User({
       ...req.body,
-      password: hash
+      password: hash,
     });
     const user = await newUser.save();
     loggedUser = user;
     res.status(201).send(loggedUser);
-  } catch(error) {
+  } catch (error) {
     res.status(400).send({ error, message: "Could not create user" });
   }
-}
+};
 
 masterController.login = async (req, res) => {
-  try{
+  try {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
     const validatePass = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     loggedUser = user;
     res.status(200).send(loggedUser);
-  } catch(error) {
+  } catch (error) {
     res
       .status(401)
       .send({ error: "401", message: "Username or password is incorrect" });
   }
-}
+};
 
 masterController.loggedUser = async (req, res) => {
   try {
     res.status(200).send(loggedUser);
-  } catch(error) {
-    res
-      .status(400)
-      .send({ error: "400", message: "Something went wrong" });
+  } catch (error) {
+    res.status(400).send({ error: "400", message: "Something went wrong" });
   }
-}
+};
 
 masterController.logout = async (req, res) => {
   try {
     loggedUser = null;
     res.status(200).send({ message: "User logged out" });
-  } catch(error) {
-    res
-      .status(400)
-      .send({ error: "400", message: "Something went wrong" });
+  } catch (error) {
+    res.status(400).send({ error: "400", message: "Something went wrong" });
   }
-}
+};
 
 module.exports = masterController;

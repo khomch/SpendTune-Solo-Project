@@ -17,6 +17,14 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  accessToken: {
+    type: String,
+    default: ''
+  },
+  itemID: {
+    type: String,
+    default: ''
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -3,7 +3,7 @@ const controller = require('./controllers/master');
 
 // ROUTES FOR API INTERACTION
 router.get('/api/create_link_token', controller.createLinkToken);
-router.post('/api/process_public_token', controller.processPublicToken);
+router.post('/api/exchange_public_token', controller.exchangePublicToken);
 
 // ROUTES FOR APP INTERACTION
 router.get('/logged_user', controller.loggedUser)
