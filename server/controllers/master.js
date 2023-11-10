@@ -29,19 +29,18 @@ masterController.exchangePublicToken = async (req, res) => {
     const response = await apiClient.itemPublicTokenExchange({
       public_token: token,
     });
-    const accesstoken = response.data.access_token;
+    const accessToken = response.data.access_token;
     const itemID = response.data.item_id;
 
-    console.log(accesstoken,itemID);
-    // const filter = { _id: loggedUser._id };
-    // const update = { accesstoken: accesstoken, itemID: itemID };
-    // const item = await User.findOneAndUpdate(filter, update);
-    // console.log(item);
-    res
-      .status(200)
-      .json({
-        public_token_exchange: "completed, token and itemID stored in users DB",
-      });
+    const filter = { _id: loggedUser._id };
+    const update = { $set: { accessToken: accessToken, itemID: itemID } };
+    const item = await User.findOneAndUpdate(filter, update);
+
+    res.status(200).json({
+      public_token_exchange:
+        "completed, token and itemID stored in users DB "
+    });
+
   } catch (error) {
     res.status(400).send({ error, message: "Could not exchange Public Token" });
   }

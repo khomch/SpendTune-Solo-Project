@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 // const session = require("express-session"); EXTRA CREDTIS :D
 const cors = require('cors');
 const router = require('./router');
@@ -17,7 +17,7 @@ const corsConfig = {
 
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(                     EXTRA CREDTIS :D
 //   session({
 //     name: 'sid',

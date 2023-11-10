@@ -11,16 +11,14 @@ async function getLinkToken() {
 }
 
 async function exchangePublicToken(token) {
-  console.log(typeof token + ' ' + token)
   try {
-    await fetch(baseUrl + '/api/exchange_public_token', {
+    const response = await fetch(baseUrl + '/api/exchange_public_token', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(token)
+      body: JSON.stringify({token})
     })
-    // TODO add necessary logic
   } catch(error) {
     console.log('Issue occured while sending Public Token to the server ' + error);
   }

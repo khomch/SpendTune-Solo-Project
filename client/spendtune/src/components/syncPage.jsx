@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
+import { useNavigate } from 'react-router-dom';
 
 import { exchangePublicToken } from '../plaidService';
 
 function SyncPage(props) {
+
+  const navigate = useNavigate();
+
 
   const linkToken = props.tokenStore.link_token;
 
@@ -16,6 +20,9 @@ function SyncPage(props) {
   });
 
   useEffect( () => {
+    if(!props.tokenStore) {
+      navigate('/');
+    }
     open()
   }, [open])
 
