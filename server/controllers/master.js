@@ -17,9 +17,14 @@ masterController.createLinkToken = async (req, res) => {
       country_codes: ["GB"],
       redirect_uri: process.env.PLAID_SANDBOX_REDIRECT_URI,
     });
+    if (!tokenResponse.data) {
+      return res
+        .status(400)
+        .send({ error: "400", message:"Couldn't authenticate Link Token"})
+    }
     res.status(200).json(tokenResponse.data);
   } catch (error) {
-    res.status(400).send({ error, message: "Could not fetch Link Token" });
+    res.status(500).send({ error, message: "Couldn't fetch Link Token" });
   }
 };
 
@@ -29,6 +34,11 @@ masterController.exchangePublicToken = async (req, res) => {
     const response = await apiClient.itemPublicTokenExchange({
       public_token: token,
     });
+    if (!response.data.access_token) {
+      return res
+        .status(400)
+        .send({ error: "400", message: "Couldn't retrieve acccess token from the API"});
+    }
     const accessToken = response.data.access_token;
     const itemID = response.data.item_id;
 
@@ -42,7 +52,7 @@ masterController.exchangePublicToken = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(400).send({ error, message: "Could not exchange Public Token" });
+    res.status(500).send({ error, message: "Could not exchange Public Token" });
   }
 };
 
@@ -68,7 +78,7 @@ masterController.createUser = async (req, res) => {
     loggedUser = user;
     res.status(201).send(loggedUser);
   } catch (error) {
-    res.status(400).send({ error, message: "Could not create user" });
+    res.status(500).send({ error, message: "Could not create user" });
   }
 };
 
@@ -91,7 +101,7 @@ masterController.loggedUser = async (req, res) => {
   try {
     res.status(200).send(loggedUser);
   } catch (error) {
-    res.status(400).send({ error: "400", message: "Something went wrong" });
+    res.status(500).send({ error: "400", message: "Something went wrong" });
   }
 };
 
@@ -100,7 +110,7 @@ masterController.logout = async (req, res) => {
     loggedUser = null;
     res.status(200).send({ message: "User logged out" });
   } catch (error) {
-    res.status(400).send({ error: "400", message: "Something went wrong" });
+    res.status(500).send({ error: "400", message: "Something went wrong" });
   }
 };
 
