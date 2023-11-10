@@ -30,17 +30,19 @@ function Home(props) {
 
   async function handleSync() {
     const linkToken = await getLinkToken();
-    console.log(linkToken)
+    props.setTokenStore(linkToken);
+    navigate('/sync');
   }
 
   return (
     <div className="home">
       <h1>Home</h1>
-      <p>Hello
-      { user.firstName + ' ' + user.lastName }
+      <p>
+        Hello
+        {' ' + user.firstName + ' ' + user.lastName}
       </p>
       { Object.keys(linkedAccounts).length === 0 &&
-      <p>No bank accounts synced</p>
+        <p>No bank accounts synced</p>
       }
       <button onClick={handleSync}>Sync your bank account</button>
 
