@@ -1,26 +1,33 @@
-import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 
 function SyncPage(props) {
 
-  const linkToken = props.tokenStore;
+  const linkToken = props.tokenStore.link_token;
   console.log(linkToken)
 
-  // const { open, ready } = usePlaidLink({
-  //   token: 'link-sandbox-620844ab-afee-4014-aeac-f30a52f98d52',
-  //   onSuccess: (public_token, metadata) => {
-  //     // send public_token to server
-  //     console.log('Link successful. Public Token:', public_token);
-  //   },
-  // });
+  const { open, ready } = usePlaidLink({
+    token: linkToken,
+    onSuccess: (public_token, metadata) => {
+      // send public_token to server
+      console.log('Link successful. Public Token:', public_token);
+    },
+  });
+
+  useEffect( () => {
+    open()
+  }, [open])
 
   // // Use the `open` and `ready` functions as needed in your component
 
   return (
-    <h1>sync works</h1>
-    // <div>
-    //   <button onClick={() => open()}>Open Plaid Link</button>
-    // </div>
+    <div>
+      <h3>Please wait for Plaid's widget to load.</h3>
+      <div>
+        <p>You can also use the button to load widget manually.</p>
+        <button onClick={() => open()}>Load widget</button>
+      </div>
+    </div>
   );
 }
 
