@@ -10,4 +10,20 @@ async function getLinkToken() {
   }
 }
 
-export { getLinkToken };
+async function sendPublicToken(token) {
+  console.log(typeof token + ' ' + token)
+  try {
+    await fetch(baseUrl + '/api/process_public_token', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(token)
+    })
+    // TODO add necessary logic
+  } catch(error) {
+    console.log('Issue occured while sending Public Token to the server ' + error);
+  }
+}
+
+export { getLinkToken, sendPublicToken };

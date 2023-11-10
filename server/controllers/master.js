@@ -17,8 +17,18 @@ masterController.createLinkToken = async (req, res) => {
       redirect_uri: process.env.PLAID_SANDBOX_REDIRECT_URI,
     });
     res.json(tokenResponse.data);
-  } catch (error) {
+  } catch(error) {
       res.status(400).send({error, message: "Could not fetch Link Token"})
+  }
+}
+
+masterController.processPublicToken = async (req, res) => {
+  try {
+    const { token } = req.body
+
+    res.status(200).send(token);
+  } catch(error) {
+    res.status(400).send({error, message: "Could not process Public Token"})
   }
 }
 
@@ -42,9 +52,8 @@ masterController.createUser = async (req, res) => {
     });
     const user = await newUser.save();
     loggedUser = user;
-    console.log(loggedUser)
     res.status(201).send(loggedUser);
-  } catch (error) {
+  } catch(error) {
     res.status(400).send({ error, message: "Could not create user" });
   }
 }
@@ -56,9 +65,8 @@ masterController.login = async (req, res) => {
     const validatePass = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     loggedUser = user;
-    console.log(loggedUser)
     res.status(200).send(loggedUser);
-  } catch (error) {
+  } catch(error) {
     res
       .status(401)
       .send({ error: "401", message: "Username or password is incorrect" });

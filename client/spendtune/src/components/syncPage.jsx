@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 
+import { sendPublicToken } from '../plaidService';
+
 function SyncPage(props) {
 
   const linkToken = props.tokenStore.link_token;
-  console.log(linkToken)
 
-  const { open, ready } = usePlaidLink({
+  const { open } = usePlaidLink({
     token: linkToken,
-    onSuccess: (public_token, metadata) => {
-      // send public_token to server
+    onSuccess: async (public_token, metadata) => {
+      await sendPublicToken(public_token)
       console.log('Link successful. Public Token:', public_token);
     },
   });
