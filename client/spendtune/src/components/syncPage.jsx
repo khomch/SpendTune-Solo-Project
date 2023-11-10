@@ -7,22 +7,18 @@ import { exchangePublicToken } from '../plaidService';
 function SyncPage(props) {
 
   const navigate = useNavigate();
-
-
   const linkToken = props.tokenStore.link_token;
 
   const { open } = usePlaidLink({
     token: linkToken,
     onSuccess: async (public_token) => {
       await exchangePublicToken(public_token)
-      console.log('Link successful. Public Token:', public_token);
+      console.log('Link successful');
+      navigate('/home');
     },
   });
 
   useEffect( () => {
-    if(!props.tokenStore) {
-      navigate('/');
-    }
     open()
   }, [open])
 

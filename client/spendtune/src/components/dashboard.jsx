@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Login from "./login";
 import Register from "./register";
@@ -20,7 +20,7 @@ function Dashboard(props) {
         <Route
           path="/home"
           element={
-            <Home
+              <Home
               logged={props.logged}
               setLogged={props.setLogged}
               tokenStore={tokenStore}
@@ -31,7 +31,11 @@ function Dashboard(props) {
         <Route
           path="/sync"
           element={
-            <SyncPage tokenStore={tokenStore} setTokenStore={setTokenStore} />
+            props.logged ? (
+              <SyncPage tokenStore={tokenStore} setTokenStore={setTokenStore} />
+            ) : (
+              <Navigate replace to={"/home"} />
+            )
           }
         />
       </Routes>
