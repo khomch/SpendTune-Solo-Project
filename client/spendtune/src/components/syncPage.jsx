@@ -13,7 +13,7 @@ function SyncPage(props) {
     token: linkToken,
     onSuccess: async (public_token) => {
       await exchangePublicToken(public_token)
-      console.log('Link successful');
+      console.log('Plaid API - Link successful');
       navigate('/home');
     },
   });

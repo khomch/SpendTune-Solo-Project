@@ -38,7 +38,7 @@ function Dashboard(props) {
             )
           }
         />
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate replace to="/home" />} />
       </Routes>
     </div>
   );

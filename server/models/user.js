@@ -21,9 +21,9 @@ const userSchema = mongoose.Schema({
     type: String,
     default: ''
   },
-  itemID: {
-    type: String,
-    default: ''
+  linkedBanks: {
+    type: Object,
+    default: {}
   }
 });
 

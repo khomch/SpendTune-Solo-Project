@@ -8,7 +8,7 @@ function Home(props) {
 
   const navigate = useNavigate();
 
-  const [linkedAccounts, setLinkedAccounts] = useState({})
+  const [linkedBanks, setLinkedBanks] = useState({})
 
   useEffect( () => {
     async function checkLoggedUser() {
@@ -17,6 +17,13 @@ function Home(props) {
       if (!loggedUser) {
         navigate('/');
       }
+      // if ( Object.keys(linkedBanks).length !== 0 ) {
+      //   const {...linkedBanks} = props.loggedUser.linkedBanks
+      //   setLinkedBanks((prevState) => ({
+      //     ...prevState,
+      //     ...linkedBanks
+      //   }))
+      // }
     }
     checkLoggedUser();
   }, [])
@@ -41,10 +48,10 @@ function Home(props) {
         Hello
         {' ' + user.firstName + ' ' + user.lastName}
       </p>
-      { Object.keys(linkedAccounts).length === 0 &&
-        <p>No bank accounts synced</p>
+      { Object.keys(linkedBanks).length === 0 &&
+        <p>No banks synced</p>
       }
-      <button onClick={handleSync}>Sync your bank account</button>
+      <button onClick={handleSync}>Sync your bank</button>
 
     </div>
   )

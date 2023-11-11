@@ -1,7 +1,7 @@
-const { ItemUpdateTypeEnum } = require("plaid");
 const apiClient = require("../API/plaidClient");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const syncTransactions = require('../utils/syncTransactions');
 
 const masterController = {};
 
@@ -24,11 +24,12 @@ masterController.createLinkToken = async (req, res) => {
     }
     res.status(200).json(tokenResponse.data);
   } catch (error) {
-    res.status(500).send({ error, message: "Couldn't fetch Link Token" });
+    res.status(500).send({ message: "Couldn't fetch Link Token" });
   }
 };
 
 masterController.exchangePublicToken = async (req, res) => {
+  // Send public token to api to receive access token and itemID
   try {
     const { token } = req.body;
     const response = await apiClient.itemPublicTokenExchange({
@@ -37,26 +38,44 @@ masterController.exchangePublicToken = async (req, res) => {
     if (!response.data.access_token) {
       return res
         .status(400)
-        .send({ error: "400", message: "Couldn't retrieve acccess token from the API"});
+        .send({ message: "Couldn't retrieve acccess token from the API"});
     }
     const accessToken = response.data.access_token;
     const itemID = response.data.item_id;
-
-    const filter = { _id: loggedUser._id };
-    const update = { $set: { accessToken: accessToken, itemID: itemID } };
-    const item = await User.findOneAndUpdate(filter, update);
-
-    res.status(200).json({
-      public_token_exchange:
-        "completed, token and itemID stored in users DB "
-    });
-
+    // Update user in DB with access token and itemID
+    const user = await User.findById(loggedUser._id);
+    let id = 1;
+    user.accessToken = accessToken;
+    if (Object.keys(user.linkedBanks).length) {
+      id = (Object.keys(user.linkedBanks).length) + 1;
+    }
+    const keyName = 'bank' + id;
+    user.linkedBanks = Object.assign({}, user.linkedBanks, { [keyName]: itemID });
+    const updatedUser = await user.save({ new: true });
+    res.status(200).send({ message: "Access token granted"});
   } catch (error) {
-    res.status(500).send({ error, message: "Could not exchange Public Token" });
+    res.status(500).send({ message: "Could not exchange Public Token" });
+    console.log(error);
   }
 };
 
-// METHODS TO INTERACT WITH CLIENT APP
+masterController.syncTransactions = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: loggedUser._id });
+    if (!user) {
+      return res
+        .status(400)
+        .send({ message: "User not found in the database"});
+    }
+    await syncTransactions(user);
+    res.status(200).send('Transactions synced')
+    // TODO this might need additional logic
+  } catch(error) {
+    res.status(500).send({message: "Failed to sync transactions"})
+  }
+}
+
+// METHODS TO INTERACT WITH CLIENT
 
 let loggedUser = null;
 
@@ -78,7 +97,7 @@ masterController.createUser = async (req, res) => {
     loggedUser = user;
     res.status(201).send(loggedUser);
   } catch (error) {
-    res.status(500).send({ error, message: "Could not create user" });
+    res.status(500).send({ message: "Could not create user" });
   }
 };
 
@@ -93,7 +112,7 @@ masterController.login = async (req, res) => {
   } catch (error) {
     res
       .status(401)
-      .send({ error: "401", message: "Username or password is incorrect" });
+      .send({ message: "Username or password is incorrect" });
   }
 };
 
@@ -101,7 +120,7 @@ masterController.loggedUser = async (req, res) => {
   try {
     res.status(200).send(loggedUser);
   } catch (error) {
-    res.status(500).send({ error: "400", message: "Something went wrong" });
+    res.status(500).send({ message: "Something went wrong" });
   }
 };
 
@@ -110,7 +129,7 @@ masterController.logout = async (req, res) => {
     loggedUser = null;
     res.status(200).send({ message: "User logged out" });
   } catch (error) {
-    res.status(500).send({ error: "400", message: "Something went wrong" });
+    res.status(500).send({ message: "Something went wrong" });
   }
 };
 
