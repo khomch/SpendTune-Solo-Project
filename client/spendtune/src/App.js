@@ -1,8 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-import Navbar from './components/navbar'
+import Navbar from './components/navbar';
 import Dashboard  from './components/dashboard';
 
 function App() {

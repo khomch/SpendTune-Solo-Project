@@ -10,23 +10,52 @@ function Home(props) {
 
   const [linkedBanks, setLinkedBanks] = useState({})
 
-  useEffect( () => {
+  useEffect(() => {
     async function checkLoggedUser() {
+      // Get currently logged user from the server
       const loggedUser = await getLoggedUser();
-      props.setLogged(loggedUser);
       if (!loggedUser) {
         navigate('/');
+        return;
       }
-      // if ( Object.keys(linkedBanks).length !== 0 ) {
-      //   const {...linkedBanks} = props.loggedUser.linkedBanks
-      //   setLinkedBanks((prevState) => ({
-      //     ...prevState,
-      //     ...linkedBanks
-      //   }))
-      // }
+      // Save logged user retrieved from server in the dashboards component state
+      props.setLogged(loggedUser);
     }
     checkLoggedUser();
+    setLinkedBanks(props.logged ? props.logged.linkedBanks : {})
   }, [])
+
+  // useEffect(() => {
+  //   if (localStorage.length === 0) {
+  //     console.log('if')
+  //     localStorage.setItem('banks', JSON.stringify(linkedBanks));
+  //   } else {
+  //     console.log('else')
+  //   }
+  // }, []);
+
+  // console.log(JSON.parse(localStorage.getItem('banks')))
+
+  // const test = {
+  //   bank1: "QyRJNx9dD7Tx7EQxo7GwTeMA6B51MLFpREoAp",
+  //   bank2: "WVa66nx48WhEGaQem4kRU38pPwmdEXtlqK8pJ",
+  //   bank3: "VEakyy5XoJuwA61xmwR3hVBEd7ggmEcWNe1Bp"
+  // }
+  // useEffect(() => {
+  //   const localStorageData = JSON.parse(localStorage.getItem('banks'));
+  //   if(localStorageData) {
+  //       setLinkedBanks(localStorageData);
+  //     }
+  //   },[]);
+
+  //   useEffect(() => {
+  //       localStorage.setItem('banks', JSON.stringify(linkedBanks));
+  //     },[linkedBanks]);
+
+
+        // localStorage.setItem('banks', JSON.stringify(props.logged.linkedBanks))
+
+        // console.log(JSON.parse(localStorage.getItem('banks')))
 
   const user = {}
 

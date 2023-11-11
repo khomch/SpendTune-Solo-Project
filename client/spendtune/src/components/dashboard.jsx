@@ -7,6 +7,7 @@ import Home from "./home";
 import SyncPage from "./syncPage";
 
 function Dashboard(props) {
+
   const [tokenStore, setTokenStore] = useState(null);
 
   return (
