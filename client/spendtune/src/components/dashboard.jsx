@@ -7,33 +7,23 @@ import Home from "./home";
 import SyncPage from "./syncPage";
 import { useCombinedStore } from "../Store";
 
-function Dashboard(props) {
-
+function Dashboard() {
   const [tokenStore, setTokenStore] = useState(null);
-  const loggedUser = useCombinedStore(state => state.logged);
+  const loggedUser = useCombinedStore((state) => state.logged);
 
   return (
     <div className="dashboard">
       <Routes>
-        <Route
-          path="/"
-          element={<Login />}
-        />
-        <Route
-          path="/register"
-          element={<Register />}
-        />
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/home"
           element={
             loggedUser ? (
-              <Home
-              tokenStore={tokenStore}
-              setTokenStore={setTokenStore}
-              />
-              ) : (
-                <Navigate replace to={"/"} />
-                )
+              <Home tokenStore={tokenStore} setTokenStore={setTokenStore} />
+            ) : (
+              <Navigate replace to={"/"} />
+            )
           }
         />
         <Route

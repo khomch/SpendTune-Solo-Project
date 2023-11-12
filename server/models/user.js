@@ -24,6 +24,22 @@ const userSchema = mongoose.Schema({
   linkedBanks: {
     type: Object,
     default: {}
+  },
+  next_cursor: {
+    type: String,
+    default: null
+  },
+  transactions: {
+    type: Array,
+    default: []
+  },
+  transactionsCategorized: {
+    type: Array,
+    default: []
+  },
+  categories: {
+    type: Array,
+    default: []
   }
 });
 

@@ -5,7 +5,7 @@ async function getLinkToken() {
     const getToken = await fetch(baseUrl + '/api/create_link_token')
     const linkToken = await getToken.json();
     return linkToken;
-  } catch(error) {
+  } catch {
     console.log('Issue occured on Link Token request ');
   }
 }
@@ -17,11 +17,28 @@ async function exchangePublicToken(token) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({token})
+      body: JSON.stringify({ token })
     })
-  } catch(error) {
+    const updatedUser = await response.json();
+    return updatedUser;
+  } catch {
     console.log('Issue occured while sending Public Token to the server ');
   }
 }
 
-export { getLinkToken, exchangePublicToken };
+async function syncTransactions() {
+  try {
+    const response = await fetch(baseUrl + '/api/sync_transactions', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    const updatedUser = await response.json();
+    return updatedUser;
+  } catch {
+    console.log('Issue occured while syncing transactions ');
+  }
+}
+
+export { getLinkToken, exchangePublicToken, syncTransactions };

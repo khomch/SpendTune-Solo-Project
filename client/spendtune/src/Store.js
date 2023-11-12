@@ -5,23 +5,18 @@ import { getLoggedUser } from "./apiService";
 const createLoggedStore = persist(
   (set, get) => ({
     logged: null,
-    // fetches logged user from the server
+    linkedBanks: {},
+    // fetches logged user from the server and updates the store
     fetchLoggedUser: async () => {
       await getLoggedUser()
         .then(user => set({logged: user}))
-        .then(()=> console.log(get().logged))
     },
-    // sets logged user
-    setLogged: (user) => {
-      set({logged: user});
-      console.log(get().logged);
-    },
-    // sets logged user to null
-    storeLogout: () => {
-      set({logged: null});
-      console.log(get().logged);
-    }
+    // Add a function to update loggedUser
+    setLoggedUser: (user) => set({logged: user}),
+    // Add a function to update linkedBanks
+    setLinkedBanks: (banks) => set({linkedBanks: banks}),
   }),
+  // config for persist middleware storage
   {
     name: 'logged-store',
     getStorage: () => localStorage,

@@ -3,8 +3,11 @@ import { usePlaidLink } from 'react-plaid-link';
 import { useNavigate } from 'react-router-dom';
 
 import { exchangePublicToken } from '../plaidService';
+import { useCombinedStore } from '../Store';
 
 function SyncPage(props) {
+
+  const setLoggedUser = useCombinedStore(state => state.setLoggedUser);
 
   const navigate = useNavigate();
   const linkToken = props.tokenStore.link_token;
@@ -12,7 +15,8 @@ function SyncPage(props) {
   const { open } = usePlaidLink({
     token: linkToken,
     onSuccess: async (public_token) => {
-      await exchangePublicToken(public_token)
+      const updatedUser = await exchangePublicToken(public_token)
+      setLoggedUser(updatedUser);
       console.log('Plaid API - Link successful');
       navigate('/home');
     },

@@ -5,10 +5,9 @@ import { useCombinedStore } from '../Store';
 
 function Login() {
 
-  const setLogged = useCombinedStore(state => state.setLogged);
-  const loggedUser = useCombinedStore(state => state.logged);
+  const setLogged = useCombinedStore(state => state.fetchLoggedUser);
+
   const navigate = useNavigate();
-  console.log(loggedUser)
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +19,7 @@ function Login() {
     setEmail('');
     setPassword('');
     if (!user.error) {
-      setLogged(user);
+      await setLogged();
       navigate('/home');
     }
   }

@@ -52,7 +52,7 @@ masterController.exchangePublicToken = async (req, res) => {
     const keyName = 'bank' + id;
     user.linkedBanks = Object.assign({}, user.linkedBanks, { [keyName]: itemID });
     const updatedUser = await user.save({ new: true });
-    res.status(200).send({ message: "Access token granted"});
+    res.status(200).json(updatedUser);
   } catch (error) {
     res.status(500).send({ message: "Could not exchange Public Token" });
     console.log(error);
@@ -62,14 +62,14 @@ masterController.exchangePublicToken = async (req, res) => {
 masterController.syncTransactions = async (req, res) => {
   try {
     const user = await User.findOne({ _id: loggedUser._id });
+    console.log(user);
     if (!user) {
       return res
         .status(400)
         .send({ message: "User not found in the database"});
     }
-    await syncTransactions(user);
-    res.status(200).send('Transactions synced')
-    // TODO this might need additional logic
+    const transactions = await syncTransactions(user);
+    res.status(200).json(transactions);
   } catch(error) {
     res.status(500).send({message: "Failed to sync transactions"})
   }
