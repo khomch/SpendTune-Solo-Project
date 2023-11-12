@@ -23,39 +23,7 @@ function Home(props) {
     }
     checkLoggedUser();
     setLinkedBanks(props.logged ? props.logged.linkedBanks : {})
-  }, [])
-
-  // useEffect(() => {
-  //   if (localStorage.length === 0) {
-  //     console.log('if')
-  //     localStorage.setItem('banks', JSON.stringify(linkedBanks));
-  //   } else {
-  //     console.log('else')
-  //   }
-  // }, []);
-
-  // console.log(JSON.parse(localStorage.getItem('banks')))
-
-  // const test = {
-  //   bank1: "QyRJNx9dD7Tx7EQxo7GwTeMA6B51MLFpREoAp",
-  //   bank2: "WVa66nx48WhEGaQem4kRU38pPwmdEXtlqK8pJ",
-  //   bank3: "VEakyy5XoJuwA61xmwR3hVBEd7ggmEcWNe1Bp"
-  // }
-  // useEffect(() => {
-  //   const localStorageData = JSON.parse(localStorage.getItem('banks'));
-  //   if(localStorageData) {
-  //       setLinkedBanks(localStorageData);
-  //     }
-  //   },[]);
-
-  //   useEffect(() => {
-  //       localStorage.setItem('banks', JSON.stringify(linkedBanks));
-  //     },[linkedBanks]);
-
-
-        // localStorage.setItem('banks', JSON.stringify(props.logged.linkedBanks))
-
-        // console.log(JSON.parse(localStorage.getItem('banks')))
+  }, [navigate])
 
   const user = {}
 
