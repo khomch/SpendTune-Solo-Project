@@ -5,7 +5,6 @@ import { addCategory } from '../apiService';
 import { useCombinedStore } from '../Store';
 import Transactions from './transactions';
 import Chart from './chart';
-import { set } from 'mongoose';
 
 function Home(props) {
   // global states
