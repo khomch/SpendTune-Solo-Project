@@ -55,4 +55,20 @@ async function logout() {
   }
 }
 
-export { logUser, register, getLoggedUser, logout }
+async function addCategory(category) {
+  try {
+    const categoryData = await fetch(baseUrl + '/add_category', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(category)
+    })
+    const updatedUser = await categoryData.json();
+    return updatedUser;
+  } catch (error) {
+    console.log('Issue occured on add category: ' + error)
+  }
+}
+
+export { logUser, register, getLoggedUser, logout, addCategory }

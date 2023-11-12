@@ -135,4 +135,22 @@ masterController.logout = async (req, res) => {
   }
 };
 
+masterController.addCategory = async (req, res) => {
+  try {
+    const { category }  = req.body;
+    console.log(category);
+    const user = await User.findOne({ _id: loggedUser._id });
+    if (!user) {
+      return res
+        .status(400)
+        .send({ message: "User not found in the database"});
+    }
+    user.categories = user.categories.concat(category);
+    const updatedUser = await user.save({ new: true });
+    res.status(200).json(updatedUser);
+  } catch(error) {
+    res.status(500).send({message: "Failed to add category"})
+  }
+}
+
 module.exports = masterController;

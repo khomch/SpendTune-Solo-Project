@@ -1,17 +1,23 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { getLinkToken, syncTransactions } from '../plaidService';
+import { addCategory } from '../apiService';
 import { useCombinedStore } from '../Store';
 import Transactions from './transactions';
+import Chart from './chart';
+import { set } from 'mongoose';
 
 function Home(props) {
-
+  // global states
   const loggedUser = useCombinedStore(state => state.logged);
   const setLoggedUser = useCombinedStore(state => state.setLoggedUser);
+  // local states
+  const [addCategoryClicked, setAddCategoryClicked] = useState(false);
+  const [categoryInput, setCategoryInput] = useState('');
 
   const navigate = useNavigate();
 
-  console.log(loggedUser)
+  console.log(loggedUser.categories)
 
   async function handleSync() {
     const linkToken = await getLinkToken();
@@ -27,7 +33,23 @@ function Home(props) {
     }
     setLoggedUser(updatedUser);
     console.log('Plaid API - Transactions synced');
-    console.log(updatedUser.transactions);
+  }
+
+  function handleCatClicked() {
+    setAddCategoryClicked(addCategoryClicked => !addCategoryClicked);
+  }
+  //TODO - make check for category name case insensitive
+  async function handleAddCategory() {
+    if (loggedUser.categories.length &&
+        loggedUser.categories.includes(categoryInput)) {
+      console.log('Category already exists');
+      return
+    } else {
+      const updatedUser = await addCategory({category: categoryInput});
+      setLoggedUser(updatedUser);
+      setAddCategoryClicked(false);
+      setCategoryInput('');
+    }
   }
 
   return (
@@ -43,7 +65,19 @@ function Home(props) {
       { loggedUser.linkedBanks &&
         <button onClick={handleTransactions}>Sync transactions</button>
       }
-      <button>Add category</button>
+      <button onClick={handleCatClicked}>Add category</button>
+      { addCategoryClicked &&
+        <div className="add_cat">
+          <input
+            type="text"
+            placeholder="Category name"
+            value={categoryInput}
+            onChange={e => setCategoryInput(e.target.value)}
+          />
+          <button onClick={handleAddCategory}>Add</button>
+        </div>
+      }
+      <Chart />
       <Transactions />
     </div>
   )

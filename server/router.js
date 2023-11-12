@@ -6,11 +6,12 @@ router.get('/api/create_link_token', controller.createLinkToken);
 router.post('/api/exchange_public_token', controller.exchangePublicToken);
 router.post('/api/sync_transactions', controller.syncTransactions);
 
-// ROUTES FOR APP INTERACTION
-router.get('/logged_user', controller.loggedUser)
-router.post('/register', controller.createUser)
-router.post('/login', controller.login)
-router.post('/logout', controller.logout)
+// ROUTES FOR CLIENT INTERACTION
+router.get('/logged_user', controller.loggedUser);
+router.post('/register', controller.createUser);
+router.post('/login', controller.login);
+router.post('/logout', controller.logout);
+router.post('/add_category', controller.addCategory);
 
 router.get('*', (req, res) => {
   res
