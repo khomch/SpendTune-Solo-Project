@@ -16,7 +16,7 @@ const corsConfig = {
 
 app.use(cors(corsConfig));
 app.use(express.json());
-// app.use(                     EXTRA CREDTIS :D
+// app.use(                     EXTRA CREDTIS :D => authentication
 //   session({
 //     name: 'sid',
 //     saveUninitialized: false,

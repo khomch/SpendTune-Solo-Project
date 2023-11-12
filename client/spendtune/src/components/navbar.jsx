@@ -1,20 +1,24 @@
 import { logout } from '../apiService';
 import { useNavigate } from 'react-router-dom';
+import { useCombinedStore } from '../Store';
 
-function Navbar(props) {
+function Navbar() {
+
+  const loggedUser = useCombinedStore(state => state.logged);
+  const fetchLoggedUser = useCombinedStore(state => state.fetchLoggedUser);
 
   const navigate = useNavigate();
 
   async function handleLogout() {
     await logout();
-    props.setLogged(null);
+    await fetchLoggedUser();
     navigate('/');
   }
 
   return (
     <div className="navbar">
       <h1>SpendTune</h1>
-      { props.logged &&
+      { loggedUser &&
       <button onClick={handleLogout}>Logout</button>
       }
     </div>

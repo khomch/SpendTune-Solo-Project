@@ -1,36 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getLoggedUser } from '../apiService';
 import { getLinkToken } from '../plaidService';
+import { useCombinedStore } from '../Store';
 
 function Home(props) {
 
-  const navigate = useNavigate();
+  const storedLoggedUser = useCombinedStore(state => state.fetchLoggedUser);
+  const loggedUser = useCombinedStore(state => state.logged);
+  const linkedBanks = loggedUser ? loggedUser.linkedBanks : null;
 
-  const [linkedBanks, setLinkedBanks] = useState({})
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function checkLoggedUser() {
-      // Get currently logged user from the server
-      const loggedUser = await getLoggedUser();
+      await storedLoggedUser();
       if (!loggedUser) {
         navigate('/');
         return;
       }
-      // Save logged user retrieved from server in the dashboards component state
-      props.setLogged(loggedUser);
     }
     checkLoggedUser();
-    setLinkedBanks(props.logged ? props.logged.linkedBanks : {})
-  }, [navigate])
-
-  const user = {}
-
-  if (props.logged) {
-    user.firstName = props.logged.firstName
-    user.lastName = props.logged.lastName
-  }
+  }, [])
 
   async function handleSync() {
     const linkToken = await getLinkToken();
@@ -43,9 +34,9 @@ function Home(props) {
       <h1>Home</h1>
       <p>
         Hello
-        {' ' + user.firstName + ' ' + user.lastName}
+        {' ' + loggedUser.firstName + ' ' + loggedUser.lastName}
       </p>
-      { Object.keys(linkedBanks).length === 0 &&
+      { !linkedBanks &&
         <p>No banks synced</p>
       }
       <button onClick={handleSync}>Sync your bank</button>

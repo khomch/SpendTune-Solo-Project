@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { register } from '../apiService';
+import { useCombinedStore } from '../Store';
 
+function Register() {
 
-function Register(props) {
-
+  const setLogged = useCombinedStore(state => state.setLogged);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ function Register(props) {
     setFirstName('');
     setLastName('');
     if ( !registeredUser.error ) {
-        props.setLogged(user);
+        setLogged(registeredUser);
         navigate('/home');
     }
   }

@@ -108,6 +108,7 @@ masterController.login = async (req, res) => {
     const validatePass = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     loggedUser = user;
+    console.log("LOGIN = " + loggedUser);
     res.status(200).send(loggedUser);
   } catch (error) {
     res
@@ -127,6 +128,7 @@ masterController.loggedUser = async (req, res) => {
 masterController.logout = async (req, res) => {
   try {
     loggedUser = null;
+    console.log("LOGOUT = " + loggedUser);
     res.status(200).send({ message: "User logged out" });
   } catch (error) {
     res.status(500).send({ message: "Something went wrong" });

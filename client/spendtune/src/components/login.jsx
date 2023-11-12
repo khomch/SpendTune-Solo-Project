@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logUser } from '../apiService'
+import { logUser } from '../apiService';
+import { useCombinedStore } from '../Store';
 
-function Login(props) {
+function Login() {
 
+  const setLogged = useCombinedStore(state => state.setLogged);
+  const loggedUser = useCombinedStore(state => state.logged);
   const navigate = useNavigate();
+  console.log(loggedUser)
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -17,7 +20,7 @@ function Login(props) {
     setEmail('');
     setPassword('');
     if (!user.error) {
-      props.setLogged(user);
+      setLogged(user);
       navigate('/home');
     }
   }
@@ -42,6 +45,7 @@ function Login(props) {
             name='email'
             value={email}
             onChange={handleEmail}
+            autoComplete="email"
             />
           </li>
           <li>
@@ -50,6 +54,7 @@ function Login(props) {
             name='password'
             value={password}
             onChange={handlePassword}
+            autoComplete="current-password"
             />
           </li>
           <li>
