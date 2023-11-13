@@ -6,19 +6,20 @@
 
 :root {
   --gray: rgb(243, 240, 240);
-  --orange: #FE7B10;
   --radius: 0.3rem;
   --text: #7b7a7a;
 }
 
-.app {
-  height: 100vh;
-}
-
 .App {
   text-align: center;
+  background-color: var(--gray);
+  min-height: 100vh;
 }
 
 .navbar {
-  background-color: skyblue;
+  background-color: slategray;
+}
+
+.chart {
+  height: 60vh;
 }
