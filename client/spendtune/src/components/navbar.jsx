@@ -6,7 +6,6 @@ function Navbar() {
 
   const loggedUser = useCombinedStore(state => state.logged);
   const setLoggedUser = useCombinedStore(state => state.setLoggedUser);
-
   const navigate = useNavigate();
 
   async function handleLogout() {

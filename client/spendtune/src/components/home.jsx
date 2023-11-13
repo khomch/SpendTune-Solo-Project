@@ -41,6 +41,9 @@ function Home(props) {
         loggedUser.categories.includes(categoryInput)) {
       console.log('Category already exists');
       return
+    } else if (categoryInput.length < 3) {
+      console.log('Category name must be at least 3 characters');
+      return
     } else {
       const updatedUser = await addCategory({category: categoryInput.toLowerCase()});
       setLoggedUser(updatedUser);
@@ -48,21 +51,21 @@ function Home(props) {
       setCategoryInput('');
     }
   }
-
   return (
     <div className="home">
       <h1>Dashboard</h1>
       <p>
         Hello {loggedUser.firstName} {loggedUser.lastName}
       </p>
-      { !loggedUser.linkedBanks &&
-        <p>No banks synced</p>
-      }
-      <button onClick={handleSync}>Sync bank</button>
+      <button onClick={handleSync}>
+      { loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
+      </button>
       { loggedUser.linkedBanks &&
         <button onClick={handleTransactions}>Sync transactions</button>
       }
-      <button onClick={handleCatClicked}>Add category</button>
+      { loggedUser.transactions.length > 0 &&
+        <button onClick={handleCatClicked}>Add category</button>
+      }
       { addCategoryClicked &&
         <div className="add_cat">
           <input

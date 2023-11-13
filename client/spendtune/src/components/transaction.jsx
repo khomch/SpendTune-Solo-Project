@@ -26,7 +26,7 @@ function Transaction({transaction}) {
           <div className="transac_details">
             <p>Name: {transaction.name}</p>
             <p>Date: {transaction.date}</p>
-            <p>Amount: {transaction.amount}</p>
+            <p>Amount: {transaction.amount + ' ' + transaction.currency }</p>
             <p>Payment Channel: {transaction.payment_channel}</p>
           </div>
           <div className="transac_category">
