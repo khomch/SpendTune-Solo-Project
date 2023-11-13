@@ -55,14 +55,12 @@ masterController.exchangePublicToken = async (req, res) => {
     res.status(200).json(updatedUser);
   } catch {
     res.status(500).send({ message: "Could not exchange Public Token" });
-    console.log(error);
   }
 };
 
 masterController.syncTransactions = async (req, res) => {
   try {
     const user = await User.findOne({ _id: loggedUser._id });
-    console.log(user);
     if (!user) {
       return res
         .status(400)
@@ -108,7 +106,6 @@ masterController.login = async (req, res) => {
     const validatePass = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     loggedUser = user;
-    console.log("LOGIN = " + loggedUser);
     res.status(200).send(loggedUser);
   } catch {
     res
@@ -128,7 +125,6 @@ masterController.loggedUser = async (req, res) => {
 masterController.logout = async (req, res) => {
   try {
     loggedUser = null;
-    console.log("LOGOUT = " + loggedUser);
     res.status(200).send({ message: "User logged out" });
   } catch {
     res.status(500).send({ message: "Something went wrong" });
@@ -138,15 +134,15 @@ masterController.logout = async (req, res) => {
 masterController.addCategory = async (req, res) => {
   try {
     const { category }  = req.body;
-    console.log(category);
     const user = await User.findOne({ _id: loggedUser._id });
     if (!user) {
       return res
         .status(400)
         .send({ message: "User not found in the database"});
     }
-    user.categories = user.categories.concat(category);
+    user.categories.push(category);
     const updatedUser = await user.save({ new: true });
+    loggedUser = updatedUser;
     res.status(200).json(updatedUser);
   } catch {
     res.status(500).send({message: "Failed to add category"})
@@ -167,8 +163,10 @@ masterController.assignCategory = async (req, res) => {
     await user.transactions.splice(removeIndex, 1);
     await user.transactionsCategorized.push(transaction);
     const updatedUser = await user.save({ new: true });
+    loggedUser = updatedUser;
     res.status(200).json(updatedUser);
-  } catch {
+  } catch (error){
+    console.log(error)
     res.status(500).send({message: "Failed to assign category"})
   }
 }

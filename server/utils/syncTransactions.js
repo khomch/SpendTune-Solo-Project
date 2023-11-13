@@ -1,4 +1,5 @@
 const apiClient = require("../API/plaidClient");
+const { loggedUser } = require("../controllers/master");
 
 async function syncTransactions(user){
   const accessToken = user.accessToken;
@@ -22,7 +23,8 @@ async function syncTransactions(user){
           id: transaction.transaction_id,
           name: transaction.name,
           logo_url: transaction.logo_url,
-          amount: transaction.amount + ' ' + transaction.iso_currency_code,
+          amount: transaction.amount,
+          currency: transaction.iso_currency_code,
           date: transaction.authorized_date,
           categories: transaction.category,
           payment_channel: transaction.payment_channel,
