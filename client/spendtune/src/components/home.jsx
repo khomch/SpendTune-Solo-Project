@@ -16,8 +16,6 @@ function Home(props) {
 
   const navigate = useNavigate();
 
-  console.log(loggedUser.categories)
-
   async function handleSync() {
     const linkToken = await getLinkToken();
     props.setTokenStore(linkToken);
@@ -37,14 +35,14 @@ function Home(props) {
   function handleCatClicked() {
     setAddCategoryClicked(addCategoryClicked => !addCategoryClicked);
   }
-  //TODO - make check for category name case insensitive
+
   async function handleAddCategory() {
     if (loggedUser.categories.length &&
         loggedUser.categories.includes(categoryInput)) {
       console.log('Category already exists');
       return
     } else {
-      const updatedUser = await addCategory({category: categoryInput});
+      const updatedUser = await addCategory({category: categoryInput.toLowerCase()});
       setLoggedUser(updatedUser);
       setAddCategoryClicked(false);
       setCategoryInput('');

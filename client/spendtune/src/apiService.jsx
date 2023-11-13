@@ -66,9 +66,26 @@ async function addCategory(category) {
     })
     const updatedUser = await categoryData.json();
     return updatedUser;
-  } catch (error) {
-    console.log('Issue occured on add category: ' + error)
+  } catch {
+    console.log('Issue occured on add category.')
   }
 }
 
-export { logUser, register, getLoggedUser, logout, addCategory }
+async function assignCategory(category, id) {
+  try {
+    const categoryData = await fetch(baseUrl + '/assign_category', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({category, id})
+    })
+    const updatedUser = await categoryData.json();
+    return updatedUser;
+  } catch {
+    console.log('Issue occured on assign category.')
+
+  }
+}
+
+export { logUser, register, getLoggedUser, logout, addCategory, assignCategory }

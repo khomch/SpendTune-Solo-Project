@@ -12,8 +12,9 @@ router.post('/register', controller.createUser);
 router.post('/login', controller.login);
 router.post('/logout', controller.logout);
 router.post('/add_category', controller.addCategory);
+router.post('/assign_category', controller.assignCategory);
 
-router.get('*', (req, res) => {
+router.get('*', (res) => {
   res
     .status(404)
     .send('Sorry, not found 😞');

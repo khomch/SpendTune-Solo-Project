@@ -23,7 +23,7 @@ masterController.createLinkToken = async (req, res) => {
         .send({ error: "400", message:"Couldn't authenticate Link Token"})
     }
     res.status(200).json(tokenResponse.data);
-  } catch (error) {
+  } catch {
     res.status(500).send({ message: "Couldn't fetch Link Token" });
   }
 };
@@ -53,7 +53,7 @@ masterController.exchangePublicToken = async (req, res) => {
     user.linkedBanks = Object.assign({}, user.linkedBanks, { [keyName]: itemID });
     const updatedUser = await user.save({ new: true });
     res.status(200).json(updatedUser);
-  } catch (error) {
+  } catch {
     res.status(500).send({ message: "Could not exchange Public Token" });
     console.log(error);
   }
@@ -70,7 +70,7 @@ masterController.syncTransactions = async (req, res) => {
     }
     const transactions = await syncTransactions(user);
     res.status(200).json(transactions);
-  } catch(error) {
+  } catch {
     res.status(500).send({message: "Failed to sync transactions"})
   }
 }
@@ -96,7 +96,7 @@ masterController.createUser = async (req, res) => {
     const user = await newUser.save();
     loggedUser = user;
     res.status(201).send(loggedUser);
-  } catch (error) {
+  } catch {
     res.status(500).send({ message: "Could not create user" });
   }
 };
@@ -110,7 +110,7 @@ masterController.login = async (req, res) => {
     loggedUser = user;
     console.log("LOGIN = " + loggedUser);
     res.status(200).send(loggedUser);
-  } catch (error) {
+  } catch {
     res
       .status(401)
       .send({ message: "Username or password is incorrect" });
@@ -120,7 +120,7 @@ masterController.login = async (req, res) => {
 masterController.loggedUser = async (req, res) => {
   try {
     res.status(200).send(loggedUser);
-  } catch (error) {
+  } catch {
     res.status(500).send({ message: "Something went wrong" });
   }
 };
@@ -130,7 +130,7 @@ masterController.logout = async (req, res) => {
     loggedUser = null;
     console.log("LOGOUT = " + loggedUser);
     res.status(200).send({ message: "User logged out" });
-  } catch (error) {
+  } catch {
     res.status(500).send({ message: "Something went wrong" });
   }
 };
@@ -148,8 +148,28 @@ masterController.addCategory = async (req, res) => {
     user.categories = user.categories.concat(category);
     const updatedUser = await user.save({ new: true });
     res.status(200).json(updatedUser);
-  } catch(error) {
+  } catch {
     res.status(500).send({message: "Failed to add category"})
+  }
+}
+
+masterController.assignCategory = async (req, res) => {
+  try {
+    const { category, id }  = req.body;
+
+    const [ transaction ] = loggedUser.transactions.filter(transaction => transaction.id === id);
+    transaction.user_category = category;
+
+    const user = await User.findOne({_id: loggedUser._id})
+
+    const removeIndex = user.transactions.findIndex(transaction => transaction.id === id)
+
+    await user.transactions.splice(removeIndex, 1);
+    await user.transactionsCategorized.push(transaction);
+    const updatedUser = await user.save({ new: true });
+    res.status(200).json(updatedUser);
+  } catch {
+    res.status(500).send({message: "Failed to assign category"})
   }
 }
 

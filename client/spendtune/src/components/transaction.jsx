@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { useCombinedStore } from "../Store";
+import { assignCategory } from "../apiService";
 
 function Transaction({transaction}) {
 
   const loggedUser = useCombinedStore(state => state.logged);
+  const setLoggedUser = useCombinedStore(state => state.setLoggedUser);
 
-  const [selectedCategory, setSelectedCategory] = useState('--ASSIGN CATEGORY--');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  function handleCategorySubmit() {
-
+  async function handleCategoryAssign() {
+    if (selectedCategory === '') {
+      console.log('Please choose category');
+      return;
+    }
+    const updatedUser = await assignCategory(selectedCategory, transaction.id);
+    setLoggedUser(updatedUser);
   }
 
     return (
@@ -23,13 +30,15 @@ function Transaction({transaction}) {
             <p>Payment Channel: {transaction.payment_channel}</p>
           </div>
           <div className="transac_category">
-            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} />
+            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} >
+              <option value=''>Please choose category</option>
             { loggedUser.categories.map(category => {
               return (
                 <option key={category} value={category}>{category}</option>
               )
             })}
-            <button onClick={handleCategorySubmit}>Assign</button>
+            </select>
+            <button onClick={handleCategoryAssign}>Assign</button>
           </div>
 
         </>

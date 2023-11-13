@@ -9,10 +9,10 @@ function Transactions() {
 
   return (
     <div className="transactions">
-      { transactions.length > 0 &&
+      { transactions && transactions.length > 0 &&
         <h2>Transactions to categorize</h2>
       }
-      { transactions.length > 0 &&
+      { transactions && transactions.length > 0 &&
         transactions.map(transaction => {
           return (
             <div key={transaction.id} className="transaction">
@@ -21,8 +21,8 @@ function Transactions() {
           )
         })
       }
-      { transactions.length == 0 &&
-        transactionsCategorized.length > 0 &&
+      { transactions && transactions.length == 0 &&
+        transactionsCategorized && transactionsCategorized.length > 0 &&
         <p>No transactions to categorize 😃 </p>}
     </div>
   )

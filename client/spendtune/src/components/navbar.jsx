@@ -5,13 +5,13 @@ import { useCombinedStore } from '../Store';
 function Navbar() {
 
   const loggedUser = useCombinedStore(state => state.logged);
-  const fetchLoggedUser = useCombinedStore(state => state.fetchLoggedUser);
+  const setLoggedUser = useCombinedStore(state => state.setLoggedUser);
 
   const navigate = useNavigate();
 
   async function handleLogout() {
     await logout();
-    await fetchLoggedUser();
+    setLoggedUser(null);
     navigate('/');
   }
 
