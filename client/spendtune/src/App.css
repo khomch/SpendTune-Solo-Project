@@ -243,6 +243,7 @@ select {
   flex-direction: column;
   align-items: center;
   padding: 2rem 3rem;
+  height: fit-content;
 }
 
 .transactions-list {
@@ -250,7 +251,10 @@ select {
   flex-direction: column;
   align-items: stretch;
   row-gap: 2rem;
-  width: 70%
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 
 .transaction {
@@ -260,7 +264,6 @@ select {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-
 }
 
 .row {
