@@ -35,7 +35,7 @@ function Login() {
   }
 
   return (
-    <div className="login-form">
+    <div className="login">
       <form onSubmit={handleSubmit}>
         <ul>
           <li>

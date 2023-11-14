@@ -52,6 +52,7 @@ function Home(props) {
     }
   }
   return (
+    <>
     <div className="home">
       <h1>Dashboard</h1>
       <p>
@@ -78,8 +79,11 @@ function Home(props) {
         </div>
       }
       <Chart />
+    </div>
+    <div>
       <Transactions />
     </div>
+    </>
   )
 }
 

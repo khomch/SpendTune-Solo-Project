@@ -30,7 +30,7 @@ function Chart() {
           "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"
         ]
         ,
-        borderColor: 'rgb(243, 240, 240)',
+        borderColor: 'white',
       }
     ]
   };
@@ -38,6 +38,20 @@ function Chart() {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: 'white',
+          boxWidth: 20,
+          padding: 20,
+          font: {
+            size: '20rem',
+            family: 'Segoe UI'
+          },
+        },
+      },
+    },
   };
 
   return (

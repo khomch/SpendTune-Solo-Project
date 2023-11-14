@@ -1,25 +1,83 @@
+:root {
+  --bg1: #332b84;
+  --bg2: #12093f;
+  --primary: #25BBA8;
+  --vertimarg: 0.6rem;
+  --horimarg: 0.3rem;
+}
+
 * {
   margin: 0;
   padding:0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--primary);
+  list-style: none;
 }
 
-:root {
-  --gray: rgb(243, 240, 240);
-  --radius: 0.3rem;
-  --text: #7b7a7a;
+button {
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  outline: none;
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg2);
 }
 
-.App {
-  text-align: center;
-  background-color: var(--gray);
+select {
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  outline: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg2);
+}
+
+.app {
   min-height: 100vh;
 }
 
 .navbar {
-  background-color: slategray;
+  background-color: var(--bg2);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  margin: var(--vertimarg) var(--horimarg);
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar img {
+  width: 60%;
+  height: 60%;
+}
+
+.dashboard {
+
+}
+
+.home, .transactions {
+  background-color: var(--bg2);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  margin: var(--vertimarg) var(--horimarg);
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.login, .register, .sync {
+  min-height: 50vh;
+  background-color: var(--bg2);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  margin: var(--vertimarg) var(--horimarg);
 }
 
 .chart {
   height: 60vh;
+  width: 100%;
+;
 }
+

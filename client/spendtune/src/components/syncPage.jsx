@@ -27,7 +27,7 @@ function SyncPage(props) {
   }, [open])
 
   return (
-    <div>
+    <div className='sync'>
       <h3>Please wait for Plaid's widget to load.</h3>
       <div>
         <p>You can also use the button to load widget manually.</p>

@@ -16,7 +16,8 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <h1>SpendTune</h1>
+      {/* <h1>SpendTune</h1> */}
+      <img src="/logo.svg" alt="" />
       { loggedUser &&
       <button onClick={handleLogout}>Logout</button>
       }
