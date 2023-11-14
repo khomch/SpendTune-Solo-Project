@@ -65,7 +65,7 @@ function Home(props) {
         <button onClick={handleTransactions}>Sync transactions</button>
       }
       { loggedUser.transactions.length > 0 &&
-        <button onClick={handleCatClicked}>Add category</button>
+        <button className='add-cat-btn' onClick={handleCatClicked}>Add category</button>
       }
       { addCategoryClicked &&
         <div className="add-cat">
@@ -74,12 +74,17 @@ function Home(props) {
             placeholder="your category name"
             value={categoryInput}
             onChange={e => setCategoryInput(e.target.value)}
-          />
+            />
           <button className='add-btn' onClick={handleAddCategory}>Add</button>
         </div>
       }
-      <Chart />
+      { loggedUser.transactions.length > 0 &&
+        loggedUser.categories.length === 0 &&
+        !addCategoryClicked &&
+        <h3 className="user-prompt">Add category to start</h3>
+      }
     </div>
+      <Chart />
     <div>
       <Transactions />
     </div>

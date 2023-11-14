@@ -19,29 +19,38 @@ function Transaction({transaction}) {
   }
 
     return (
-        <>
-          <div className="transac_logo">
-            <img src={transaction.logo_url} alt={transaction.name} />
+        <div className="transaction">
+          <div className="row">
+              { transaction.logo_url &&
+                <img className="logo" src={transaction.logo_url} alt="logo" />
+              }
+              { !transaction.logo_url &&
+                <img className="no-logo" src="/No_image_available.svg" alt="logo" />
+              }
           </div>
-          <div className="transac_details">
-            <p>Name: {transaction.name}</p>
-            <p>Date: {transaction.date}</p>
-            <p>Amount: {transaction.amount + ' ' + transaction.currency }</p>
-            <p>Payment Channel: {transaction.payment_channel}</p>
+          <div className="row">
+            <div className="transac-details">
+              <p>Name: <span className="bold">{transaction.name}</span></p>
+              <p>Date: <span className="bold">{transaction.date}</span></p>
+              <p>Amount: <span className="bold">{transaction.amount + ' ' + transaction.currency }</span></p>
+              <p>Payment Channel: <span className="bold">{transaction.payment_channel}</span></p>
+            </div>
           </div>
-          <div className="transac_category">
-            <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} >
-              <option value=''>Please choose category</option>
-            { loggedUser.categories.map(category => {
-              return (
-                <option key={category} value={category}>{category}</option>
-              )
-            })}
-            </select>
-            <button className="assign-btn" onClick={handleCategoryAssign}>Assign</button>
+          <div className="row">
+            <div className="transac-category">
+              <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} >
+                <option value=''>Please choose category</option>
+              { loggedUser.categories.map(category => {
+                return (
+                  <option key={category} value={category}>{category}</option>
+                  )
+                })}
+              </select>
+              <button className="assign-btn" onClick={handleCategoryAssign}>Assign</button>
+            </div>
           </div>
 
-        </>
+        </div>
     );
 }
 

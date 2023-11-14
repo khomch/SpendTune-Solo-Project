@@ -11,12 +11,12 @@ function Transactions() {
     <div className="transactions">
       {
         !loggedUser.linkedBanks &&
-        <h2>Please sync your bank</h2>
+        <h3 className="user-prompt">Please sync your bank to get transactions</h3>
       }
       {
         loggedUser.linkedBanks &&
         !transactions.length &&
-        <h2>Please sync your transactions</h2>
+        <h3 className="user-prompt">Sync transactions to start</h3>
       }
       {
         transactions.length > 0 &&
@@ -25,7 +25,7 @@ function Transactions() {
       { transactions.length > 0 &&
         transactions.map(transaction => {
           return (
-            <div key={transaction.id} className="transaction">
+            <div key={transaction.id} >
               <Transaction transaction={transaction} />
             </div>
           )

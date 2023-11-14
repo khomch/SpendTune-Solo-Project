@@ -69,7 +69,7 @@ function Register() {
           </li>
         </ul>
       </form>
-            <button type="submit">Register</button>
+            <button type="submit" onClick={handleSubmit}>Register</button>
             <button onClick={goBack}>Back</button>
     </div>
   )

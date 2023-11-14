@@ -21,7 +21,6 @@ function Chart() {
   })
 
   const totals = categoriesAmounts.reduce((acc, curr) => acc + curr, 0);
-  totals.toFixed(2);
 
   const data = {
     labels: categories,
@@ -62,10 +61,12 @@ function Chart() {
     <>
     { loggedUser.categories.length !== 0 &&
       loggedUser.transactionsCategorized.length !== 0 &&
+    <div className="chart-container">
       <div className="chart">
         <h2>Spendings</h2>
         <Doughnut data={data} options={options} />
-        <h2 className="totals">Totals: {totals} GBP</h2>
+        <h2 className="totals">Totals: {totals.toFixed(2)} GBP</h2>
+      </div>
       </div>
     }
     </>
