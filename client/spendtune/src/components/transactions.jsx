@@ -22,6 +22,7 @@ function Transactions() {
         transactions.length > 0 &&
         <h2>Transactions to categorize</h2>
       }
+      <div className="transactions-list">
       { transactions.length > 0 &&
         transactions.map(transaction => {
           return (
@@ -31,9 +32,10 @@ function Transactions() {
           )
         })
       }
+      </div>
       { transactions.length == 0 &&
         transactionsCategorized.length > 0 &&
-        <p>No more transactions to categorize</p>}
+        <h2>No more transactions to categorize</h2>}
     </div>
   )
 }

@@ -2,6 +2,7 @@
   --bg1: #292368;
   --bg2: #10083d;
   --primary: #25BBA8;
+  --focus: rgb(201, 145, 4);
   --vertimarg: 0.6rem;
   --horimarg: 0.3rem;
 }
@@ -25,6 +26,17 @@ button {
   width: 200px;
   height: 50px;
   font-weight: bold;
+  transition: all 10ms ease-in-out;
+}
+
+button:hover {
+  text-shadow: var(--primary) 0px 0px 2px;
+  border: 2px solid var(--focus);
+}
+
+button:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 20px var(--primary);
 }
 
 .assign-btn {
@@ -41,6 +53,24 @@ input {
   outline: none;
   padding: 0.3rem 0rem;
   text-align: center;
+  transition: all 200ms ease-in-out;
+}
+
+input:focus {
+  border-bottom: 2px solid var(--focus);
+  text-shadow: var(--primary) 0px 0px 2px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--bg2) inset !important;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill{
+  -webkit-text-fill-color: var(--primary) !important;
 }
 
 ::placeholder {
@@ -96,7 +126,9 @@ select {
   align-items: center;
   row-gap: 1rem;
 }
-
+.home, .transactions, .login, .register, .sync, .chart-container, .navbar {
+  box-shadow: 0 0 10px var(--primary)
+}
 .transactions h2, .transactions h3 {
   align-self:center;
   text-align: center;
@@ -115,7 +147,6 @@ select {
 }
 
 .add-cat-btn {
- /* margin-bottom: 1.5rem; */
 }
 
 .add-btn {
@@ -188,14 +219,38 @@ select {
   font-weight: bold;
 }
 
-/* TODO add animation do draw users attention */
-.user-prompt {
+@keyframes pulse {
+  0% {
+    color: var(--primary);
+    text-shadow: var(--primary) 0px 0px 2px;
+  }
+  50% {
+    color: var(--focus);
+    text-shadow: var(--focus) 0px 0px 2px;
+  }
+  100% {
+    color: var(--primary);
+    text-shadow: var(--primary) 0px 0px 2px;
+  }
+}
 
+.user-prompt {
+  animation: pulse 2s infinite;
 }
 
 .transactions {
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem 3rem;
+}
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 2rem;
+  width: 70%
 }
 
 .transaction {
@@ -205,6 +260,7 @@ select {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+
 }
 
 .row {
@@ -233,6 +289,10 @@ select {
   flex-wrap: wrap;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .transac-category {
   display: flex;
   flex-direction: column;
@@ -240,10 +300,8 @@ select {
   row-gap: 1rem;
 }
 
-.bold {
-  font-weight: bold;
+select:focus {
+  text-shadow: var(--primary) 0px 0px 2px;
+  border: 2px solid var(--focus);
 }
 
-@media screen {
-
-}
