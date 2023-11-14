@@ -146,9 +146,6 @@ select {
   row-gap: 0.5rem;
 }
 
-.add-cat-btn {
-}
-
 .add-btn {
   width: 100px;
   height: 50px;
@@ -253,7 +250,7 @@ select {
   row-gap: 2rem;
   width: 90%;
   max-width: 400px;
-  max-height: 80vh;
+  max-height: 75vh;
   overflow-y: scroll;
 }
 
@@ -308,3 +305,141 @@ select:focus {
   border: 2px solid var(--focus);
 }
 
+@media only screen and (min-width: 700px) {
+
+  .transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 2rem;
+    height: fit-content;
+  }
+
+  .transactions-list {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    max-height: 80vh;
+    overflow-x: scroll;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .transaction {
+    padding: 2rem;
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    height: 100%;
+  }
+
+
+}
+
+@media only screen and (min-width: 970px) {
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar {
+    width: 80%;
+    padding: 1rem 1.5rem;
+    margin: var(--vertimarg) var(--horimarg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar img {
+    width: 250px;
+    height: 65px;
+    margin: auto;
+  }
+
+  .navbar.logout-btn {
+    margin-left: auto;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    gap: 2rem;
+    padding: 0.5rem 10%;
+  }
+
+  .home {
+    margin: 0;
+    background-color: var(--bg2);
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.5rem;
+    flex: 1 1 20%;
+    max-height: 50vh;
+  }
+
+  .chart-container {
+    padding: 2rem;
+    background-color: var(--bg2);
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2 2 70%;
+  }
+
+  .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 2rem;
+    height: fit-content;
+    flex: 1 1;
+  }
+
+  .transactions-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 2rem;
+    max-height: 80vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .transaction {
+    padding: 2rem;
+    border: 2px solid var(--primary);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    height: 100%;
+    width: 280px;
+  }
+}
