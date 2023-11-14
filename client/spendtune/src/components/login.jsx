@@ -39,29 +39,27 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
-            <label htmlFor="email">email: </label>
             <input type="email"
             name='email'
             value={email}
             onChange={handleEmail}
             autoComplete="email"
+            placeholder="email"
             />
           </li>
           <li>
-            <label htmlFor="password">password: </label>
             <input type="password"
             name='password'
             value={password}
             onChange={handlePassword}
             autoComplete="current-password"
+            placeholder='password'
             />
           </li>
-          <li>
-            <button type="submit">Login</button>
-          </li>
         </ul>
+            <button type="submit">Login</button>
       </form>
-      <p>Don't have an account yet?</p>
+      <h4>Don't have an account yet?</h4>
       <button onClick={() => navigate('/register')}>Register</button>
     </div>
   )

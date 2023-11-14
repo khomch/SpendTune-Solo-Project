@@ -1,6 +1,6 @@
 :root {
-  --bg1: #332b84;
-  --bg2: #12093f;
+  --bg1: #292368;
+  --bg2: #10083d;
   --primary: #25BBA8;
   --vertimarg: 0.6rem;
   --horimarg: 0.3rem;
@@ -22,15 +22,41 @@ button {
   border-radius: 30px;
   padding: 0.5rem 1rem;
   background-color: var(--bg2);
+  width: 200px;
+  height: 50px;
+  font-weight: bold;
+}
+
+.assign-btn {
+  width: 100px;
+  height: 50px;
+}
+
+input {
+  background-color: var(--bg2);
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  font-weight: bold;
+  color: var(--primary);
+  outline: none;
+  padding: 0.3rem 0rem;
+  text-align: center;
+}
+
+::placeholder {
+  font-weight: 500;
+  color: var(--primary);
+  opacity: 1; /* Firefox */
 }
 
 select {
   color: var(--primary);
   border: 2px solid var(--primary);
   outline: none;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 0.5rem 1rem;
   background-color: var(--bg2);
+  height: 50px;
 }
 
 .app {
@@ -40,30 +66,52 @@ select {
 .navbar {
   background-color: var(--bg2);
   border: 2px solid var(--primary);
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 1rem 1.5rem;
   margin: var(--vertimarg) var(--horimarg);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .navbar img {
-  width: 60%;
-  height: 60%;
+  width: 200px;
+  height: 50px;
 }
 
-.dashboard {
-
+.logout-btn {
+  width: 100px;
+  height: 50px;
 }
 
 .home, .transactions {
   background-color: var(--bg2);
   border: 2px solid var(--primary);
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 1rem 1.5rem;
   margin: var(--vertimarg) var(--horimarg);
-  /* display: flex;
-  justify-content: space-between; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.greeting {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.add-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.add-btn {
+  width: 100px;
+  height: 50px;
+  margin-top: 0.8rem;
 }
 
 .login, .register, .sync {
@@ -73,11 +121,44 @@ select {
   border-radius: 20px;
   padding: 1rem 1.5rem;
   margin: var(--vertimarg) var(--horimarg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+
+.login ul, .register ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  margin: 1rem 0rem 2rem;
+}
+
+.sync {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  padding: 2rem 0rem;
+}
+
+.widget-prompt {
+  font-weight: 500;
+  margin: 1.5rem;
 }
 
 .chart {
-  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
   width: 100%;
-;
+  margin: 2.5rem 0;
 }
 
+.totals {
+  margin-top: 2rem;
+  font-weight: bold;
+}

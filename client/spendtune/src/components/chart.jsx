@@ -20,6 +20,9 @@ function Chart() {
     return amount;
   })
 
+  const totals = categoriesAmounts.reduce((acc, curr) => acc + curr, 0);
+  totals.toFixed(2);
+
   const data = {
     labels: categories,
     datasets: [
@@ -30,23 +33,24 @@ function Chart() {
           "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"
         ]
         ,
-        borderColor: 'white',
+        borderColor: '#10083d',
       }
     ]
   };
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: 'top',
         labels: {
-          color: 'white',
+          color: '#25BBA8',
           boxWidth: 20,
-          padding: 20,
+          padding: 15,
           font: {
-            size: '20rem',
+            size: 17,
+            weight: 'bold',
             family: 'Segoe UI'
           },
         },
@@ -59,8 +63,9 @@ function Chart() {
     { loggedUser.categories.length !== 0 &&
       loggedUser.transactionsCategorized.length !== 0 &&
       <div className="chart">
-        <h2>Your expenses</h2>
+        <h2>Spendings</h2>
         <Doughnut data={data} options={options} />
+        <h2 className="totals">Totals: {totals} GBP</h2>
       </div>
     }
     </>

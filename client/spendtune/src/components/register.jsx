@@ -28,6 +28,10 @@ function Register() {
     }
   }
 
+  function goBack() {
+    navigate('/');
+  }
+
   // HANDLERS COULD BE REFACTORED INTO SINGLE UNIVERSAL HANDLER
 
   function handleEmail(event) {
@@ -48,26 +52,25 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
-            <label htmlFor="email">email: </label>
-            <input type="email" name='email' value={email} onChange={handleEmail} />
+            <input type="email" name='email' value={email}
+            onChange={handleEmail} placeholder='email' />
           </li>
           <li>
-            <label htmlFor="password">password: </label>
-            <input type="password" name='password' value={password} onChange={handlePassword} />
+            <input type="password" name='password' value={password}
+            onChange={handlePassword} placeholder='password'/>
           </li>
           <li>
-            <label htmlFor="firstName">first name: </label>
-            <input type="text" name='firstName' value={firstName} onChange={handleFirstName} />
+            <input type="text" name='firstName' value={firstName}
+            onChange={handleFirstName} placeholder='first name'/>
           </li>
           <li>
-            <label htmlFor="lastName">last name: </label>
-            <input type="text" name='lastName' value={lastName} onChange={handleLastName} />
-          </li>
-          <li>
-            <button type="submit">Register</button>
+            <input type="text" name='lastName' value={lastName}
+             onChange={handleLastName} placeholder='last name'/>
           </li>
         </ul>
       </form>
+            <button type="submit">Register</button>
+            <button onClick={goBack}>Back</button>
     </div>
   )
 }

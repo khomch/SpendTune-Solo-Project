@@ -26,13 +26,16 @@ function SyncPage(props) {
     open()
   }, [open])
 
+  function goBack() {
+    navigate('/home');
+  }
+
   return (
     <div className='sync'>
-      <h3>Please wait for Plaid's widget to load.</h3>
-      <div>
-        <p>You can also use the button to load widget manually.</p>
-        <button onClick={() => open()}>Load widget</button>
-      </div>
+      <h3>Please wait for Plaid's widget to load</h3>
+      <p className='widget-prompt'>You can also use the button to load widget manually.</p>
+      <button onClick={() => open()}>Load widget</button>
+      <button onClick={goBack}>Back</button>
     </div>
   );
 }

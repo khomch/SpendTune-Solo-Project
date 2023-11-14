@@ -54,8 +54,8 @@ function Home(props) {
   return (
     <>
     <div className="home">
-      <h1>Dashboard</h1>
-      <p>
+      <h2>Dashboard</h2>
+      <p className='greeting'>
         Hello {loggedUser.firstName} {loggedUser.lastName}
       </p>
       <button onClick={handleSync}>
@@ -68,14 +68,14 @@ function Home(props) {
         <button onClick={handleCatClicked}>Add category</button>
       }
       { addCategoryClicked &&
-        <div className="add_cat">
+        <div className="add-cat">
           <input
             type="text"
-            placeholder="Category name"
+            placeholder="your category name"
             value={categoryInput}
             onChange={e => setCategoryInput(e.target.value)}
           />
-          <button onClick={handleAddCategory}>Add</button>
+          <button className='add-btn' onClick={handleAddCategory}>Add</button>
         </div>
       }
       <Chart />

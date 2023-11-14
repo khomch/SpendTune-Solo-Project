@@ -38,7 +38,7 @@ function Transaction({transaction}) {
               )
             })}
             </select>
-            <button onClick={handleCategoryAssign}>Assign</button>
+            <button className="assign-btn" onClick={handleCategoryAssign}>Assign</button>
           </div>
 
         </>
