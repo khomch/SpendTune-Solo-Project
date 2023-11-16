@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { useState } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-import Login from "./login";
-import Register from "./register";
-import Home from "./home";
-import SyncPage from "./syncPage";
-import { useCombinedStore } from "../Store";
+import Login from './login';
+import Register from './register';
+import Home from './home';
+import SyncPage from './syncPage';
+import { useCombinedStore } from '../Store';
 
 function Dashboard() {
-  const [tokenStore, setTokenStore] = useState(null);
-  const loggedUser = useCombinedStore((state) => state.logged);
+  const [tokenStore, setTokenStore] = useState<null | string>(null);
+  const loggedUser = useCombinedStore((state: any) => state.logged);
 
   return (
     <div className="dashboardComp">
@@ -22,7 +22,7 @@ function Dashboard() {
             loggedUser ? (
               <Home tokenStore={tokenStore} setTokenStore={setTokenStore} />
             ) : (
-              <Navigate replace to={"/"} />
+              <Navigate replace to={'/'} />
             )
           }
         />
@@ -32,7 +32,7 @@ function Dashboard() {
             loggedUser ? (
               <SyncPage tokenStore={tokenStore} setTokenStore={setTokenStore} />
             ) : (
-              <Navigate replace to={"/home"} />
+              <Navigate replace to={'/home'} />
             )
           }
         />
