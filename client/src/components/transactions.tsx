@@ -28,7 +28,7 @@ function Transactions() {
             );
           })}
       </div>
-      {transactions.length == 0 &&
+      {transactions.length === 0 &&
         transactionsCategorized &&
         transactionsCategorized.length > 0 && (
           <h2>No more transactions to categorize</h2>

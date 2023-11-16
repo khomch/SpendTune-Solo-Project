@@ -23,7 +23,7 @@ function Register() {
     setFirstName('');
     setLastName('');
     if (!registeredUser.error) {
-      await setLogged();
+      setLogged();
       navigate('/home');
     }
   }
