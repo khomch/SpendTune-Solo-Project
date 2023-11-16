@@ -1,14 +1,15 @@
 import { useCombinedStore } from '../Store';
+import { TTransaction } from '../types/types';
 import Transaction from './transaction';
 
 function Transactions() {
-  const loggedUser = useCombinedStore((state: any) => state.logged as any);
-  const transactions = loggedUser.transactions;
-  const transactionsCategorized = loggedUser.transactionsCategorized;
+  const loggedUser = useCombinedStore((state) => state.logged);
+  const transactions = loggedUser?.transactions;
+  const transactionsCategorized = loggedUser?.transactionsCategorized;
 
-  return (
+  return loggedUser && transactions ? (
     <div className="transactions">
-      {!loggedUser.linkedBanks && (
+      {loggedUser.linkedBanks && (
         <h3 className="user-prompt">
           Please sync your bank to get transactions
         </h3>
@@ -19,7 +20,7 @@ function Transactions() {
       {transactions.length > 0 && <h2>Transactions to categorize</h2>}
       <div className="transactions-list">
         {transactions.length > 0 &&
-          transactions.map((transaction: any) => {
+          transactions.map((transaction: TTransaction) => {
             return (
               <div key={transaction.id}>
                 <Transaction transaction={transaction} />
@@ -27,10 +28,14 @@ function Transactions() {
             );
           })}
       </div>
-      {transactions.length == 0 && transactionsCategorized.length > 0 && (
-        <h2>No more transactions to categorize</h2>
-      )}
+      {transactions.length == 0 &&
+        transactionsCategorized &&
+        transactionsCategorized.length > 0 && (
+          <h2>No more transactions to categorize</h2>
+        )}
     </div>
+  ) : (
+    <p>Data has not been loaded</p>
   );
 }
 

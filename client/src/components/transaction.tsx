@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { useCombinedStore } from '../Store';
 import { assignCategory } from '../apiService';
+import { TTransaction } from '../types/types';
 
-function Transaction({ transaction }: any) {
+type TransactionProps = {
+  transaction: TTransaction;
+};
+
+function Transaction(props: TransactionProps) {
+  const { transaction } = props;
+  const [selectedCategory, setSelectedCategory] = useState('');
   const loggedUser = useCombinedStore((state) => state.logged);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
-
-  const [selectedCategory, setSelectedCategory] = useState('');
 
   async function handleCategoryAssign() {
     if (selectedCategory === '') {

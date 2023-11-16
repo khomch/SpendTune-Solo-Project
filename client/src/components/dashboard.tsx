@@ -6,10 +6,11 @@ import Register from './register';
 import Home from './home';
 import SyncPage from './syncPage';
 import { useCombinedStore } from '../Store';
+import { TTokenStore } from '../types/types';
 
 function Dashboard() {
-  const [tokenStore, setTokenStore] = useState<null | string>(null);
-  const loggedUser = useCombinedStore((state: any) => state.logged);
+  const [tokenStore, setTokenStore] = useState<TTokenStore | null>(null);
+  const loggedUser = useCombinedStore((state) => state.logged);
 
   return (
     <div className="dashboardComp">
@@ -30,7 +31,7 @@ function Dashboard() {
           path="/sync"
           element={
             loggedUser ? (
-              <SyncPage tokenStore={tokenStore} setTokenStore={setTokenStore} />
+              <SyncPage tokenStore={tokenStore} />
             ) : (
               <Navigate replace to={'/home'} />
             )

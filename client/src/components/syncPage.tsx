@@ -4,12 +4,19 @@ import { useNavigate } from 'react-router-dom';
 
 import { exchangePublicToken } from '../plaidService';
 import { useCombinedStore } from '../Store';
+import { TTokenStore } from '../types/types';
 
-function SyncPage(props: any) {
+type SyncPageProps = {
+  tokenStore: TTokenStore | null;
+};
+
+function SyncPage(props: SyncPageProps) {
+  const { tokenStore } = props;
+  console.log('props: ', props);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
 
   const navigate = useNavigate();
-  const linkToken = props.tokenStore.link_token;
+  const linkToken = tokenStore && tokenStore.link_token;
 
   const { open } = usePlaidLink({
     token: linkToken,

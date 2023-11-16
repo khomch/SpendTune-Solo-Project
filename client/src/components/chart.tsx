@@ -1,28 +1,27 @@
 import { useCombinedStore } from '../Store';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { TTransaction } from '../types/types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Chart() {
-  const loggedUser = useCombinedStore((state: any) => state.logged);
-  const categories = loggedUser.categories;
-  const transactions: any = loggedUser.transactionsCategorized;
+  const loggedUser = useCombinedStore((state) => state.logged);
+  const categories = loggedUser?.categories;
+  const transactions: any = loggedUser?.transactionsCategorized;
 
-  const categoriesAmounts = categories.map((category: {}) => {
-    let amount = 0;
-    transactions.forEach((transaction: any) => {
-      if (transaction.user_category === category) {
-        amount += transaction.amount;
-      }
-    });
-    return amount;
-  });
-
-  const totals = categoriesAmounts.reduce(
-    (acc: any, curr: any) => acc + curr,
-    0
+  const categoriesAmounts: number[] | undefined = categories?.map(
+    (category: {}) => {
+      let amount = 0;
+      transactions.forEach((transaction: TTransaction) => {
+        if (transaction.user_category === category) {
+          amount += transaction.amount;
+        }
+      });
+      return amount;
+    }
   );
+  const totals = categoriesAmounts?.reduce((acc, curr) => acc + curr, 0);
 
   const data = {
     labels: categories,
@@ -65,20 +64,20 @@ function Chart() {
     },
   };
 
-  return (
+  return loggedUser && loggedUser.categories ? (
     <>
       {loggedUser.categories.length !== 0 &&
-        loggedUser.transactionsCategorized.length !== 0 && (
+        loggedUser.transactionsCategorized?.length !== 0 && (
           <div className="chart-container">
             <div className="chart">
               <h2>Spendings</h2>
               <Doughnut data={data} options={options} />
-              <h2 className="totals">Totals: {totals.toFixed(2)} GBP</h2>
+              <h2 className="totals">Totals: {totals?.toFixed(2)} GBP</h2>
             </div>
           </div>
         )}
     </>
-  );
+  ) : null;
 }
 
 export default Chart;

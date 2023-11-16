@@ -6,10 +6,10 @@ import { TUser } from './types/types';
 type TStore = {
   logged: TUser | null;
   fetchLoggedUser: () => void;
-  setLoggedUser: (user: TUser | null) => any;
+  setLoggedUser: (user: TUser | null) => void;
 };
 
-const createLoggedStore: any = persist(
+const createLoggedStore = persist<TStore>(
   (set) => ({
     logged: null,
     // fetches logged user from the server and updates the store
@@ -17,7 +17,7 @@ const createLoggedStore: any = persist(
       await getLoggedUser().then((user) => set({ logged: user }));
     },
     // Add a function to update loggedUser
-    setLoggedUser: (user: TUser) => set({ logged: user }),
+    setLoggedUser: (user) => set({ logged: user }),
   }),
   // config for persist middleware storage
   {

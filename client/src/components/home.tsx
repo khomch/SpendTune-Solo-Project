@@ -5,8 +5,14 @@ import { addCategory } from '../apiService';
 import { useCombinedStore } from '../Store';
 import Transactions from './transactions';
 import Chart from './chart';
+import { TTokenStore } from '../types/types';
 
-function Home(props: any) {
+type HomeProps = {
+  tokenStore: TTokenStore | null;
+  setTokenStore: Function;
+};
+
+function Home(props: HomeProps) {
   // global states
   const loggedUser = useCombinedStore((state) => state.logged);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
@@ -95,7 +101,9 @@ function Home(props: any) {
       </div>
       <Chart />
       <div>
-        <Transactions />
+        {loggedUser.transactions && loggedUser.transactions?.length > 0 && (
+          <Transactions />
+        )}
       </div>
     </div>
   ) : (
