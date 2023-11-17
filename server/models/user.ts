@@ -1,6 +1,8 @@
+import { Transaction } from 'plaid';
+import { TUser } from '../@types';
 import mongoose from '../db';
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema<TUser>({
   email: {
     type: String,
     required: true,
@@ -22,25 +24,25 @@ const userSchema = new mongoose.Schema({
     default: ''
   },
   linkedBanks: {
-    type: Object,
-    default: {}
+    type: Array<string>,
+    default: []
   },
   next_cursor: {
     type: String,
     default: null
   },
   transactions: {
-    type: Array,
-    default: []
+    type: Array<Transaction>,
+    default: [],
   },
   transactionsCategorized: {
-    type: Array,
-    default: []
+    type: Array<Transaction>,
+    default: [],
   },
   categories: {
-    type: Array,
-    default: []
+    type: Array<string>,
+    default: [],
   }
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model<TUser>('User', userSchema);
