@@ -15,7 +15,9 @@ type HomeProps = {
 function Home(props: HomeProps) {
   // global states
   const loggedUser = useCombinedStore((state) => state.logged);
+  const token = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
+  console.log('loggedUser: ', loggedUser);
   // local states
   const [addCategoryClicked, setAddCategoryClicked] = useState(false);
   const [categoryInput, setCategoryInput] = useState('');
@@ -34,7 +36,7 @@ function Home(props: HomeProps) {
       console.log(updatedUser);
       return;
     }
-    setLoggedUser(updatedUser);
+    token && setLoggedUser({ user: updatedUser, token: token });
     console.log('Plaid API - Transactions synced');
   }
 
@@ -54,10 +56,14 @@ function Home(props: HomeProps) {
       console.log('Category name must be at least 3 characters');
       return;
     } else {
-      const updatedUser = await addCategory({
-        category: categoryInput.toLowerCase(),
-      });
-      setLoggedUser(updatedUser);
+      console.log('token: ', token);
+      const updatedUser =
+        token &&
+        (await addCategory({
+          category: categoryInput.toLowerCase(),
+          token,
+        }));
+      token && setLoggedUser({ user: updatedUser, token });
       setAddCategoryClicked(false);
       setCategoryInput('');
     }

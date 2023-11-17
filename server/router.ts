@@ -1,5 +1,8 @@
 import { Response, Request, Router } from 'express';
 import controller from './controllers/master';
+import userController from './controllers/user.controller';
+import { auth } from './middlewares/auth';
+import categoryController from './controllers/category.controller';
 
 const router = Router();
 
@@ -10,13 +13,13 @@ router.post('/api/sync_transactions', controller.syncTransactions);
 
 // ROUTES FOR CLIENT INTERACTION
 router.get('/logged_user', controller.loggedUser);
-router.post('/register', controller.createUser);
-router.post('/login', controller.login);
-router.post('/logout', controller.logout);
-router.post('/add_category', controller.addCategory);
-router.post('/assign_category', controller.assignCategory);
+router.post('/register', userController.createUser);
+router.post('/login', userController.login);
+router.post('/logout', auth, controller.logout);
+router.post('/add_category', auth, categoryController.addCategory);
+router.post('/assign_category', auth, categoryController.assignCategory);
 
-router.get('*', (req:Request, res:Response) => {
+router.get('*', (req: Request, res: Response) => {
   res.status(404).send('Sorry, not found 😞');
 });
 

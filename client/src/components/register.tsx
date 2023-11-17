@@ -6,7 +6,7 @@ import { useCombinedStore } from '../Store';
 import { TUser } from '../types/types';
 
 function Register() {
-  const setLogged = useCombinedStore((state) => state.fetchLoggedUser);
+  const setLogged = useCombinedStore((state) => state.setLoggedUser);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ function Register() {
     setFirstName('');
     setLastName('');
     if (!registeredUser.error) {
-      setLogged();
+      setLogged(registeredUser);
       navigate('/home');
     }
   }

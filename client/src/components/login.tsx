@@ -4,7 +4,8 @@ import { logUser } from '../apiService';
 import { useCombinedStore } from '../Store';
 
 function Login() {
-  const setLogged = useCombinedStore((state) => state.fetchLoggedUser);
+  // const fetchLogged = useCombinedStore((state) => state.fetchLoggedUser);
+  const setLogged = useCombinedStore((state) => state.setLoggedUser);
 
   const navigate = useNavigate();
 
@@ -18,7 +19,8 @@ function Login() {
     setEmail('');
     setPassword('');
     if (!user.error) {
-      await setLogged();
+      // fetchLogged();
+      setLogged(user);
       navigate('/home');
     }
   }
