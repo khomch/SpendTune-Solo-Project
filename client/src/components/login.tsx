@@ -1,18 +1,17 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logUser } from '../apiService';
 import { useCombinedStore } from '../Store';
 
 function Login() {
-
-  const setLogged = useCombinedStore(state => state.fetchLoggedUser);
+  const setLogged = useCombinedStore((state) => state.fetchLoggedUser);
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const login = { email, password };
     const user = await logUser(login);
@@ -26,11 +25,11 @@ function Login() {
 
   // HANDLERS COULD BE REFACTORED INTO SINGLE UNIVERSAL HANDLER
 
-  function handleEmail(event) {
+  function handleEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
 
-  function handlePassword(event) {
+  function handlePassword(event: React.ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
   }
 
@@ -39,30 +38,32 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
-            <input type="email"
-            name='email'
-            value={email}
-            onChange={handleEmail}
-            autoComplete="email"
-            placeholder="email"
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+              autoComplete="email"
+              placeholder="email"
             />
           </li>
           <li>
-            <input type="password"
-            name='password'
-            value={password}
-            onChange={handlePassword}
-            autoComplete="current-password"
-            placeholder='password'
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+              autoComplete="current-password"
+              placeholder="password"
             />
           </li>
         </ul>
-            <button type="submit">Login</button>
+        <button type="submit">Login</button>
       </form>
-      <h4>Don't have an account yet?</h4>
+      <h4>Don&apos;t have an account yet?</h4>
       <button onClick={() => navigate('/register')}>Register</button>
     </div>
-  )
+  );
 }
 
 export default Login;

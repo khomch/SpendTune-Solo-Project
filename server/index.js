@@ -1,20 +1,19 @@
-import * as dotenv from 'dotenv';
-import express from 'express';
+require('dotenv').config();
+const express = require('express');
 // const session = require("express-session"); EXTRA CREDTIS :D
-import cors from 'cors';
-import router from './router';
+const cors = require('cors');
+const router = require('./router');
+const app = express();
 
-dotenv.config()
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
 const SECRET = process.env.SECRET || 'this is not very secure';
+
 
 const corsConfig = {
   origin: 'http://localhost:3000',
   credentials: true,
 };
 
-
-const app = express();
 app.use(cors(corsConfig));
 app.use(express.json());
 // app.use(                     EXTRA CREDTIS :D => authentication
@@ -33,7 +32,11 @@ app.use(express.json());
 // );
 app.use(router);
 
-app.listen(SERVER_PORT, () => {
-  console.log(`💰SpendTune💰  server is listening on port ${SERVER_PORT}!`);
+app.listen(SERVER_PORT, (err) => {
+  if (err) {
+    console.log(`😞 Sorry, something went wrong! ${err}`);
+  } else {
+    console.log(`💰SpendTune💰  server is listening on port ${SERVER_PORT}!`);
+  }
 });
 

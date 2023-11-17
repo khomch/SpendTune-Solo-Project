@@ -1,7 +1,5 @@
-import { Response, Request, Router } from 'express';
-import controller from './controllers/master';
-
-const router = Router();
+const router = require('express').Router();
+const controller = require('./controllers/master');
 
 // ROUTES FOR API INTERACTION
 router.get('/api/create_link_token', controller.createLinkToken);
@@ -16,8 +14,10 @@ router.post('/logout', controller.logout);
 router.post('/add_category', controller.addCategory);
 router.post('/assign_category', controller.assignCategory);
 
-router.get('*', (req:Request, res:Response) => {
-  res.status(404).send('Sorry, not found 😞');
+router.get('*', (res) => {
+  res
+    .status(404)
+    .send('Sorry, not found 😞');
 });
 
-export default router;
+module.exports = router;

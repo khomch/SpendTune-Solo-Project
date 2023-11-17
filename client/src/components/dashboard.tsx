@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
-
-import Login from "./login";
-import Register from "./register";
-import Home from "./home";
-import SyncPage from "./syncPage";
-import { useCombinedStore } from "../Store";
+import { useState } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Login from './login';
+import Register from './register';
+import Home from './home';
+import SyncPage from './syncPage';
+import { useCombinedStore } from '../Store';
+import { TTokenStore } from '../types/types';
 
 function Dashboard() {
-  const [tokenStore, setTokenStore] = useState(null);
+  const [tokenStore, setTokenStore] = useState<TTokenStore | null>(null);
   const loggedUser = useCombinedStore((state) => state.logged);
 
   return (
@@ -22,7 +22,7 @@ function Dashboard() {
             loggedUser ? (
               <Home tokenStore={tokenStore} setTokenStore={setTokenStore} />
             ) : (
-              <Navigate replace to={"/"} />
+              <Navigate replace to={'/'} />
             )
           }
         />
@@ -30,9 +30,9 @@ function Dashboard() {
           path="/sync"
           element={
             loggedUser ? (
-              <SyncPage tokenStore={tokenStore} setTokenStore={setTokenStore} />
+              <SyncPage tokenStore={tokenStore} />
             ) : (
-              <Navigate replace to={"/home"} />
+              <Navigate replace to={'/home'} />
             )
           }
         />
