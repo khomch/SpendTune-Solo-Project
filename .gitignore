@@ -34,3 +34,6 @@ dist
 .env.test.local
 .env.production.local
 .env
+.vscode/settings.json
+server/.env
+
