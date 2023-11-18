@@ -7,9 +7,8 @@ type TStore = {
   logged: TUser | null;
   token: string | null;
   // fetchLoggedUser: () => void;
-  setLoggedUser: (
-    userData: { user: TUser | null; token: string } | null
-  ) => void;
+  setLoggedUser: (user: TUser | null) => void;
+  setAuthToken: (token: string | null) => void;
 };
 
 const createLoggedStore = persist<TStore>(
@@ -24,9 +23,11 @@ const createLoggedStore = persist<TStore>(
     //   });
     // },
     // Add a function to update loggedUser
-    setLoggedUser: (userData) => {
-      console.log('user: ', userData);
-      set({ logged: userData?.user, token: userData?.token });
+    setLoggedUser: (user) => {
+      set({ logged: user });
+    },
+    setAuthToken: (token) => {
+      set({ token: token });
     },
   }),
   // config for persist middleware storage

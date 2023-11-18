@@ -14,7 +14,17 @@ function Dashboard() {
   return (
     <div className="dashboardComp">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            loggedUser ? (
+              <Home tokenStore={tokenStore} setTokenStore={setTokenStore} />
+            ) : (
+              <Navigate replace to={'/login'} />
+            )
+          }
+        />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/home"

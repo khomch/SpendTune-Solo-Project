@@ -7,14 +7,12 @@ const categoryController: { [k: string]: RequestHandler } = {};
 categoryController.addCategory = async (req: Request, res: Response) => {
   try {
     const { category } = req.body;
-    console.log('category: ', category);
     const userId = getUserIdFromToken(req);
-    console.log('userId: ', userId);
     const user = userId && (await User.findOne({ _id: userId }));
     if (user) {
       user && user.categories && user.categories.push(category);
-      // @ts-ignore
-      const updatedUser = await user.save({ new: true });
+
+      const updatedUser = await user.save();
       res.status(200).json(updatedUser);
     } else {
       res.status(400).send({ message: 'User not found in the database' });
@@ -28,9 +26,7 @@ categoryController.addCategory = async (req: Request, res: Response) => {
 categoryController.assignCategory = async (req: Request, res: Response) => {
   try {
     const { category, id } = req.body;
-
     const userId = getUserIdFromToken(req);
-
     const user = userId && (await User.findOne({ _id: userId }));
     const transactions = user && user.transactions ? user.transactions : [];
     const [transaction] = transactions.filter(
@@ -51,8 +47,7 @@ categoryController.assignCategory = async (req: Request, res: Response) => {
       : [];
     user.transactionsCategorized = [...prevTransactions, transaction];
 
-    // @ts-ignore
-    const updatedUser = await user.save({ new: true });
+    const updatedUser = await user.save();
     res.status(200).json(updatedUser);
   } catch (error) {
     console.log(error);
