@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { SECRET_KEY } from '../controllers/user.controller';
+import { SECRET_KEY } from '../utils/generateToken';
 
 export interface CustomRequest extends Request {
   token: string | JwtPayload;

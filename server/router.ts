@@ -1,21 +1,22 @@
 import { Response, Request, Router } from 'express';
-import controller from './controllers/master';
 import userController from './controllers/user.controller';
 import { auth } from './middlewares/auth';
 import categoryController from './controllers/category.controller';
+import transactionController from './controllers/transaction.controller';
 
 const router = Router();
 
 // ROUTES FOR API INTERACTION
-router.get('/api/create_link_token', controller.createLinkToken);
-router.post('/api/exchange_public_token', controller.exchangePublicToken);
-router.post('/api/sync_transactions', controller.syncTransactions);
+router.get('/api/create-link-token', transactionController.createLinkToken);
+router.post(
+  '/api/exchange-public-token',
+  transactionController.exchangePublicToken
+);
+router.post('/api/sync-transactions', transactionController.syncTransactions);
 
 // ROUTES FOR CLIENT INTERACTION
-// router.get('/logged_user', controller.loggedUser);
 router.post('/register', userController.createUser);
 router.post('/login', userController.login);
-// router.post('/logout', auth, controller.logout);
 router.post('/category/add', auth, categoryController.addCategory);
 router.post('/category/assign', auth, categoryController.assignCategory);
 

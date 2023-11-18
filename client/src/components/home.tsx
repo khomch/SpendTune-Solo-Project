@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getLinkToken, syncTransactions } from '../plaidService';
-import { addCategory } from '../apiService';
 import { useCombinedStore } from '../Store';
-import Transactions from './transactions';
-import Chart from './chart';
+import { addCategory } from '../apiService';
+import { getLinkToken, syncTransactions } from '../plaidService';
 import { TTokenStore } from '../types/types';
+import Chart from './chart';
+import Transactions from './transactions';
 
 type HomeProps = {
   tokenStore: TTokenStore | null;
@@ -17,7 +17,6 @@ function Home(props: HomeProps) {
   const loggedUser = useCombinedStore((state) => state.logged);
   const authToken = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
-  console.log('loggedUser: ', loggedUser);
   // local states
   const [addCategoryClicked, setAddCategoryClicked] = useState(false);
   const [categoryInput, setCategoryInput] = useState('');
@@ -26,23 +25,19 @@ function Home(props: HomeProps) {
 
   async function handleSync() {
     const linkToken = authToken && (await getLinkToken(authToken));
-    console.log('linkToken: ', linkToken);
     props.setTokenStore(linkToken);
     navigate('/sync');
   }
 
-  async function handleTransactions() {
+  async function handleSyncTransactions() {
     const updatedUser = authToken && (await syncTransactions(authToken));
-    if (updatedUser.message) {
-      console.log('updatedUser.message: ', updatedUser.message);
+    if (updatedUser && updatedUser._id) {
+      setLoggedUser(updatedUser);
+      console.log('Plaid API - Transactions synced');
       return;
     }
-    if (typeof updatedUser === 'string') {
-      console.log(updatedUser);
-      return;
-    }
-    authToken && setLoggedUser({ user: updatedUser, token: authToken });
-    console.log('Plaid API - Transactions synced');
+    console.log('Issue while syncing transactions -->', updatedUser);
+    return;
   }
 
   function handleCatClicked() {
@@ -61,14 +56,13 @@ function Home(props: HomeProps) {
       console.log('Category name must be at least 3 characters');
       return;
     } else {
-      console.log('token: ', authToken);
       const updatedUser =
         authToken &&
         (await addCategory({
           category: categoryInput.toLowerCase(),
           token: authToken,
         }));
-      authToken && setLoggedUser({ user: updatedUser, token: authToken });
+      setLoggedUser(updatedUser);
       setAddCategoryClicked(false);
       setCategoryInput('');
     }
@@ -84,7 +78,7 @@ function Home(props: HomeProps) {
           {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
         </button>
         {loggedUser.linkedBanks && (
-          <button className='btn'  onClick={handleTransactions}>Sync transactions</button>
+          <button className='btn'  onClick={handleSyncTransactions}>Sync transactions</button>
         )}
         {loggedUser.transactions && (
           <button className="btn btn--small" onClick={handleCatClicked}>

@@ -6,8 +6,8 @@ import '../styles/sign-in.css'
 
 
 function Login() {
-  // const fetchLogged = useCombinedStore((state) => state.fetchLoggedUser);
   const setLogged = useCombinedStore((state) => state.setLoggedUser);
+  const setAuthToken = useCombinedStore((state) => state.setAuthToken);
 
   const navigate = useNavigate();
 
@@ -17,12 +17,12 @@ function Login() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const login = { email, password };
-    const user = await logUser(login);
+    const loginData = await logUser(login);
     setEmail('');
     setPassword('');
-    if (!user.error) {
-      // fetchLogged();
-      setLogged(user);
+    if (!loginData.error) {
+      setLogged(loginData.user);
+      setAuthToken(loginData.token);
       navigate('/home');
     }
   }
