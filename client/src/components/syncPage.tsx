@@ -11,18 +11,21 @@ type SyncPageProps = {
 };
 
 function SyncPage(props: SyncPageProps) {
+  const authToken = useCombinedStore((state) => state.token);
   const { tokenStore } = props;
   console.log('props: ', props);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
 
   const navigate = useNavigate();
   const linkToken = tokenStore && tokenStore.link_token;
+  console.log('linkToken: ', linkToken);
 
   const { open } = usePlaidLink({
     token: linkToken,
     onSuccess: async (public_token) => {
-      const updatedUser = await exchangePublicToken(public_token);
-      setLoggedUser(updatedUser);
+      const updatedUser =
+        authToken && (await exchangePublicToken(public_token, authToken));
+      authToken && setLoggedUser({ user: updatedUser, token: authToken });
       console.log('Plaid API - Link successful');
       navigate('/home');
     },

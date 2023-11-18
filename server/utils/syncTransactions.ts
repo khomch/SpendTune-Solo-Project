@@ -4,6 +4,8 @@ import { TTransaction, TUser } from "../@types";
 
 
 export default async function syncTransactions(user:TUser){
+  console.log('user: ', user.accessToken);
+  console.log('user: ', user.next_cursor);
   
   let response = await apiClient.transactionsSync({
     access_token: user.accessToken || '',
