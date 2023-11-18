@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getLinkToken, syncTransactions } from '../plaidService';
 import { addCategory } from '../apiService';
@@ -15,7 +15,7 @@ type HomeProps = {
 function Home(props: HomeProps) {
   // global states
   const loggedUser = useCombinedStore((state) => state.logged);
-  const token = useCombinedStore((state) => state.token);
+  const authToken = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
   console.log('loggedUser: ', loggedUser);
   // local states
@@ -25,18 +25,23 @@ function Home(props: HomeProps) {
   const navigate = useNavigate();
 
   async function handleSync() {
-    const linkToken = await getLinkToken();
+    const linkToken = authToken && (await getLinkToken(authToken));
+    console.log('linkToken: ', linkToken);
     props.setTokenStore(linkToken);
     navigate('/sync');
   }
 
   async function handleTransactions() {
-    const updatedUser = await syncTransactions();
+    const updatedUser = authToken && (await syncTransactions(authToken));
+    if (updatedUser.message) {
+      console.log('updatedUser.message: ', updatedUser.message);
+      return;
+    }
     if (typeof updatedUser === 'string') {
       console.log(updatedUser);
       return;
     }
-    token && setLoggedUser({ user: updatedUser, token: token });
+    authToken && setLoggedUser({ user: updatedUser, token: authToken });
     console.log('Plaid API - Transactions synced');
   }
 
@@ -56,14 +61,14 @@ function Home(props: HomeProps) {
       console.log('Category name must be at least 3 characters');
       return;
     } else {
-      console.log('token: ', token);
+      console.log('token: ', authToken);
       const updatedUser =
-        token &&
+        authToken &&
         (await addCategory({
           category: categoryInput.toLowerCase(),
-          token,
+          token: authToken,
         }));
-      token && setLoggedUser({ user: updatedUser, token });
+      authToken && setLoggedUser({ user: updatedUser, token: authToken });
       setAddCategoryClicked(false);
       setCategoryInput('');
     }

@@ -15,7 +15,7 @@ router.post('/api/sync_transactions', controller.syncTransactions);
 // router.get('/logged_user', controller.loggedUser);
 router.post('/register', userController.createUser);
 router.post('/login', userController.login);
-router.post('/logout', auth, controller.logout);
+// router.post('/logout', auth, controller.logout);
 router.post('/category/add', auth, categoryController.addCategory);
 router.post('/category/assign', auth, categoryController.assignCategory);
 

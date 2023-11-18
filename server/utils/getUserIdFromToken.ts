@@ -5,6 +5,7 @@ import { SECRET_KEY } from '../controllers/user.controller';
 // METHODS TO INTERACT WITH API
 export const getUserIdFromToken = (req: Request): string | null => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
+  console.log('token: ', token);
   if (!token) {
     return null;
   }
