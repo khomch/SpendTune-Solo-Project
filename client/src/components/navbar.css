@@ -1,0 +1,40 @@
+@import '../App.css';
+
+.navbar {
+  background-color: var(--bg2);
+  border: 2px solid var(--primary);
+  border-radius: 30px;
+  padding: 1rem 1.5rem;
+  margin: var(--vmargin) var(--hmargin);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  &__img {
+    width: 200px;
+    height: 50px;
+  }
+}
+
+
+
+@media only screen and (min-width: 970px) {
+  .navbar {
+    width: 80%;
+    padding: 1rem 1.5rem;
+    margin: var(--vertimarg) var(--horimarg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__img {
+      width: 250px;
+      height: 65px;
+      margin: auto;
+    }
+
+    &__btn--small {
+      margin-left: auto;
+    }
+  }
+}

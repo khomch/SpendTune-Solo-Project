@@ -3,8 +3,8 @@
   --bg2: #10083d;
   --primary: #25BBA8;
   --focus: rgb(201, 145, 4);
-  --vertimarg: 0.6rem;
-  --horimarg: 0.3rem;
+  --vmargin: 0.6rem;
+  --hmargin: 0.3rem;
 }
 
 * {
@@ -83,21 +83,6 @@ select {
   min-height: 100vh;
 }
 
-.navbar {
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  padding: 1rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.navbar__img {
-  width: 200px;
-  height: 50px;
-}
 
 /* .logout-btn {
   width: 100px;
@@ -109,15 +94,14 @@ select {
   border: 2px solid var(--primary);
   border-radius: 30px;
   padding: 2rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
+  margin: var(--vmargin) var(--hmargin);
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 1rem;
 }
-.home, .transactions, .login, .register, .sync, .chart-container, .navbar {
-  box-shadow: 0 0 10px var(--primary)
-}
+
+
 .transactions h2, .transactions h3 {
   align-self:center;
   text-align: center;
@@ -162,7 +146,7 @@ select {
   border: 2px solid var(--primary);
   border-radius: 30px;
   padding: 1.5rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
+  margin: var(--vmargin) var(--hmargin);
 }
 
 .widget-prompt {
@@ -170,31 +154,6 @@ select {
   margin: 1.5rem;
 }
 
-.chart-container {
-  margin: var(--vertimarg) var(--horimarg);
-  padding: 2rem;
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.chart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
-  width: 100%;
-  max-width: 500px;
-}
-
-.totals {
-  margin-top: 2rem;
-  font-weight: bold;
-}
 
 @keyframes pulse {
   0% {
@@ -327,24 +286,6 @@ select:focus {
     justify-content: center;
   }
 
-  .navbar {
-    width: 80%;
-    padding: 1rem 1.5rem;
-    margin: var(--vertimarg) var(--horimarg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar__img {
-    width: 250px;
-    height: 65px;
-    margin: auto;
-  }
-
-  .navbar__btn--small {
-    margin-left: auto;
-  }
 
   .dashboard {
     display: flex;
@@ -399,19 +340,20 @@ select:focus {
     padding: 2rem 2rem;
     height: fit-content;
     flex: 1 1;
+ 
+    &__list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 2rem;
+      max-height: 80vh;
+      overflow-y: scroll;
+      max-width: 100%;
+      width: 100%;
+    }
+ 
   }
 
-  .transactions-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 2rem;
-    max-height: 80vh;
-    overflow-y: scroll;
-    max-width: 100%;
-    width: 100%;
-  }
 
   .transaction {
     padding: 2rem;

@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logUser } from '../apiService';
 import { useCombinedStore } from '../Store';
-import '../styles/sign-in.css'
+import './login.css'
 
 
 function Login() {
@@ -38,9 +38,9 @@ function Login() {
   }
 
   return (
-    <div className="sign-in">
+    <div className="login">
       <form onSubmit={handleSubmit}>
-        <ul className='sign-in__fields'>
+        <ul className='login__fields'>
           <li>
             <input
               type="email"

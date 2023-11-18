@@ -1,4 +1,6 @@
-.sign-in {
+@import '../App.css';
+
+.login {
   min-height: 50vh;
   background-color: var(--bg2);
   border: 2px solid var(--primary);
@@ -10,13 +12,14 @@
   align-items: center;
   justify-content: stretch;
   row-gap: 1.5rem;
+  
+  
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    margin: 1rem 0rem 2rem;
+  }
 }
 
-
-.sign-in__fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1rem;
-  margin: 1rem 0rem 2rem;
-}

@@ -20,31 +20,34 @@ body {
   height: 50px;
   font-weight: bold;
   transition: all 10ms ease-in-out;
+  
+  
+  &--small {
+    width: 100px;
+    height: 50px;
+  }
+  
+  &--short {
+    margin-top: 0.8rem;
+  }
+  
+  &--flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+  }
+  
+  &:hover {
+    text-shadow: var(--primary) 0px 0px 2px;
+    border: 2px solid var(--focus);
+  }
+  
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px var(--primary);
+  }
 }
 
-.btn--small {
-  width: 100px;
-  height: 50px;
-}
-
-.btn--short {
-  margin-top: 0.8rem;
-}
-
-.btn--flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 0.5rem;
-}
 
 
-.btn:hover {
-  text-shadow: var(--primary) 0px 0px 2px;
-  border: 2px solid var(--focus);
-}
-
-.btn:active {
-  transform: scale(0.9);
-  box-shadow: 0 0 20px var(--primary);
-}

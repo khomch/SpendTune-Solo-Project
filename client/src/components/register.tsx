@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../apiService';
 import { useCombinedStore } from '../Store';
 import { TUser } from '../types/types';
-import '../styles/sign-in.css'
+import './register.css'
 
 
 function Register() {
@@ -52,9 +52,9 @@ function Register() {
   }
 
   return (
-    <div className="sign-in">
+    <div className="register">
       <form onSubmit={handleSubmit}>
-        <ul className='sign-in__fields'>
+        <ul className='register__fields'>
           <li>
             <input
               type="email"

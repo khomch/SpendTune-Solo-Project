@@ -68,12 +68,12 @@ function Chart() {
     <>
       {loggedUser.categories.length !== 0 &&
         loggedUser.transactionsCategorized?.length !== 0 && (
-          <div className="chart-container">
-            <div className="chart">
-              <h2 className='chart__title'>Expenses</h2>
+          <div className='chart'>
+            <h2 className='chart__title'>Expenses</h2>
+            <div className='chart__graph'>
               <Doughnut data={data} options={options} />
-              <h2 className="chart__totals">Totals: {totals?.toFixed(2)} GBP</h2>
             </div>
+            <h2 className='chart__totals'>Totals: {totals?.toFixed(2)} GBP</h2>
           </div>
         )}
     </>
