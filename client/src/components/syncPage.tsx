@@ -45,8 +45,8 @@ function SyncPage(props: SyncPageProps) {
       <p className="widget-prompt">
         You can also use the button to load widget manually.
       </p>
-      <button onClick={() => open()}>Load widget</button>
-      <button onClick={goBack}>Back</button>
+      <button className='btn' onClick={() => open()}>Load widget</button>
+      <button className='btn'  onClick={goBack}>Back</button>
     </div>
   );
 }

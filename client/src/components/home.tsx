@@ -80,26 +80,26 @@ function Home(props: HomeProps) {
         <p className="greeting">
           Hello {loggedUser.firstName} {loggedUser.lastName}
         </p>
-        <button onClick={handleSync}>
+        <button className='btn' onClick={handleSync}>
           {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
         </button>
         {loggedUser.linkedBanks && (
-          <button onClick={handleTransactions}>Sync transactions</button>
+          <button className='btn'  onClick={handleTransactions}>Sync transactions</button>
         )}
         {loggedUser.transactions && (
-          <button className="add-cat-btn" onClick={handleCatClicked}>
+          <button className="btn btn--small" onClick={handleCatClicked}>
             Add category
           </button>
         )}
         {addCategoryClicked && (
-          <div className="add-cat">
+          <div className="btn btn--small">
             <input
               type="text"
               placeholder="your category name"
               value={categoryInput}
               onChange={(e) => setCategoryInput(e.target.value)}
             />
-            <button className="add-btn" onClick={handleAddCategory}>
+            <button className="btn btn--flex" onClick={handleAddCategory}>
               Add
             </button>
           </div>

@@ -70,9 +70,9 @@ function Chart() {
         loggedUser.transactionsCategorized?.length !== 0 && (
           <div className="chart-container">
             <div className="chart">
-              <h2>Spendings</h2>
+              <h2 className='chart__title'>Expenses</h2>
               <Doughnut data={data} options={options} />
-              <h2 className="totals">Totals: {totals?.toFixed(2)} GBP</h2>
+              <h2 className="chart__totals">Totals: {totals?.toFixed(2)} GBP</h2>
             </div>
           </div>
         )}
@@ -81,3 +81,11 @@ function Chart() {
 }
 
 export default Chart;
+
+// <div className="chart-container">
+//   <div className="chart">
+//     <h2>Spendings</h2>
+//     <Doughnut data={data} options={options} />
+//     <h2 className="totals">Totals: {totals?.toFixed(2)} GBP</h2>
+//   </div>
+// </div>

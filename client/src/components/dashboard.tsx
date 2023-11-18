@@ -12,7 +12,7 @@ function Dashboard() {
   const loggedUser = useCombinedStore((state) => state.logged);
 
   return (
-    <div className="dashboardComp">
+    <div className="dashboard">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />

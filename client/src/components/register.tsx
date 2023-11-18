@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../apiService';
 import { useCombinedStore } from '../Store';
 import { TUser } from '../types/types';
+import '../styles/sign-in.css'
+
 
 function Register() {
   const setLogged = useCombinedStore((state) => state.setLoggedUser);
@@ -48,9 +50,9 @@ function Register() {
   }
 
   return (
-    <div className="register">
+    <div className="sign-in">
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='sign-in__fields'>
           <li>
             <input
               type="email"
@@ -89,10 +91,10 @@ function Register() {
           </li>
         </ul>
       </form>
-      <button type="submit" onClick={handleSubmit}>
+      <button className='btn' type="submit" onClick={handleSubmit}>
         Register
       </button>
-      <button onClick={goBack}>Back</button>
+      <button className='btn' onClick={goBack}>Back</button>
     </div>
   );
 }

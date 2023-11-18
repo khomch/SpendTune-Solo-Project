@@ -77,7 +77,7 @@ function Transaction(props: TransactionProps) {
                 );
               })}
           </select>
-          <button className="assign-btn" onClick={handleCategoryAssign}>
+          <button className="btn btn--short" onClick={handleCategoryAssign}>
             Assign
           </button>
         </div>

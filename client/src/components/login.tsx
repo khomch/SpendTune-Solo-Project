@@ -2,6 +2,8 @@ import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logUser } from '../apiService';
 import { useCombinedStore } from '../Store';
+import '../styles/sign-in.css'
+
 
 function Login() {
   // const fetchLogged = useCombinedStore((state) => state.fetchLoggedUser);
@@ -36,9 +38,9 @@ function Login() {
   }
 
   return (
-    <div className="login">
+    <div className="sign-in">
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='sign-in__fields'>
           <li>
             <input
               type="email"
@@ -60,10 +62,10 @@ function Login() {
             />
           </li>
         </ul>
-        <button type="submit">Login</button>
+        <button className='btn' type="submit">Login</button>
       </form>
       <h4>Don&apos;t have an account yet?</h4>
-      <button onClick={() => navigate('/register')}>Register</button>
+      <button className='btn' onClick={() => navigate('/register')}>Register</button>
     </div>
   );
 }

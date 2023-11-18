@@ -15,9 +15,9 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <img src="/logo.svg" alt="spendtune logo" />
+      <img className='navbar__img' src="/logo.svg" alt="SpendTune logo" />
       {loggedUser && (
-        <button className="logout-btn" onClick={handleLogout}>
+        <button className="btn navbar__btn--small" onClick={handleLogout}>
           Logout
         </button>
       )}
