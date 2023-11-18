@@ -11,6 +11,7 @@ function Transaction(props: TransactionProps) {
   const { transaction } = props;
   const [selectedCategory, setSelectedCategory] = useState('');
   const loggedUser = useCombinedStore((state) => state.logged);
+  const token = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
 
   async function handleCategoryAssign() {
@@ -18,8 +19,15 @@ function Transaction(props: TransactionProps) {
       console.log('Please choose category');
       return;
     }
-    const updatedUser = await assignCategory(selectedCategory, transaction.id);
-    setLoggedUser(updatedUser);
+    if (token) {
+      const assignCategoryData = {
+        category: selectedCategory,
+        id: transaction.id,
+        token: token,
+      };
+      const updatedUser = await assignCategory(assignCategoryData);
+      setLoggedUser({ user: updatedUser, token });
+    }
   }
 
   return (
