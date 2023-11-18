@@ -1,26 +1,14 @@
 import { Request, RequestHandler, Response } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import User from '../models/user';
-import { SECRET_KEY } from './user.controller';
+import { getUserIdFromToken } from '../utils/getUserIdFromToken';
 
 const categoryController: { [k: string]: RequestHandler } = {};
-
-// METHODS TO INTERACT WITH API
-
-const getIdFromToken = (req: Request): string | null => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-  if (!token) {
-    return null;
-  }
-  const decoded = jwt.verify(token, SECRET_KEY) as JwtPayload;
-  return decoded._id;
-};
 
 categoryController.addCategory = async (req: Request, res: Response) => {
   try {
     const { category } = req.body;
     console.log('category: ', category);
-    const userId = getIdFromToken(req);
+    const userId = getUserIdFromToken(req);
     console.log('userId: ', userId);
     const user = userId && (await User.findOne({ _id: userId }));
     if (user) {
@@ -41,7 +29,7 @@ categoryController.assignCategory = async (req: Request, res: Response) => {
   try {
     const { category, id } = req.body;
 
-    const userId = getIdFromToken(req);
+    const userId = getUserIdFromToken(req);
 
     const user = userId && (await User.findOne({ _id: userId }));
     const transactions = user && user.transactions ? user.transactions : [];

@@ -101,14 +101,14 @@ masterController.syncTransactions = async (
 
 let loggedUser: TUser | null;
 
-masterController.loggedUser = async (req: Request, res: Response) => {
-  try {
-    console.log('loggedUser :>> ', loggedUser);
-    res.status(200).send(loggedUser);
-  } catch {
-    res.status(500).send({ message: 'Something went wrong' });
-  }
-};
+// masterController.loggedUser = async (req: Request, res: Response) => {
+//   try {
+//     console.log('loggedUser :>> ', loggedUser);
+//     res.status(200).send(loggedUser);
+//   } catch {
+//     res.status(500).send({ message: 'Something went wrong' });
+//   }
+// };
 
 masterController.logout = async (req: Request, res: Response) => {
   try {

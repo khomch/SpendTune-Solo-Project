@@ -70,7 +70,7 @@ type TAddCategoryProps = {
 
 async function addCategory({ category, token }: TAddCategoryProps) {
   try {
-    const categoryData = await fetch(baseUrl + '/add_category', {
+    const categoryData = await fetch(baseUrl + '/category/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ type TAssignCategoryProps = {
 async function assignCategory({ category, id, token }: TAssignCategoryProps) {
   try {
     console.log('token: ', token);
-    const categoryData = await fetch(baseUrl + '/assign_category', {
+    const categoryData = await fetch(baseUrl + '/category/assign', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
