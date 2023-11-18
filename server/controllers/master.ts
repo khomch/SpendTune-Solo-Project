@@ -90,15 +90,9 @@ masterController.syncTransactions = async (
   try {
     const userId = getUserIdFromToken(req);
     const user = await User.findOne({ _id: userId });
-    // console.log('syncTransactions - user :>> ', user);
     if (user) {
       console.log('user: ', user);
       const updatedUser = await syncTransactions(user);
-      // console.log('updatedUser: ', updatedUser?.email);
-      console.log('HERE');
-
-      // res.status(200).json(transactions);
-      // res.status(200).send({ message: 'хуй' });
       res.status(200).send(updatedUser);
       return;
     }

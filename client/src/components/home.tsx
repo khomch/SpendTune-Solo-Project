@@ -17,7 +17,6 @@ function Home(props: HomeProps) {
   const loggedUser = useCombinedStore((state) => state.logged);
   const authToken = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
-  console.log('loggedUser: ', loggedUser);
   // local states
   const [addCategoryClicked, setAddCategoryClicked] = useState(false);
   const [categoryInput, setCategoryInput] = useState('');
@@ -33,16 +32,13 @@ function Home(props: HomeProps) {
 
   async function handleTransactions() {
     const updatedUser = authToken && (await syncTransactions(authToken));
-    if (updatedUser.message) {
-      console.log('updatedUser.message: ', updatedUser.message);
+    if (updatedUser._id) {
+      setLoggedUser(updatedUser);
+      console.log('Plaid API - Transactions synced');
       return;
     }
-    if (typeof updatedUser === 'string') {
-      console.log(updatedUser);
-      return;
-    }
-    authToken && setLoggedUser({ user: updatedUser, token: authToken });
-    console.log('Plaid API - Transactions synced');
+    console.log(updatedUser);
+    return;
   }
 
   function handleCatClicked() {
@@ -68,7 +64,7 @@ function Home(props: HomeProps) {
           category: categoryInput.toLowerCase(),
           token: authToken,
         }));
-      authToken && setLoggedUser({ user: updatedUser, token: authToken });
+      setLoggedUser(updatedUser);
       setAddCategoryClicked(false);
       setCategoryInput('');
     }

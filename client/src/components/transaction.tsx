@@ -13,6 +13,7 @@ function Transaction(props: TransactionProps) {
   const loggedUser = useCombinedStore((state) => state.logged);
   const token = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
+  const setAuthToken = useCombinedStore((state) => state.setAuthToken);
 
   async function handleCategoryAssign() {
     if (selectedCategory === '') {
@@ -26,7 +27,8 @@ function Transaction(props: TransactionProps) {
         token: token,
       };
       const updatedUser = await assignCategory(assignCategoryData);
-      setLoggedUser({ user: updatedUser, token });
+      setLoggedUser(updatedUser);
+      setAuthToken(token);
     }
   }
 

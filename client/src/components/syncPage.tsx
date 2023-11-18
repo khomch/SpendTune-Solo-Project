@@ -25,7 +25,7 @@ function SyncPage(props: SyncPageProps) {
     onSuccess: async (public_token) => {
       const updatedUser =
         authToken && (await exchangePublicToken(public_token, authToken));
-      authToken && setLoggedUser({ user: updatedUser, token: authToken });
+      setLoggedUser(updatedUser);
       console.log('Plaid API - Link successful');
       navigate('/home');
     },
