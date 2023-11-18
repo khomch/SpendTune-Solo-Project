@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getLinkToken, syncTransactions } from '../plaidService';
-import { addCategory } from '../apiService';
 import { useCombinedStore } from '../Store';
-import Transactions from './transactions';
-import Chart from './chart';
+import { addCategory } from '../apiService';
+import { getLinkToken, syncTransactions } from '../plaidService';
 import { TTokenStore } from '../types/types';
+import Chart from './chart';
+import Transactions from './transactions';
 
 type HomeProps = {
   tokenStore: TTokenStore | null;
@@ -25,19 +25,18 @@ function Home(props: HomeProps) {
 
   async function handleSync() {
     const linkToken = authToken && (await getLinkToken(authToken));
-    console.log('linkToken: ', linkToken);
     props.setTokenStore(linkToken);
     navigate('/sync');
   }
 
-  async function handleTransactions() {
+  async function handleSyncTransactions() {
     const updatedUser = authToken && (await syncTransactions(authToken));
-    if (updatedUser._id) {
+    if (updatedUser && updatedUser._id) {
       setLoggedUser(updatedUser);
       console.log('Plaid API - Transactions synced');
       return;
     }
-    console.log(updatedUser);
+    console.log('Issue while syncing transactions -->', updatedUser);
     return;
   }
 
@@ -57,7 +56,6 @@ function Home(props: HomeProps) {
       console.log('Category name must be at least 3 characters');
       return;
     } else {
-      console.log('token: ', authToken);
       const updatedUser =
         authToken &&
         (await addCategory({
@@ -80,7 +78,7 @@ function Home(props: HomeProps) {
           {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
         </button>
         {loggedUser.linkedBanks && (
-          <button onClick={handleTransactions}>Sync transactions</button>
+          <button onClick={handleSyncTransactions}>Sync transactions</button>
         )}
         {loggedUser.transactions && (
           <button className="add-cat-btn" onClick={handleCatClicked}>

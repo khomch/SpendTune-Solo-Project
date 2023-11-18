@@ -4,7 +4,7 @@ async function getLinkToken(authToken: string) {
   try {
     console.log('authToken: ', authToken);
     console.log('getLinkToken --> START');
-    const getToken = await fetch(baseUrl + '/api/create_link_token', {
+    const getToken = await fetch(baseUrl + '/api/create-link-token', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + authToken,
@@ -19,7 +19,7 @@ async function getLinkToken(authToken: string) {
 
 async function exchangePublicToken(token: string, authToken: string) {
   try {
-    const response = await fetch(baseUrl + '/api/exchange_public_token', {
+    const response = await fetch(baseUrl + '/api/exchange-public-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ async function exchangePublicToken(token: string, authToken: string) {
 
 async function syncTransactions(authToken: string) {
   try {
-    const response = await fetch(baseUrl + '/api/sync_transactions', {
+    const response = await fetch(baseUrl + '/api/sync-transactions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

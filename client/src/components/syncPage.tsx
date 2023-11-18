@@ -13,12 +13,9 @@ type SyncPageProps = {
 function SyncPage(props: SyncPageProps) {
   const authToken = useCombinedStore((state) => state.token);
   const { tokenStore } = props;
-  console.log('props: ', props);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
-
   const navigate = useNavigate();
   const linkToken = tokenStore && tokenStore.link_token;
-  console.log('linkToken: ', linkToken);
 
   const { open } = usePlaidLink({
     token: linkToken,
