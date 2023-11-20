@@ -2,10 +2,11 @@ import { useCombinedStore } from '../Store';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { TTransaction } from '../types/types';
+import './chart.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Chart() {
+function Chart() {  
   const loggedUser = useCombinedStore((state) => state.logged);
   const categories = loggedUser?.categories;
   const transactions: any = loggedUser?.transactionsCategorized;
@@ -49,13 +50,13 @@ function Chart() {
     maintainAspectRatio: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'bottom',
         labels: {
-          color: '#25BBA8',
+          color: '#FFFFFF',
           boxWidth: 20,
           padding: 15,
           font: {
-            size: 17,
+            size: 16,
             weight: 'bold',
             family: 'Segoe UI',
           },
@@ -67,13 +68,13 @@ function Chart() {
   return loggedUser && loggedUser.categories ? (
     <>
       {loggedUser.categories.length !== 0 &&
-        loggedUser.transactionsCategorized?.length !== 0 && (
+        loggedUser.transactionsCategorized?.length && (
           <div className='chart'>
             <h2 className='chart__title'>Expenses</h2>
             <div className='chart__graph'>
               <Doughnut data={data} options={options} />
             </div>
-            <h2 className='chart__totals'>Totals: {totals?.toFixed(2)} GBP</h2>
+            <h2 className='chart__totals'>Total: £{totals?.toFixed(2)}</h2>
           </div>
         )}
     </>

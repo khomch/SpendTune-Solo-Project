@@ -13,14 +13,27 @@
 }
 
 
+.container__title {
+  color: #FFFFFF;
+  margin-right: auto;
+}
+
 .container__user-prompt {
   animation: pulse 2s infinite;
 }
 
 .container--negative {
   display: flex;
-  justify-content: end;
-  gap: 2rem;
   align-items: center;
+  justify-content: space-around;
+  margin-right: 3rem;
+  margin-left: 5rem;
 }
 
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}

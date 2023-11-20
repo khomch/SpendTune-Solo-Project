@@ -1,30 +1,31 @@
 @import '../App.css';
 
 
-.chart {
-  margin: var(--vmargin) var(--hmargin);
-  padding: 2rem;
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  &__graph {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    height: 100%;
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  &__totals {
-    margin-top: 2rem;
-    font-weight: bold;
-  }
+.container--sticky {
+  position: sticky;
+  width: 30%;
 }
 
 
+.chart {
+  margin: var(--vmargin) var(--hmargin);
+  padding: 2rem;
+  background-color: var(--bg2); 
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 600px;
+  height: 700px;
+  position: sticky;
+  top:15%
+}
+
+.chart__graph {
+  width: 500px;
+}
+
+.chart__totals {
+  font-weight: bold;
+}

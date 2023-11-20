@@ -19,12 +19,9 @@ function Home() {
 
   return loggedUser ? (
     <main>
-      <section className='container'>
-        <Chart />
-      </section>
-
       {loggedUser.transactions && (
         <section className='container--negative'>
+          <h1 className='container__title'>Dashboard</h1>
           {!loggedUser.categories && !addCategoryClicked && (
             <h3 className='container__user-prompt'>Add category to start</h3>
           )}
@@ -36,7 +33,7 @@ function Home() {
             />
           ) : (
             <button
-              className='btn--negative btn--small'
+              className='btn btn--negative btn--small btn--sticky'
               onClick={handleCatClicked}
             >
               Add category
@@ -44,11 +41,17 @@ function Home() {
           )}
         </section>
       )}
-      <section className='container'>
-        {loggedUser.transactions && loggedUser.transactions.length && (
-          <Transactions />
-        )}
-      </section>
+
+      <div className='dashboard'>
+        <section className='container'>
+          {loggedUser.transactions && loggedUser.transactions.length && (
+            <Transactions />
+          )}
+        </section>
+        <section>
+          <Chart />
+        </section>
+      </div>
     </main>
   ) : (
     <p>Please log-in to see the Dashboard</p>
