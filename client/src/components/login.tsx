@@ -62,7 +62,7 @@ function Login() {
         </ul>
         <button type="submit">Login</button>
       </form>
-      <h4>Don&apos;t have an account yet?</h4>
+      <h4>Don't have an account yet?</h4>
       <button onClick={() => navigate('/register')}>Register</button>
     </div>
   );
