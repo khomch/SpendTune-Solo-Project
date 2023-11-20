@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../apiService';
 import { useCombinedStore } from '../Store';
 import { TUser } from '../types/types';
-import './register.css'
-
+import './register.css';
 
 function Register() {
   const setLogged = useCombinedStore((state) => state.setLoggedUser);
@@ -52,51 +51,55 @@ function Register() {
   }
 
   return (
-    <div className="register">
+    <div className='register'>
       <form onSubmit={handleSubmit}>
         <ul className='register__fields'>
           <li>
             <input
-              type="email"
-              name="email"
+              type='email'
+              name='email'
               value={email}
               onChange={handleEmail}
-              placeholder="email"
+              placeholder='email'
             />
           </li>
           <li>
             <input
-              type="password"
-              name="password"
+              type='password'
+              name='password'
               value={password}
               onChange={handlePassword}
-              placeholder="password"
+              placeholder='password'
             />
           </li>
           <li>
             <input
-              type="text"
-              name="firstName"
+              type='text'
+              name='firstName'
               value={firstName}
               onChange={handleFirstName}
-              placeholder="first name"
+              placeholder='first name'
             />
           </li>
           <li>
             <input
-              type="text"
-              name="lastName"
+              type='text'
+              name='lastName'
               value={lastName}
               onChange={handleLastName}
-              placeholder="last name"
+              placeholder='last name'
             />
           </li>
         </ul>
       </form>
-      <button className='btn' type="submit" onClick={handleSubmit}>
-        Register
-      </button>
-      <button className='btn' onClick={goBack}>Back</button>
+      <div className='register__actions'>
+        <button className='btn' type='submit' onClick={handleSubmit}>
+          Register
+        </button>
+        <button className='btn' onClick={goBack}>
+          Back
+        </button>
+      </div>
     </div>
   );
 }
