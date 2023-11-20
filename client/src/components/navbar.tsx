@@ -1,9 +1,9 @@
 import { logout } from '../apiService';
 import { useNavigate } from 'react-router-dom';
 import { useCombinedStore } from '../Store';
-import './navbar.css';
 import { getLinkToken, syncTransactions } from '../plaidService';
 import { AuthProps } from '../types/types';
+import './navbar.css';
 
 
 
@@ -38,33 +38,34 @@ function Navbar({tokenStore, setTokenStore}:AuthProps) {
   }
 
   return (
-    <div className='navbar'>
+    <nav className='navbar'>
       <img className='navbar__img' src='/logo.svg' alt='Spendtune logo' />
-      
+      {loggedUser && <h1>Dashboard</h1>}
+
       {loggedUser && (
-        <p className='greeting'>
-          Hello {loggedUser.firstName + loggedUser.lastName}
+        <p>
+          <span className='navbar__greeting'>Hello,</span> {loggedUser.firstName} {loggedUser.lastName}
         </p>
       )}
       
       {loggedUser && (
-        <button className='btn' onClick={handleSync}>
+        <button className='navbar__btn' onClick={handleSync}>
           {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
         </button>
       )}
 
       {loggedUser && loggedUser.linkedBanks && (
-        <button className='btn' onClick={handleSyncTransactions}>
+        <button className='navbar__btn' onClick={handleSyncTransactions}>
           Sync transactions
         </button>
       )}
 
       {loggedUser && (
-        <button className='btn navbar__btn--small' onClick={handleLogout}>
+        <button className='navbar__btn--small' onClick={handleLogout}>
           Logout
         </button>
       )}
-    </div>
+    </nav>
   );
 }
 

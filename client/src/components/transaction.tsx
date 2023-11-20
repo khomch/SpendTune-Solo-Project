@@ -33,58 +33,51 @@ function Transaction(props: TransactionProps) {
   }
 
   return (
-    <div className="transaction">
-      <div className="row">
-        {transaction.logo_url && (
-          <img className="logo" src={transaction.logo_url} alt="logo" />
+    <tr className='transaction__row'>
+      <td className='transaction__date'>{transaction.date}</td>
+      <td className='transaction__details'>
+        {transaction.logo_url ? (
+          <img
+            className='transaction__logo'
+            src={transaction.logo_url}
+            alt='logo'
+          />
+        ) : (
+          <img
+            className='transaction__no-logo'
+            src='/No_image_available.svg'
+            alt='No logo found'
+          />
         )}
-        {!transaction.logo_url && (
-          <img className="no-logo" src="/No_image_available.svg" alt="logo" />
-        )}
-      </div>
-      <div className="row">
-        <div className="transac-details">
-          <p>
-            Name: <span className="bold">{transaction.name}</span>
-          </p>
-          <p>
-            Date: <span className="bold">{transaction.date}</span>
-          </p>
-          <p>
-            Amount:{' '}
-            <span className="bold">
-              {transaction.amount + ' ' + transaction.currency}
-            </span>
-          </p>
-          <p>
-            Payment Channel:{' '}
-            <span className="bold">{transaction.payment_channel}</span>
+        <div className='transaction__amount'>
+          <p className='transaction__name'>{transaction.name}</p>
+          <p className='transaction__value'>
+            {transaction.amount} {transaction.currency}
           </p>
         </div>
-      </div>
-      <div className="row">
-        <div className="transac-category">
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">Please choose category</option>
-            {loggedUser &&
-              loggedUser.categories &&
-              loggedUser.categories.map((category) => {
-                return (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                );
-              })}
-          </select>
-          <button className="btn btn--short" onClick={handleCategoryAssign}>
-            Assign
-          </button>
-        </div>
-      </div>
-    </div>
+      </td>
+      <td className='transaction__channel'>{transaction.payment_channel}</td>
+      <td className='transaction__category'>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value=''>Please choose category</option>
+          {loggedUser &&
+            loggedUser.categories &&
+            loggedUser.categories.map((category) => {
+              return (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              );
+            })}
+        </select>
+        <button className='btn btn--short' onClick={handleCategoryAssign}>
+          Assign
+        </button>
+      </td>
+    </tr>
   );
 }
 
