@@ -1,7 +1,6 @@
-import app from '../app';
-import request from 'supertest';
 import mongoose from 'mongoose';
-import apiClient from '../API/plaidClient';
+import request from 'supertest';
+import app from '../app';
 import MOCK_USER from './mockData';
 
 let MOCK_USER_TOKEN: string = '';
