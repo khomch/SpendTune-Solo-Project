@@ -3,8 +3,6 @@ import { TTransaction, TUser } from '../@types';
 import apiClient from '../API/plaidClient';
 
 export default async function syncTransactions(user: TUser) {
-  console.log('user.accessToken: ', user.accessToken);
-  console.log('user.next_cursor: ', user.next_cursor);
   let response = await apiClient.transactionsSync({
     access_token: user.accessToken || '',
     cursor: user.next_cursor || '',
@@ -29,8 +27,7 @@ export default async function syncTransactions(user: TUser) {
 
   const prevTransactions = user.transactions ? user.transactions : [];
   user.transactions = [...prevTransactions, ...newEntries];
-  // @ts-ignore
-  const updatedUser = await user.save({ new: true });
+  const updatedUser = await user.save();
   return updatedUser;
 }
 

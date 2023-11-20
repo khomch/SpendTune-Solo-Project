@@ -11,7 +11,6 @@ categoryController.addCategory = async (req: Request, res: Response) => {
     const user = userId && (await User.findOne({ _id: userId }));
     if (user) {
       user && user.categories && user.categories.push(category);
-
       const updatedUser = await user.save();
       res.status(200).json(updatedUser);
     } else {
