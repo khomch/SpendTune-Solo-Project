@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useCombinedStore } from '../Store';
 import { assignCategory } from '../apiService';
 import { TTransaction } from '../types/types';
+import './transaction.css';
+
 
 type TransactionProps = {
   transaction: TTransaction;
@@ -15,11 +17,13 @@ function Transaction(props: TransactionProps) {
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
   const setAuthToken = useCombinedStore((state) => state.setAuthToken);
 
-  async function handleCategoryAssign() {
-    if (selectedCategory === '') {
+  async function handleCategoryAssign(e:React.ChangeEvent<HTMLSelectElement>) {
+    console.log('e.target.value :>> ', e.target.value);
+    if (e.target.value === '') {
       console.log('Please choose category');
       return;
     }
+    setSelectedCategory(e.target.value);
     if (token) {
       const assignCategoryData = {
         category: selectedCategory,
@@ -34,8 +38,8 @@ function Transaction(props: TransactionProps) {
 
   return (
     <tr className='transaction__row'>
-      <td className='transaction__date'>{transaction.date}</td>
-      <td className='transaction__details'>
+      <td className='transaction__td transaction__date'>{transaction.date}</td>
+      <td className='transaction__td transaction__details'>
         {transaction.logo_url ? (
           <img
             className='transaction__logo'
@@ -44,7 +48,7 @@ function Transaction(props: TransactionProps) {
           />
         ) : (
           <img
-            className='transaction__no-logo'
+            className='transaction__logo'
             src='/No_image_available.svg'
             alt='No logo found'
           />
@@ -56,13 +60,14 @@ function Transaction(props: TransactionProps) {
           </p>
         </div>
       </td>
-      <td className='transaction__channel'>{transaction.payment_channel}</td>
-      <td className='transaction__category'>
+      <td className='transaction__td transaction__channel'>{transaction.payment_channel}</td>
+      <td className='transaction__td transaction__category'>
         <select
           value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
+          onChange={handleCategoryAssign}
+          className='transaction__dropdown'
         >
-          <option value=''>Please choose category</option>
+          <option value=''>Uncategorised</option>
           {loggedUser &&
             loggedUser.categories &&
             loggedUser.categories.map((category) => {
@@ -73,9 +78,6 @@ function Transaction(props: TransactionProps) {
               );
             })}
         </select>
-        <button className='btn btn--short' onClick={handleCategoryAssign}>
-          Assign
-        </button>
       </td>
     </tr>
   );
