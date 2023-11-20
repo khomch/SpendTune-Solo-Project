@@ -28,3 +28,10 @@ export type TTokenStore = {
   link_token: string;
   request_id: string;
 };
+
+
+export type AuthProps = {
+  children?: any //TODO change this any
+  tokenStore: TTokenStore | null;
+  setTokenStore: Function;
+};

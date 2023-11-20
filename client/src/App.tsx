@@ -5,12 +5,9 @@ import Dashboard from './components/dashboard';
 
 function App() {
   return (
-    <div className="app">
-      <Router>
-        <Navbar />
-        <Dashboard />
-      </Router>
-    </div>
+    <Router>
+      <Dashboard />
+    </Router>
   );
 }
 

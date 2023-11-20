@@ -1,0 +1,39 @@
+@import '../App.css';
+
+
+
+.container, .container--negative {
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: 0.5rem 2rem;
+}
+
+.container {
+  background-color: var(--bg2);
+}
+
+
+.container__title {
+  color: #FFFFFF;
+  margin-right: auto;
+}
+
+.container__user-prompt {
+  animation: pulse 2s infinite;
+}
+
+.container--negative {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 3rem;
+  margin-left: 5rem;
+}
+
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
