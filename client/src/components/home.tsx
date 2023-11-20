@@ -22,19 +22,30 @@ function Home() {
       <section className='container'>
         <Chart />
       </section>
-      <section className='container'>
-        {addCategoryClicked && <AddCategory />}
-        {loggedUser.transactions &&
-          loggedUser.categories &&
-          !addCategoryClicked && (
+
+      {loggedUser.transactions && (
+        <section className='container--negative'>
+          {!loggedUser.categories && !addCategoryClicked && (
             <h3 className='container__user-prompt'>Add category to start</h3>
           )}
-        {loggedUser.transactions && (
-          <button className='btn btn--small' onClick={handleCatClicked}>
-            Add category
-          </button>
-        )}
-        {loggedUser.transactions && loggedUser.transactions?.length > 0 && (
+
+          {addCategoryClicked ? (
+            <AddCategory
+              addCategoryClicked={addCategoryClicked}
+              setAddCategoryClicked={setAddCategoryClicked}
+            />
+          ) : (
+            <button
+              className='btn--negative btn--small'
+              onClick={handleCatClicked}
+            >
+              Add category
+            </button>
+          )}
+        </section>
+      )}
+      <section className='container'>
+        {loggedUser.transactions && loggedUser.transactions.length && (
           <Transactions />
         )}
       </section>

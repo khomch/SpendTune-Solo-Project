@@ -1,1 +1,26 @@
 @import '../App.css';
+
+
+
+.container, .container--negative {
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: 0.5rem 2rem;
+}
+
+.container {
+  background-color: var(--bg2);
+}
+
+
+.container__user-prompt {
+  animation: pulse 2s infinite;
+}
+
+.container--negative {
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+  align-items: center;
+}
+
