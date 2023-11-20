@@ -38,7 +38,7 @@ function Navbar({ tokenStore, setTokenStore }: AuthProps) {
     <nav className='navbar'>
       <div className='navbar__section'>
         <img className='navbar__img' src='/logo.svg' alt='Spendtune logo' />
-        {loggedUser && <h1 className='navbar__title'>Dashboard</h1>}
+        {/* {loggedUser && <h1 className='navbar__title'>Dashboard</h1>} */}
         {loggedUser && (
           <button className='navbar__btn' onClick={handleSync}>
             {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}

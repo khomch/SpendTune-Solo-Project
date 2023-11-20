@@ -1,6 +1,7 @@
 :root {
   --bg1: #292368;
   --bg2: #10083d;
+  --slate: #8F8F8F;
   --primary: #25BBA8;
   --focus: rgb(201, 145, 4);
   --vmargin: 0.6rem;
@@ -16,12 +17,12 @@
   list-style: none;
 }
 
-
-
+/* 
+ 
 .assign-btn {
   width: 100px;
   height: 50px;
-}
+} 
 
 ul {
   width: 100%;
@@ -57,7 +58,7 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px var(--bg2) inset !important;
 }
 
-/*Change text in autofill textbox*/
+Change text in autofill textbox
 input:-webkit-autofill{
   -webkit-text-fill-color: var(--primary) !important;
 }
@@ -65,7 +66,6 @@ input:-webkit-autofill{
 ::placeholder {
   font-weight: 500;
   color: var(--primary);
-  opacity: 1; /* Firefox */
 }
 
 select {
@@ -84,10 +84,10 @@ select {
 }
 
 
-/* .logout-btn {
+ .logout-btn {
   width: 100px;
   height: 50px;
-} */
+} 
 
 .home, .transactions {
   background-color: var(--bg2);
@@ -107,34 +107,6 @@ select {
   text-align: center;
 }
 
-.greeting {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-/* 
-.login, .register {
-  min-height: 50vh;
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  padding: 2rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: stretch;
-  row-gap: 1.5rem;
-}
-
-.login ul, .register ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1rem;
-  margin: 1rem 0rem 2rem;
-} 
-*/
 
 .sync {
   display: flex;
@@ -170,9 +142,6 @@ select {
   }
 }
 
-.user-prompt {
-  animation: pulse 2s infinite;
-}
 
 .transactions {
   display: flex;
@@ -365,4 +334,6 @@ select:focus {
     height: 100%;
     width: 280px;
   }
-}
+} */
+
+
