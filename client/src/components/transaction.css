@@ -1,0 +1,57 @@
+@import '../App.css';
+
+
+
+.transaction__td {
+  padding: 0.75rem;
+  
+}
+
+.transaction__details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-left: 8rem;
+}
+
+.transaction__logo {
+  width: 15%;
+  height: auto;
+  border-radius: 100%;
+  justify-self: flex-start;
+}
+
+.transaction__amount {
+  margin-left: 1rem;
+}
+
+.transaction__value {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.transaction__date, .transaction__channel, .transaction__category {
+  color: var(--slate);
+  text-align: center;
+}
+
+.transaction__name {
+  color: var(--slate);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.transaction__dropdown {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--bg2);
+  border: 2px solid var(--primary);
+  outline: none;
+  border-radius: 30px;
+  padding: 0.4rem 1rem;
+  background-color: var(--primary);
+  height: 2rem;
+  width: auto;
+  text-align: center;
+}

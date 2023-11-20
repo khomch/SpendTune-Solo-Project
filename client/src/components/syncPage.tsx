@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 import { useNavigate } from 'react-router-dom';
-
 import { exchangePublicToken } from '../plaidService';
 import { useCombinedStore } from '../Store';
 import { TTokenStore } from '../types/types';
+import './syncPage.css';
 
 type SyncPageProps = {
   tokenStore: TTokenStore | null;
@@ -37,13 +37,22 @@ function SyncPage(props: SyncPageProps) {
   }
 
   return (
-    <div className="sync">
-      <h3>Please wait for Plaid&aposs widget to load</h3>
-      <p className="widget-prompt">
-        You can also use the button to load widget manually.
-      </p>
-      <button onClick={() => open()}>Load widget</button>
-      <button onClick={goBack}>Back</button>
+    <div className='modal__overlay'>
+      <div className='modal'>
+        <h3>Please wait for Plaid's widget to load</h3>
+        <p className='modal__prompt'>
+          You can also use the button to load widget manually.
+        </p>
+        <div className='modal__btn-section'>
+
+        <button className='btn' onClick={() => open()}>
+          Load widget
+        </button>
+        <button className='btn' onClick={goBack}>
+          Back
+        </button>
+        </div>
+      </div>
     </div>
   );
 }

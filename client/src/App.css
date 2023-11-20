@@ -1,10 +1,11 @@
 :root {
   --bg1: #292368;
   --bg2: #10083d;
+  --slate: #8F8F8F;
   --primary: #25BBA8;
   --focus: rgb(201, 145, 4);
-  --vertimarg: 0.6rem;
-  --horimarg: 0.3rem;
+  --vmargin: 0.6rem;
+  --hmargin: 0.3rem;
 }
 
 * {
@@ -16,33 +17,12 @@
   list-style: none;
 }
 
-button {
-  cursor: pointer;
-  border: 2px solid var(--primary);
-  outline: none;
-  border-radius: 30px;
-  padding: 0.5rem 1rem;
-  background-color: var(--bg2);
-  width: 200px;
-  height: 50px;
-  font-weight: bold;
-  transition: all 10ms ease-in-out;
-}
-
-button:hover {
-  text-shadow: var(--primary) 0px 0px 2px;
-  border: 2px solid var(--focus);
-}
-
-button:active {
-  transform: scale(0.9);
-  box-shadow: 0 0 20px var(--primary);
-}
-
+/* 
+ 
 .assign-btn {
   width: 100px;
   height: 50px;
-}
+} 
 
 ul {
   width: 100%;
@@ -78,7 +58,7 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px var(--bg2) inset !important;
 }
 
-/*Change text in autofill textbox*/
+Change text in autofill textbox
 input:-webkit-autofill{
   -webkit-text-fill-color: var(--primary) !important;
 }
@@ -86,7 +66,6 @@ input:-webkit-autofill{
 ::placeholder {
   font-weight: 500;
   color: var(--primary);
-  opacity: 1; /* Firefox */
 }
 
 select {
@@ -104,85 +83,30 @@ select {
   min-height: 100vh;
 }
 
-.navbar {
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  padding: 1rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
-.navbar img {
-  width: 200px;
-  height: 50px;
-}
-
-.logout-btn {
+ .logout-btn {
   width: 100px;
   height: 50px;
-}
+} 
 
 .home, .transactions {
   background-color: var(--bg2);
   border: 2px solid var(--primary);
   border-radius: 30px;
   padding: 2rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
+  margin: var(--vmargin) var(--hmargin);
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 1rem;
 }
-.home, .transactions, .login, .register, .sync, .chart-container, .navbar {
-  box-shadow: 0 0 10px var(--primary)
-}
+
+
 .transactions h2, .transactions h3 {
   align-self:center;
   text-align: center;
 }
 
-.greeting {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.add-cat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 0.5rem;
-}
-
-.add-btn {
-  width: 100px;
-  height: 50px;
-  margin-top: 0.8rem;
-}
-
-.login, .register {
-  min-height: 50vh;
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  padding: 2rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: stretch;
-  row-gap: 1.5rem;
-}
-
-.login ul, .register ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1rem;
-  margin: 1rem 0rem 2rem;
-}
 
 .sync {
   display: flex;
@@ -194,7 +118,7 @@ select {
   border: 2px solid var(--primary);
   border-radius: 30px;
   padding: 1.5rem 1.5rem;
-  margin: var(--vertimarg) var(--horimarg);
+  margin: var(--vmargin) var(--hmargin);
 }
 
 .widget-prompt {
@@ -202,31 +126,6 @@ select {
   margin: 1.5rem;
 }
 
-.chart-container {
-  margin: var(--vertimarg) var(--horimarg);
-  padding: 2rem;
-  background-color: var(--bg2);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.chart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
-  width: 100%;
-  max-width: 500px;
-}
-
-.totals {
-  margin-top: 2rem;
-  font-weight: bold;
-}
 
 @keyframes pulse {
   0% {
@@ -243,9 +142,6 @@ select {
   }
 }
 
-.user-prompt {
-  animation: pulse 2s infinite;
-}
 
 .transactions {
   display: flex;
@@ -359,24 +255,6 @@ select:focus {
     justify-content: center;
   }
 
-  .navbar {
-    width: 80%;
-    padding: 1rem 1.5rem;
-    margin: var(--vertimarg) var(--horimarg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar img {
-    width: 250px;
-    height: 65px;
-    margin: auto;
-  }
-
-  .navbar.logout-btn {
-    margin-left: auto;
-  }
 
   .dashboard {
     display: flex;
@@ -390,10 +268,10 @@ select:focus {
 
   .home {
     margin: 0;
+    padding: 2rem;
     background-color: var(--bg2);
     border: 2px solid var(--primary);
     border-radius: 30px;
-    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -403,8 +281,8 @@ select:focus {
   }
 
   .chart-container {
-    padding: 2rem;
     margin: 0;
+    padding: 2rem;
     background-color: var(--bg2);
     border: 2px solid var(--primary);
     border-radius: 30px;
@@ -431,19 +309,20 @@ select:focus {
     padding: 2rem 2rem;
     height: fit-content;
     flex: 1 1;
+ 
+    &__list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 2rem;
+      max-height: 80vh;
+      overflow-y: scroll;
+      max-width: 100%;
+      width: 100%;
+    }
+ 
   }
 
-  .transactions-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 2rem;
-    max-height: 80vh;
-    overflow-y: scroll;
-    max-width: 100%;
-    width: 100%;
-  }
 
   .transaction {
     padding: 2rem;
@@ -455,4 +334,6 @@ select:focus {
     height: 100%;
     width: 280px;
   }
-}
+} */
+
+

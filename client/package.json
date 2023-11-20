@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^13.5.1"
+    "cypress": "^13.5.1",
+    "typescript-plugin-css-modules": "^5.0.2"
   }
 }
