@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logUser } from '../../apiService';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import './login.css';
 
 function Login() {

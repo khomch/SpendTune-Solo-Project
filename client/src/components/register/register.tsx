@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { register } from '../../apiService';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import { TUser } from '../../types/types';
 import './register.css';
 

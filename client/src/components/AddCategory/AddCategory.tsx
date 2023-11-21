@@ -1,5 +1,5 @@
 import React, { useState, Dispatch } from 'react';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import { addCategory } from '../../apiService';
 import './AddCategory.css';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Chart from '../chart/chart';
 import Transactions from '../transactions/transactions';
 import AddCategory from '../AddCategory/AddCategory';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import './home.css';
 
 function Home() {
@@ -10,8 +10,6 @@ function Home() {
   const loggedUser = useCombinedStore((state) => state.logged);
   // local states
   const [addCategoryClicked, setAddCategoryClicked] = useState(false);
-
-  // const navigate = useNavigate();
 
   function handleCatClicked() {
     setAddCategoryClicked((addCategoryClicked) => !addCategoryClicked);
@@ -42,7 +40,7 @@ function Home() {
         </section>
       )}
 
-      <div className="dashboard">
+      <div className="dashboard" data-testid="test-dashboard">
         <section className="container">
           {loggedUser.transactions && loggedUser.transactions.length && (
             <Transactions />

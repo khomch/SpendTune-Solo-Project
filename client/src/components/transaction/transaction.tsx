@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import { assignCategory } from '../../apiService';
 import { TTransaction } from '../../types/types';
 import './transaction.css';

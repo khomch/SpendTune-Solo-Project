@@ -1,4 +1,4 @@
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { TTransaction } from '../../types/types';

@@ -7,12 +7,14 @@ export default async function syncTransactions(user: TUser) {
     access_token: user.accessToken || '',
     cursor: user.next_cursor || '',
   });
+  console.log('response: ', response);
   
   if (response.data.next_cursor) {
     user.next_cursor = response.data.next_cursor;
     await user.save();
   }
 
+  console.log('response.data.added.length: ', response.data.added.length);
   if (!response.data.added.length) return;
 
   const transactions = response.data.added;
