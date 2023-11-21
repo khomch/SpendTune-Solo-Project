@@ -9,7 +9,6 @@
     "@testing-library/user-event": "13.5.0",
     "@types/chai": "^4.3.11",
     "@types/chart.js": "2.9.40",
-    "@types/jest": "27.5.2",
     "@types/node": "16.18.61",
     "@types/react": "18.2.37",
     "@types/react-chartjs-2": "2.5.7",
@@ -30,8 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "db:reset": "ts-node ./cypress/resetDatabase.ts"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.9",
+    "@types/mocha": "^10.0.5",
     "cypress": "^13.5.1",
     "typescript-plugin-css-modules": "^5.0.2"
   }

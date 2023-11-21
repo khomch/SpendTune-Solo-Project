@@ -1,12 +1,9 @@
-import mongoose from '../../server/db';
-import User from '../../server/models/user';
-import { TUser }from '../src/types/types';
-
-
+import mongoose from 'mongoose';
+import User from './src/models/user';
 
 async function seedDatabase() {
   try {
-    const usersToSeed: TUser[] = [
+    const usersToSeed = [
       {
         email: 'user1@example.com',
         password: 'password1',
@@ -36,7 +33,7 @@ async function seedDatabase() {
 
 async function deleteDatabaseRecords() {
   try {
-    mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`);
+    await mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`);
     await User.deleteMany({});
     console.log('Database reset successfully');
   } catch (error) {
@@ -49,9 +46,11 @@ async function deleteDatabaseRecords() {
 const DB_PORT = Number(process.env.DB_PORT) || 27017;
 const DB_NAME = process.env.DB_NAME || 'SpendTune';
 
-export default async function resetDatabase() {
+async function resetDatabase() {
   mongoose.connect(`mongodb://localhost:${DB_PORT}/${DB_NAME}`);
   await deleteDatabaseRecords();
   await seedDatabase();
   await mongoose.disconnect();
 }
+
+resetDatabase();
