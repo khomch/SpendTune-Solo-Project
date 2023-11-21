@@ -15,10 +15,12 @@ router.post(
 router.post('/api/sync-transactions', transactionController.syncTransactions);
 
 // ROUTES FOR CLIENT INTERACTION
-router.post('/register', userController.createUser);
-router.post('/login', userController.login);
 router.post('/category/add', auth, categoryController.addCategory);
 router.post('/category/assign', auth, categoryController.assignCategory);
+
+router.post('/register', userController.createUser);
+router.post('/login', userController.login);
+router.delete('/user', auth, userController.delete);
 
 router.get('*', (req: Request, res: Response) => {
   res.status(404).send('Sorry, not found 😞');

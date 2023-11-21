@@ -1,6 +1,7 @@
 import { Transaction } from 'plaid';
 import { TUser } from '../@types';
-import mongoose from '../db';
+import mongoose from 'mongoose';
+
 
 const userSchema = new mongoose.Schema<TUser>({
   email: {
