@@ -1,20 +1,18 @@
 @import '../../App.css';
 
-
-
-.container, .container--negative {
+.container,
+.container--negative {
   border-radius: 2rem;
   padding: 2rem;
-  margin: 0.5rem 2rem;
+  margin: 0 40px;
 }
 
 .container {
   background-color: var(--bg2);
 }
 
-
 .container__title {
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: auto;
 }
 
@@ -30,10 +28,22 @@
   margin-left: 5rem;
 }
 
-
 .dashboard {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+}
+
+@media (max-width: 1140px) {
+  .dashboard {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 675px) {
+  .container,
+  .container--negative {
+    margin: 0 8px;
+  }
 }

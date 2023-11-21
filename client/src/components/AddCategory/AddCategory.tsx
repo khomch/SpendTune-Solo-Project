@@ -47,21 +47,19 @@ function AddCategory({
   }
 
   return (
-    <div className='modal__overlay'>
-      <div className='modal'>
-        <div className='modal__close' onClick={handleClose}>
-          X
-        </div>
-        <div className='modal__category'>
-          <h2 className='modal__title'>Add new category</h2>
+    <div className="modal__overlay">
+      <div className="modal">
+        <div className="modal__close" onClick={handleClose}>X</div>
+        <div className="modal__category">
+          <h2 className="modal__title">Add new category</h2>
           <input
-            type='text'
-            placeholder='your category name'
+            type="text"
+            placeholder="your category name"
             value={categoryInput}
             onChange={(e) => setCategoryInput(e.target.value)}
-            className='modal__input'
+            className="modal__input"
           />
-          <button className='btn btn--flex' onClick={handleAddCategory}>
+          <button className="btn btn--flex" onClick={handleAddCategory}>
             Add
           </button>
         </div>
