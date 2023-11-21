@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Login from './login';
-import Register from './register';
-import Home from './home';
-import SyncPage from './syncPage';
-import { useCombinedStore } from '../Store';
-import { TTokenStore } from '../types/types';
-import Navbar from './navbar';
+import Login from '../login/login';
+import Register from '../register/register';
+import Home from '../home/home';
+import SyncPage from '../syncPage/syncPage';
+import { useCombinedStore } from '../../Store';
+import { TTokenStore } from '../../types/types';
+import Navbar from '../navbar/navbar';
 
 function Dashboard() {
   const [tokenStore, setTokenStore] = useState<TTokenStore | null>(null);

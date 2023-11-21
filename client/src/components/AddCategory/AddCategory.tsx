@@ -1,6 +1,6 @@
 import React, { useState, Dispatch } from 'react';
-import { useCombinedStore } from '../Store';
-import { addCategory } from '../apiService';
+import { useCombinedStore } from '../../Store';
+import { addCategory } from '../../apiService';
 import './AddCategory.css';
 
 type AddCategoryProps = {
