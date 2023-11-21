@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Chart from './chart';
-import Transactions from './transactions';
-import AddCategory from './AddCategory';
-import { useCombinedStore } from '../Store';
+import Chart from '../chart/chart';
+import Transactions from '../transactions/transactions';
+import AddCategory from '../AddCategory/AddCategory';
+import { useCombinedStore } from '../../Store';
 import './home.css';
 
 function Home() {

@@ -1,6 +1,6 @@
-@import '../App.css';
+@import '../../App.css';
 
-.login {
+.register {
   min-height: 50vh;
   width: 40%;
   position: absolute;
@@ -21,7 +21,8 @@
   
 }
 
-.login__fields {
+
+.register__fields {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +30,8 @@
   margin: 1rem 0rem 2rem;
 }
 
-.login__register {
+
+.register__actions {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

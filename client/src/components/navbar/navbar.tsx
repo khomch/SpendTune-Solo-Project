@@ -1,8 +1,8 @@
-import { logout } from '../apiService';
+import { logout } from '../../apiService';
 import { useNavigate } from 'react-router-dom';
-import { useCombinedStore } from '../Store';
-import { getLinkToken, syncTransactions } from '../plaidService';
-import { AuthProps } from '../types/types';
+import { useCombinedStore } from '../../Store';
+import { getLinkToken, syncTransactions } from '../../plaidService';
+import { AuthProps } from '../../types/types';
 import './navbar.css';
 
 function Navbar({ tokenStore, setTokenStore }: AuthProps) {
