@@ -1,8 +1,6 @@
 import { Configuration, PlaidApi, PlaidEnvironments } from 'plaid';
 import 'dotenv/config';
 
-console.log(process.env.PLAID_ENV);
-
 const config = new Configuration({
   basePath: PlaidEnvironments[process.env.PLAID_ENV || 'sandbox'],
   baseOptions: {

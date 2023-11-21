@@ -37,20 +37,19 @@ function SyncPage(props: SyncPageProps) {
   }
 
   return (
-    <div className='modal__overlay'>
-      <div className='modal'>
+    <div className="modal__overlay">
+      <div className="modal">
         <h3>Please wait for Plaid's widget to load</h3>
-        <p className='modal__prompt'>
+        <p className="modal__prompt">
           You can also use the button to load widget manually.
         </p>
-        <div className='modal__btn-section'>
-
-        <button className='btn' onClick={() => open()}>
-          Load widget
-        </button>
-        <button className='btn' onClick={goBack}>
-          Back
-        </button>
+        <div className="modal__btn-section">
+          <button className="btn" onClick={() => open()}>
+            Load widget
+          </button>
+          <button className="btn" onClick={goBack}>
+            Back
+          </button>
         </div>
       </div>
     </div>

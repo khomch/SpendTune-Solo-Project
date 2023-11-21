@@ -22,7 +22,10 @@ transactionController.createLinkToken = async (req: Request, res: Response) => {
         country_codes: [CountryCode.Gb],
         redirect_uri: process.env.PLAID_SANDBOX_REDIRECT_URI,
       });
-      console.log('createLinkToken - after API token response', tokenResponse);
+      console.log(
+        'createLinkToken - after API token response',
+        tokenResponse.data
+      );
       res.status(200).json(tokenResponse.data);
     } else {
       res
@@ -42,7 +45,6 @@ transactionController.exchangePublicToken = async (
   // Send public token to api to receive access token and itemID
   try {
     const { token } = req.body;
-
     const response = await apiClient.itemPublicTokenExchange({
       public_token: token,
     });
