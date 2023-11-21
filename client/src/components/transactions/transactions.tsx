@@ -1,6 +1,6 @@
-import { useCombinedStore } from '../Store';
-import { TTransaction } from '../types/types';
-import Transaction from './transaction';
+import { useCombinedStore } from '../../Store';
+import { TTransaction } from '../../types/types';
+import Transaction from '../transaction/transaction';
 import './transactions.css';
 
 function Transactions() {

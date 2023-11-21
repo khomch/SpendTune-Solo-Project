@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 import { useNavigate } from 'react-router-dom';
-import { exchangePublicToken } from '../plaidService';
-import { useCombinedStore } from '../Store';
-import { TTokenStore } from '../types/types';
+import { exchangePublicToken } from '../../plaidService';
+import { useCombinedStore } from '../../Store';
+import { TTokenStore } from '../../types/types';
 import './syncPage.css';
 
 type SyncPageProps = {
