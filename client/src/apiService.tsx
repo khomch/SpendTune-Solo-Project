@@ -81,8 +81,8 @@ type TAssignCategoryProps = {
 };
 
 async function assignCategory({ category, id, token }: TAssignCategoryProps) {
+  console.log('category: ', category);
   try {
-    console.log('token: ', token);
     const categoryData = await fetch(baseUrl + '/category/assign', {
       method: 'POST',
       headers: {

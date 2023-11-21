@@ -6,19 +6,22 @@ import './chart.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Chart() {  
+function Chart() {
   const loggedUser = useCombinedStore((state) => state.logged);
   const categories = loggedUser?.categories;
-  const transactions: any = loggedUser?.transactionsCategorized;
+  const transactions: TTransaction[] | undefined =
+    loggedUser?.transactionsCategorized;
 
   const categoriesAmounts: number[] | undefined = categories?.map(
     (category: {}) => {
       let amount = 0;
-      transactions.forEach((transaction: TTransaction) => {
-        if (transaction.user_category === category) {
-          amount += transaction.amount;
-        }
-      });
+      transactions &&
+        transactions.forEach((transaction: TTransaction) => {
+          if (transaction.user_category === category) {
+            amount += transaction.amount;
+          }
+        });
+      console.log('amount: ', amount);
       return amount;
     }
   );
@@ -69,12 +72,12 @@ function Chart() {
     <>
       {loggedUser.categories.length !== 0 &&
         loggedUser.transactionsCategorized?.length && (
-          <div className='chart'>
-            <h2 className='chart__title'>Expenses</h2>
-            <div className='chart__graph'>
+          <div className="chart">
+            <h2 className="chart__title">Expenses</h2>
+            <div className="chart__graph">
               <Doughnut data={data} options={options} />
             </div>
-            <h2 className='chart__totals'>Total: £{totals?.toFixed(2)}</h2>
+            <h2 className="chart__totals">Total: £{totals?.toFixed(2)}</h2>
           </div>
         )}
     </>

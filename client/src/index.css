@@ -20,6 +20,7 @@ body {
   height: 50px;
   font-weight: bold;
   transition: all 10ms ease-in-out;
+  justify-content: center;
 }
 
 .btn {
@@ -54,7 +55,6 @@ body {
   transform: scale(0.9);
   box-shadow: 0 0 20px var(--primary);
 }
-
 
 .btn--negative {
   color: var(--bg2);

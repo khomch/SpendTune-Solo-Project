@@ -20,10 +20,10 @@ function Home() {
   return loggedUser ? (
     <main>
       {loggedUser.transactions && (
-        <section className='container--negative'>
-          <h1 className='container__title'>Dashboard</h1>
+        <section className="container--negative">
+          <h1 className="container__title">Dashboard</h1>
           {!loggedUser.categories && !addCategoryClicked && (
-            <h3 className='container__user-prompt'>Add category to start</h3>
+            <h3 className="container__user-prompt">Add category to start</h3>
           )}
 
           {addCategoryClicked ? (
@@ -33,7 +33,7 @@ function Home() {
             />
           ) : (
             <button
-              className='btn btn--negative btn--small btn--sticky'
+              className="btn btn--negative btn--small btn--sticky"
               onClick={handleCatClicked}
             >
               Add category
@@ -42,8 +42,8 @@ function Home() {
         </section>
       )}
 
-      <div className='dashboard'>
-        <section className='container'>
+      <div className="dashboard">
+        <section className="container">
           {loggedUser.transactions && loggedUser.transactions.length && (
             <Transactions />
           )}
