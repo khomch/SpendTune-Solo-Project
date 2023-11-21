@@ -3,13 +3,17 @@ import { Request, RequestHandler, Response } from 'express';
 import User from '../models/user';
 import 'dotenv/config';
 import { generateToken } from '../utils/generateToken';
+import { getUserIdFromToken } from '../utils/getUserIdFromToken';
 
 const userController: { [k: string]: RequestHandler } = {};
 
 // METHODS TO INTERACT WITH CLIENT
 
 userController.createUser = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, firstName, lastName } = req.body;
+  if (!email || !password || !firstName || !lastName) {
+    return res.status(400).send({ error: '400', message: 'Wrong data' });
+  }
   const user = await User.findOne({ email: email });
   if (user)
     return res
@@ -47,6 +51,22 @@ userController.login = async (req: Request, res: Response) => {
       return;
     }
     if (!validatePass) throw new Error('Password/Username is not correct');
+  } catch (e) {
+    console.log(e);
+    res.status(401).send({ message: 'Username or password is incorrect' });
+  }
+};
+
+userController.delete = async (req: Request, res: Response) => {
+  try {
+    const userId = getUserIdFromToken(req);
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      res.status(401).send({ message: 'User not found' });
+      return;
+    }
+    await User.deleteOne({ _id: userId });
+    res.status(200).send(user);
   } catch (e) {
     console.log(e);
     res.status(401).send({ message: 'Username or password is incorrect' });
