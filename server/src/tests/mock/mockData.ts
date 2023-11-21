@@ -1,5 +1,4 @@
 const MOCK_USER = {
-  password: '$2b$10$pz3Fo3Am/d1rRK3zOifLzu4cHHjVbTG9gnBNZI6mnjBm9Xs8P7zO.',
   accessToken: 'access-sandbox-d6501956-3d9a-445a-a108-cd81753406b3',
   categories: ['taxi', 'food', 'test1', 'test2', 'test3', 'test4'],
   email: 'test-test-test-user@gmail.com',
