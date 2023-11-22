@@ -10,7 +10,7 @@ export default defineConfig({
       password: 'password1',
       newEmail: 'newuser@email.com',
       newPassword: 'newuserpassword',
-
+      accessToken: 'access-sandbox-209ba435-9a75-4e84-b5da-b7d3b4d86958'
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

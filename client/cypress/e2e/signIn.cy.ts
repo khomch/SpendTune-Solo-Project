@@ -17,6 +17,7 @@ describe('Register', () => {
     cy.get('.register').should('not.exist'); // Assuming the registration form is hidden after successful registration
   });
 
+  //TODO: change script so that new user is not created
   it('should show an error message with invalid registration information', () => {
     cy.get('input[name="email"]').type('invalidemail');
     cy.get('input[name="password"]').type('short');
@@ -33,25 +34,25 @@ describe('Register', () => {
     cy.url().should('include', '/login');
   });
 
-/*   TODO: make it so I can delete the user
-after(() => {
-    let user;
-    cy.request({
-      url: 'http://localhost:3001/login',
-      method: 'POST',
-      body: {
-        email: Cypress.env('newEmail'),
-        password: Cypress.env('newPassword')
-      }
-    }).its('body').then(res => user = res);
-      
-    console.log('user :>> ', user);
-    cy.request({
-      url:'http://localhost:3000/user',
-      method: 'DELETE',
-      auth: { bearer: user.token }
-    })
-  }); */
+  /*   TODO: make it so I can delete the user
+  after(() => {
+      let user;
+      cy.request({
+        url: 'http://localhost:3001/login',
+        method: 'POST',
+        body: {
+          email: Cypress.env('newEmail'),
+          password: Cypress.env('newPassword')
+        }
+      }).its('body').then(res => user = res);
+        
+      console.log('user :>> ', user);
+      cy.request({
+        url:'http://localhost:3000/user',
+        method: 'DELETE',
+        auth: { bearer: user.token }
+      })
+    }); */
 });
 
 
@@ -61,12 +62,12 @@ describe('Login', () => {
   beforeEach(() => {
     cy.visit('/login');
   });
-  
+
   it('should log in with valid credentials', () => {
     cy.get('input[name="email"]').type(Cypress.env('email'));
     cy.get('input[name="password"]').type(Cypress.env('password'));
     cy.get('form').submit();
-  
+
     cy.url().should('include', '/home');
     cy.get('.login').should('not.exist');
   });
@@ -84,11 +85,5 @@ describe('Login', () => {
     cy.url().should('include', '/register');
   });
 });
-
-
-
-
-
-
 
 
