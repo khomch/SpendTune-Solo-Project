@@ -55,6 +55,7 @@ function Transaction(props: TransactionProps) {
       <div className="transaction__channel">{transaction.payment_channel}</div>
       <div className="transaction__category">
         <select
+          data-testid="test-select"
           onChange={(e) => handleCategoryAssign(e)}
           className="transaction__dropdown"
         >

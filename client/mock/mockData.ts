@@ -1,4 +1,17 @@
-export const MOCK_USER = {
+export const NEW_USER = {
+  email: 'aaa@gmail.com',
+  password: '123',
+  firstName: 'Joe',
+  lastName: 'Doe',
+  accessToken: 'dasd34r2wfs',
+  linkedBanks: {},
+  next_cursor: 'dsada',
+  transactions: [],
+  transactionsCategorized: [],
+  categories: [],
+};
+
+export const MOCK_USER_RAW_DATA = {
   accessToken: 'access-sandbox-d6501956-3d9a-445a-a108-cd81753406b3',
   categories: ['taxi', 'food', 'test1', 'test2', 'test3', 'test4'],
   email: 'test-test-test-user@gmail.com',
