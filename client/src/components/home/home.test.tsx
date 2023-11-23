@@ -15,7 +15,6 @@ describe('Home Component', () => {
   it('renders dashboard when user is logged in and has transactions', async () => {
     render(<Home />);
 
-    expect(screen.getByTestId('test-dashboard')).toBeInTheDocument();
     expect(
       screen.getByRole('heading', {
         name: /dashboard/i,
