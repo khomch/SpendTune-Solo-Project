@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logUser } from '../../apiService';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import './login.css';
 
 function Login() {
@@ -14,15 +14,18 @@ function Login() {
   const [password, setPassword] = useState('');
 
   async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    const login = { email, password };
-    const loginData = await logUser(login);
-    setEmail('');
-    setPassword('');
-    if (!loginData.error) {
+    try {
+      event.preventDefault();
+      const login = { email, password };
+      console.log('login: ', login);
+      const loginData = await logUser(login);
+      setEmail('');
+      setPassword('');
       setLogged(loginData.user);
       setAuthToken(loginData.token);
       navigate('/home');
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -37,37 +40,37 @@ function Login() {
   }
 
   return (
-    <div className='login'>
-      <form onSubmit={handleSubmit}>
-        <ul className='login__fields'>
+    <div className="login">
+      <form onSubmit={handleSubmit} data-testid="login-form">
+        <ul className="login__fields">
           <li>
             <input
-              type='email'
-              name='email'
+              type="email"
+              name="email"
               value={email}
               onChange={handleEmail}
-              autoComplete='email'
-              placeholder='email'
+              autoComplete="email"
+              placeholder="email"
             />
           </li>
           <li>
             <input
-              type='password'
-              name='password'
+              type="password"
+              name="password"
               value={password}
               onChange={handlePassword}
-              autoComplete='current-password'
-              placeholder='password'
+              autoComplete="current-password"
+              placeholder="password"
             />
           </li>
         </ul>
-        <button className='btn' type='submit'>
+        <button className="btn" type="submit">
           Login
         </button>
       </form>
-      <div className='login__register'>
+      <div className="login__register">
         <h4>Don't have an account yet?</h4>
-        <button className='btn' onClick={() => navigate('/register')}>
+        <button className="btn" onClick={() => navigate('/register')}>
           Register
         </button>
       </div>
