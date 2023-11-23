@@ -22,6 +22,7 @@
   margin-right: auto;
   margin-top: 3rem;
   font-size: 1.25rem;
+  text-align: center;
 }
 
 .container__user-prompt {
@@ -54,4 +55,11 @@
   .container--negative {
     margin: 0 8px;
   }
+  
+  .container--negative {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: stretch;
+  }
+
 }

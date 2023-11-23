@@ -55,45 +55,40 @@ function Register() {
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>
-        <ul className="register__fields">
-          <li>
+        <div className="register__fields">
             <input
               type="email"
               name="email"
               value={email}
               onChange={handleEmail}
               placeholder="email"
+              className='input'
             />
-          </li>
-          <li>
             <input
               type="password"
               name="password"
               value={password}
               onChange={handlePassword}
               placeholder="password"
+              className='input'
             />
-          </li>
-          <li>
             <input
               type="text"
               name="firstName"
               value={firstName}
               onChange={handleFirstName}
               placeholder="first name"
+              className='input'
             />
-          </li>
-          <li>
             <input
               type="text"
               name="lastName"
               value={lastName}
               onChange={handleLastName}
               placeholder="last name"
+              className='input'
             />
-          </li>
-        </ul>
-      </form>
+        </div>
       <div className="register__actions">
         <button className="btn" type="submit" onClick={handleSubmit}>
           Register
@@ -102,6 +97,7 @@ function Register() {
           Back
         </button>
       </div>
+      </form>
     </div>
   );
 }

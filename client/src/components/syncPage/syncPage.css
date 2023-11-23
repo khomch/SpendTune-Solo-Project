@@ -40,3 +40,15 @@
   flex-wrap: nowrap;
   gap: 2rem;
 }
+
+@media (max-width: 600px) {
+  .modal {
+    width: 80%;
+    margin: 4rem 0 ;
+  }
+
+  .modal__btn-section {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

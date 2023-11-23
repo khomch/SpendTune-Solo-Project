@@ -36,3 +36,15 @@
   align-items: center;
   gap: 1rem;
 }
+
+.login__btn {
+  margin-top: 2rem; 
+  margin-bottom: -4rem;
+}
+
+
+@media (max-width: 600px) {
+  .login {
+    width: 80%;
+  }
+}

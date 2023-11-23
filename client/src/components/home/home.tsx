@@ -15,7 +15,7 @@ function Home() {
   }
 
   return loggedUser ? (
-    <main>
+    <main className='main'>
       {loggedUser.transactions && (
         <section className='container--negative'>
           <h1 className='container__title'>Dashboard</h1>
