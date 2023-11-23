@@ -42,7 +42,7 @@ function Navbar({ tokenStore, setTokenStore }: AuthProps) {
         {/* {loggedUser && <h1 className='navbar__title'>Dashboard</h1>} */}
         {loggedUser && (
           <button className='navbar__btn' onClick={handleSync}>
-            {loggedUser.linkedBanks && loggedUser.linkedBanks.length ? 'Sync another bank' : 'Sync bank'}
+            {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
           </button>
         )}
 

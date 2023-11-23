@@ -1,4 +1,3 @@
-import 'cypress-iframe'
 
 /// <reference types="cypress" />
 // ***********************************************

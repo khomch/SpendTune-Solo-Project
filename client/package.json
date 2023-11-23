@@ -50,12 +50,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.9",
     "@types/mocha": "^10.0.6",
     "bcrypt": "^5.1.1",
     "cypress": "^13.5.1",
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "jest-canvas-mock": "2.5.2",
     "typescript-plugin-css-modules": "^5.0.2"
   }

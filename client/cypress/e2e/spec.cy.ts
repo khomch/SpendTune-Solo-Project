@@ -153,7 +153,7 @@ describe('syncs and categorises transactions from new user', () => {
       initialUncatTransactions = rows.length
     })
 
-    cy.contains('Add category').eq(0).click();
+    cy.get('[data-cy="btn-add-category"]').click();
     cy.get('.modal__input').eq(0).type(firstCat);
     cy.get('.btn').eq(0).click();
 

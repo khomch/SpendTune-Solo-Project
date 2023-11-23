@@ -4,7 +4,7 @@ export type TUser = {
   firstName: string;
   lastName: string;
   accessToken?: string;
-  linkedBanks?: string[];
+  linkedBanks?: {};
   next_cursor?: string;
   transactions?: TTransaction[];
   transactionsCategorized?: TTransaction[];
