@@ -29,6 +29,7 @@ body {
 
 .btn--small {
   width: 100px;
+  font-size: 12px;
 }
 
 .btn--short {

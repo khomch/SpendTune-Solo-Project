@@ -4,14 +4,10 @@ import { addCategory } from '../../apiService';
 import './AddCategory.css';
 
 type AddCategoryProps = {
-  addCategoryClicked: boolean;
   setAddCategoryClicked: Dispatch<React.SetStateAction<boolean>>;
 };
 
-function AddCategory({
-  addCategoryClicked,
-  setAddCategoryClicked,
-}: AddCategoryProps) {
+function AddCategory({ setAddCategoryClicked }: AddCategoryProps) {
   const loggedUser = useCombinedStore((state) => state.logged);
   const authToken = useCombinedStore((state) => state.token);
   const setLoggedUser = useCombinedStore((state) => state.setLoggedUser);
@@ -49,7 +45,9 @@ function AddCategory({
   return (
     <div className="modal__overlay">
       <div className="modal">
-        <div className="modal__close" onClick={handleClose}>X</div>
+        <div className="modal__close" onClick={handleClose}>
+          X
+        </div>
         <div className="modal__category">
           <h2 className="modal__title">Add new category</h2>
           <input
