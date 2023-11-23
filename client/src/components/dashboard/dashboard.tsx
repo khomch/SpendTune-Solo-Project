@@ -4,30 +4,43 @@ import Login from '../login/login';
 import Register from '../register/register';
 import Home from '../home/home';
 import SyncPage from '../syncPage/syncPage';
-import { useCombinedStore } from '../../store/Store';
+import { useCombinedStore } from '../../Store';
 import { TTokenStore } from '../../types/types';
 import Navbar from '../navbar/navbar';
 
 function Dashboard() {
   const [tokenStore, setTokenStore] = useState<TTokenStore | null>(null);
   const loggedUser = useCombinedStore((state) => state.logged);
+  console.log('loggedUser: ', loggedUser);
 
   return (
     <>
       <Navbar tokenStore={tokenStore} setTokenStore={setTokenStore}></Navbar>
       <Routes>
         <Route
-          path="/"
-          element={loggedUser ? <Home /> : <Navigate replace to={'/login'} />}
+          path='/'
+          element={
+            loggedUser ? (
+              <Home/>
+            ) : (
+              <Navigate replace to={'/login'} />
+            )
+          }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route
-          path="/home"
-          element={loggedUser ? <Home /> : <Navigate replace to={'/'} />}
+          path='/home'
+          element={
+            loggedUser ? (
+              <Home/>
+            ) : (
+              <Navigate replace to={'/'} />
+            )
+          }
         />
         <Route
-          path="/sync"
+          path='/sync'
           element={
             loggedUser ? (
               <SyncPage tokenStore={tokenStore} />
@@ -36,7 +49,7 @@ function Dashboard() {
             )
           }
         />
-        <Route path="*" element={<Navigate replace to="/home" />} />
+        <Route path='*' element={<Navigate replace to='/home' />} />
       </Routes>
     </>
   );

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logUser } from '../../apiService';
-import { useCombinedStore } from '../../Store';
+import { logUser } from '../apiService';
+import { useCombinedStore } from '../Store';
 import './login.css';
 
 function Login() {
@@ -66,7 +66,7 @@ function Login() {
         </button>
       </form>
       <div className='login__register'>
-        <h4>Don't have an account yet?</h4>
+        <h4>Don&apos;t have an account yet?</h4>
         <button className='btn' onClick={() => navigate('/register')}>
           Register
         </button>

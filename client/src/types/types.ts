@@ -6,8 +6,8 @@ export type TUser = {
   accessToken?: string;
   linkedBanks?: {};
   next_cursor?: string;
-  transactions?: TTransaction[];
-  transactionsCategorized?: TTransaction[];
+  transactions?: [];
+  transactionsCategorized?: [];
   categories?: string[];
 };
 
@@ -29,8 +29,9 @@ export type TTokenStore = {
   request_id: string;
 };
 
+
 export type AuthProps = {
-  children?: any; //TODO change this any
+  children?: any //TODO change this any
   tokenStore: TTokenStore | null;
   setTokenStore: Function;
 };

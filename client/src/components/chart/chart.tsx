@@ -1,4 +1,4 @@
-import { useCombinedStore } from '../../store/Store';
+import { useCombinedStore } from '../../Store';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { TTransaction } from '../../types/types';
@@ -21,6 +21,7 @@ function Chart() {
             amount += transaction.amount;
           }
         });
+      console.log('amount: ', amount);
       return amount;
     }
   );
@@ -84,3 +85,11 @@ function Chart() {
 }
 
 export default Chart;
+
+// <div className="chart-container">
+//   <div className="chart">
+//     <h2>Spendings</h2>
+//     <Doughnut data={data} options={options} />
+//     <h2 className="totals">Totals: {totals?.toFixed(2)} GBP</h2>
+//   </div>
+// </div>
