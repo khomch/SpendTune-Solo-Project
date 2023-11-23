@@ -50,8 +50,10 @@
     ]
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.9",
     "@types/mocha": "^10.0.5",
+    "bcrypt": "^5.1.1",
     "cypress": "^13.5.1",
     "cypress-iframe": "^1.0.1",
     "typescript-plugin-css-modules": "^5.0.2"
