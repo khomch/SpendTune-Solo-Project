@@ -14,7 +14,7 @@ function Dashboard() {
   
   return (
     <>
-      <Navbar tokenStore={tokenStore} setTokenStore={setTokenStore}></Navbar>
+      <Navbar setTokenStore={setTokenStore}></Navbar>
       <Routes>
         <Route
           path="/"

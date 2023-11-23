@@ -24,10 +24,7 @@ function Home() {
           )}
 
           {addCategoryClicked ? (
-            <AddCategory
-              addCategoryClicked={addCategoryClicked}
-              setAddCategoryClicked={setAddCategoryClicked}
-            />
+            <AddCategory setAddCategoryClicked={setAddCategoryClicked} />
           ) : (
             <button
               className='btn btn--negative btn--small btn--sticky'
