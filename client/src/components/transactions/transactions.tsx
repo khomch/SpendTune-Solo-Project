@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCombinedStore } from '../../Store';
 import { TTransaction } from '../../types/types';
 import Transaction from '../transaction/transaction';

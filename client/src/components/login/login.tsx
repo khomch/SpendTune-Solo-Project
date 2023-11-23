@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { logUser } from '../../apiService';
 import { useCombinedStore } from '../../Store';
 import './login.css';
+import React from 'react';
 
 function Login() {
   const setLogged = useCombinedStore((state) => state.setLoggedUser);
