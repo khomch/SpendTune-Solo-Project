@@ -76,6 +76,7 @@ transactionController.exchangePublicToken = async (
     });
     // @ts-ignore
     const updatedUser = await user.save({ new: true });
+
     res.status(200).json(updatedUser);
   } catch {
     res.status(500).send({ message: 'Could not exchange Public Token' });

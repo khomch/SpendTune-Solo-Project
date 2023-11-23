@@ -1,7 +1,7 @@
 import React from 'react';
 import { logout } from '../../apiService';
 import { useNavigate } from 'react-router-dom';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import { getLinkToken, syncTransactions } from '../../plaidService';
 import { AuthProps } from '../../types/types';
 import './navbar.css';

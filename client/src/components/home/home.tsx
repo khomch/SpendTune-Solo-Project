@@ -3,13 +3,11 @@ import { useState } from 'react';
 import Chart from '../chart/chart';
 import Transactions from '../transactions/transactions';
 import AddCategory from '../AddCategory/AddCategory';
-import { useCombinedStore } from '../../Store';
+import { useCombinedStore } from '../../store/Store';
 import './home.css';
 
 function Home() {
-  // global states
   const loggedUser = useCombinedStore((state) => state.logged);
-  // local states
   const [addCategoryClicked, setAddCategoryClicked] = useState(false);
 
   function handleCatClicked() {
@@ -19,10 +17,10 @@ function Home() {
   return loggedUser ? (
     <main>
       {loggedUser.transactions && (
-        <section className='container--negative'>
-          <h1 className='container__title'>Dashboard</h1>
-          {!loggedUser.categories && !addCategoryClicked && (
-            <h3 className='container__user-prompt'>Add category to start</h3>
+        <section className="container--negative">
+          <h1 className="container__title">Dashboard</h1>
+          {loggedUser.categories?.length === 0 && !addCategoryClicked && (
+            <h3 className="container__user-prompt">Add category to start</h3>
           )}
 
           {addCategoryClicked ? (
