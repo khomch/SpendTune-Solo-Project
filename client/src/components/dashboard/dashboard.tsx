@@ -11,7 +11,7 @@ import Navbar from '../navbar/navbar';
 function Dashboard() {
   const [tokenStore, setTokenStore] = useState<TTokenStore | null>(null);
   const loggedUser = useCombinedStore((state) => state.logged);
-
+  
   return (
     <>
       <Navbar tokenStore={tokenStore} setTokenStore={setTokenStore}></Navbar>

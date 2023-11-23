@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import Chart from '../chart/chart';
 import Transactions from '../transactions/transactions';
@@ -16,10 +17,10 @@ function Home() {
   return loggedUser ? (
     <main>
       {loggedUser.transactions && (
-        <section className="container--negative">
-          <h1 className="container__title">Dashboard</h1>
+        <section className='container--negative'>
+          <h1 className='container__title'>Dashboard</h1>
           {loggedUser.categories?.length === 0 && !addCategoryClicked && (
-            <h3 className="container__user-prompt">Add category to start</h3>
+            <h3 className='container__user-prompt'>Add category to start</h3>
           )}
 
           {addCategoryClicked ? (
@@ -29,7 +30,8 @@ function Home() {
             />
           ) : (
             <button
-              className="btn btn--negative btn--small btn--sticky"
+              className='btn btn--negative btn--small btn--sticky'
+              data-cy='btn-add-category'
               onClick={handleCatClicked}
             >
               Add category
@@ -38,12 +40,16 @@ function Home() {
         </section>
       )}
 
-      <div className="dashboard" data-testid="test-dashboard">
-        <section className="container">
-          {loggedUser.transactions && loggedUser.transactions.length && (
+      <div className='dashboard'>
+        {loggedUser.transactions && loggedUser.transactions.length > 0 ? (
+          <section className='container'>
             <Transactions />
-          )}
-        </section>
+          </section>
+        ) : (
+          <h2 className='container__title--central'>
+            Please sync your bank from the navigation bar above first.
+          </h2>
+        )}
         <section>
           <Chart />
         </section>

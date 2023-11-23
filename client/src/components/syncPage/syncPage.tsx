@@ -17,15 +17,20 @@ function SyncPage(props: SyncPageProps) {
   const navigate = useNavigate();
   const linkToken = tokenStore && tokenStore.link_token;
 
-  const { open } = usePlaidLink({
+  const { open} = usePlaidLink({
     token: linkToken,
     onSuccess: async (public_token) => {
+      console.log('Plaid API - Start');
       const updatedUser =
         authToken && (await exchangePublicToken(public_token, authToken));
       setLoggedUser(updatedUser);
       console.log('Plaid API - Link successful');
+      console.log('Plaid API - updatedUser :>> ', updatedUser);
       navigate('/home');
     },
+    onExit:()=>{
+      console.log('error in usePlaidLink')
+    }
   });
 
   useEffect(() => {
