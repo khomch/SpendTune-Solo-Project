@@ -19,10 +19,12 @@ function Login() {
       event.preventDefault();
       const login = { email, password };
       const loginData = await logUser(login);
+
       setEmail('');
       setPassword('');
       setLogged(loginData.user);
       setAuthToken(loginData.token);
+
       navigate('/home');
     } catch (error) {
       console.log(error);
@@ -30,7 +32,6 @@ function Login() {
   }
 
   // HANDLERS COULD BE REFACTORED INTO SINGLE UNIVERSAL HANDLER
-
   function handleEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
   }
@@ -40,37 +41,37 @@ function Login() {
   }
 
   return (
-    <div className="login">
-      <form onSubmit={handleSubmit} data-testid="login-form">
-        <ul className="login__fields">
-          <li>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleEmail}
-              autoComplete="email"
-              placeholder="email"
-            />
-          </li>
-          <li>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePassword}
-              autoComplete="current-password"
-              placeholder="password"
-            />
-          </li>
-        </ul>
-        <button className="btn" type="submit">
+    <div className='login'>
+      <form
+        onSubmit={handleSubmit}
+        data-testid='login-form'
+        className='login__fields'
+      >
+        <input
+          type='email'
+          name='email'
+          value={email}
+          onChange={handleEmail}
+          autoComplete='email'
+          placeholder='email'
+          className='input'
+        />
+        <input
+          type='password'
+          name='password'
+          value={password}
+          onChange={handlePassword}
+          autoComplete='current-password'
+          placeholder='password'
+          className='input'
+        />
+        <button className='btn login__btn' type='submit'>
           Login
         </button>
       </form>
-      <div className="login__register">
+      <div className='login__register'>
         <h4>Don't have an account yet?</h4>
-        <button className="btn" onClick={() => navigate('/register')}>
+        <button className='btn' onClick={() => navigate('/register')}>
           Register
         </button>
       </div>

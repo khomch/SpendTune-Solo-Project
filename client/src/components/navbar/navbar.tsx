@@ -40,31 +40,33 @@ function Navbar({ setTokenStore }: NavbarProps) {
   }
 
   return (
-    <nav className="navbar">
-      <div className="navbar__section">
-        <img className="navbar__img" src="/logo.svg" alt="Spendtune logo" />
-        {/* {loggedUser && <h1 className='navbar__title'>Dashboard</h1>} */}
+    <nav className='navbar'>
+      <div className='navbar__section'>
+        <img className='navbar__img' src='/logo.svg' alt='SpendTune Logo' />
         {loggedUser && (
-          <button className="navbar__btn" onClick={handleSync}>
-            {loggedUser.linkedBanks ? 'Sync another bank' : 'Sync bank'}
+          <button className='navbar__btn' onClick={handleSync}>
+            {loggedUser.linkedBanks &&
+            Object.keys(loggedUser.linkedBanks).length
+              ? 'Sync another bank'
+              : 'Sync bank'}
           </button>
         )}
 
         {loggedUser && loggedUser.linkedBanks && (
-          <button className="navbar__btn" onClick={handleSyncTransactions}>
+          <button className='navbar__btn' onClick={handleSyncTransactions}>
             Sync transactions
           </button>
         )}
       </div>
-      <div className="navbar__section">
+      <div className='navbar__section'>
         {loggedUser && (
           <p>
-            <span className="navbar__greeting">Hello,</span>{' '}
+            <span className='navbar__greeting'>Hello,</span>{' '}
             {loggedUser.firstName} {loggedUser.lastName}
           </p>
         )}
         {loggedUser && (
-          <button className="navbar__btn" onClick={handleLogout}>
+          <button className='navbar__btn' onClick={handleLogout}>
             Logout
           </button>
         )}
