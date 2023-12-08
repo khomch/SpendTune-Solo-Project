@@ -18,7 +18,6 @@ function Login() {
     try {
       event.preventDefault();
       const login = { email, password };
-      console.log('login: ', login);
       const loginData = await logUser(login);
       setEmail('');
       setPassword('');

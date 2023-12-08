@@ -23,3 +23,4 @@ describe('Zustand Store Tests', () => {
     expect(result.current.token).toBe(MOCK_USER_TOKEN);
   });
 });
+
