@@ -103,6 +103,7 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 ## Authors
 
 Juan Vasquez - [Github](https://github.com/simplyjuanc) - [LinkedIn](https://www.linkedin.com/in/juancvasquez/)
+
 Anton Khomchenko - [Github](https://github.com/khomch) - [LinkedIn](https://www.linkedin.com/in/khomchenko/)
 
 
