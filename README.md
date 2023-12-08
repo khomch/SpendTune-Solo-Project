@@ -21,7 +21,7 @@ cd SpendTune-Solo-Project
 
 ---
 
-This application is integrated with Plaid's open banking API which is used to authorize and connect the user with their banking institutions.
+This application is integrated with [Plaid's](plaid.com) open banking API which is used to authorize and connect the user with their banking institutions.
 
 Plaid's API offers many products however for app needs I'm using 'transactions' to fetch and sync them. Follow these steps:
 
@@ -32,7 +32,7 @@ Now go to your dashboard and select Developers => Keys section
 
 Here you will find your client_id and Secret keys.
 
-Go to projects ROOT/server and create a `.env` file, make sure to add this file to your .gitignore list, as it will store some sensitive data you don't want to expose.
+Go to project's `/server` folder and create a `.env` file, make sure to add this file to your `.gitignore` list, as it will store some sensitive data you don't want to expose.
 
 Populate the `.env` file:
 - PLAID_CLIENT_ID= client_id from Plaid's dashboard
